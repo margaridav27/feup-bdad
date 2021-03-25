@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS TeamRole (
 /* Repos & Stuff */
 
 CREATE TABLE IF NOT EXISTS Repository (
-    ID INT CHECK (ID >= 1),
+    ID INT UNIQUE CHECK (ID >= 1),
     name TEXT NOT NULL,
     rootDirectory INT,
     defaultBranch TEXT,
@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS OrganizationRepository (
 /* Git Stuff */
 
 CREATE TABLE IF NOT EXISTS Branch (
-    name TEXT NOT NULL,
+    name TEXT DEFAULT "main" NOT NULL,
     repository INT,
     CONSTRAINT BranchPK PRIMARY KEY (name, repository),
     CONSTRAINT BranchRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS Tag (
 /* Contributions */
 
 CREATE TABLE IF NOT EXISTS Contribution (
-    ID INT CHECK (id >= 1),
+    ID INT UNIQUE CHECK (ID >= 1),
     user TEXT,
     repository INT,
     date DATE,
@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS Contribution (
 
 CREATE TABLE IF NOT EXISTS PullRequest (
     ID INT,
-    pullRequestNumber INT CHECK (pullRequestNumber >= 1),
+    pullRequestNumber INT UNIQUE CHECK (ID >= 1), /* Is it a good use for AUTOINCREMENT here? */
     status INT CHECK (status >= 0 AND status <= 1),
     message TEXT,
     CONSTRAINT PullRequestPK PRIMARY KEY (ID),
@@ -152,14 +152,14 @@ CREATE TABLE IF NOT EXISTS PullRequest (
 
 CREATE TABLE IF NOT EXISTS Issue (
     ID INT, 
-    issueNumber INT CHECK (issueNumber >= 1),
+    issueNumber INT INT UNIQUE CHECK (ID >= 1), /* Is it a good use for AUTOINCREMENT here? */
     message TEXT,
     CONSTRAINT IssuePK PRIMARY KEY (ID),
     CONSTRAINT IssueContributionFK FOREIGN KEY (ID) REFERENCES Contribution(ID)
 );
 
 CREATE TABLE IF NOT EXISTS Merge (
-    ID INT CHECK (ID >= 1),
+    ID INT,
     oursName TEXT,
     oursRepository INT,
     theirsName TEXT,
@@ -169,7 +169,7 @@ CREATE TABLE IF NOT EXISTS Merge (
     CONSTRAINT MergeBranchOursNameFK FOREIGN KEY (oursName, oursRepository) REFERENCES Branch(name, repository),
     CONSTRAINT MergeBranchTheirsNameFK FOREIGN KEY (theirsName, theirsRepository) REFERENCES Branch(name, repository),
     CONSTRAINT MergeSameRepository CHECK (oursRepository == theirsRepository),
-    CONSTRAINT MergeDifferentBranches CHECK(oursName <> theirsName)
+    CONSTRAINT MergeDifferentBranches CHECK(oursName != theirsName)
 );
 
 /* Files And Directories */
@@ -177,13 +177,13 @@ CREATE TABLE IF NOT EXISTS Merge (
 /* Still Missing The Checks for prohibited chars in folders */
 
 CREATE TABLE IF NOT EXISTS Directory (
-    ID INT CHECK (ID >= 1),
-    name VARCHAR(256) NOT NULL,
+    ID INT UNIQUE CHECK (ID >= 1),   /* Limit the number of chars for a directory imposed in UNIX */
+    name VARCHAR(255) NOT NULL,
     CONSTRAINT DirectoryPK PRIMARY KEY (ID)
 );
 
 CREATE TABLE IF NOT EXISTS File (
-    name VARCHAR(256) NOT NULL,
+    name VARCHAR(255) NOT NULL, /* Limit the number of chars for a file imposed in UNIX */
     directory INT,
     content TEXT,
     programmingLanguage TEXT,
