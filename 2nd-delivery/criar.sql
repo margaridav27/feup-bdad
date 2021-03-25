@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS Repository (
     name TEXT NOT NULL,
     rootDirectory INT,
     defaultBranch TEXT,
-    visibility INT CHECK (visibility >= 0 AND visibility <= 1),
+    isVisible INT CHECK (isVisible >= 0 AND isVisible <= 1),
     CONSTRAINT RepositoryPK PRIMARY KEY (ID),
     CONSTRAINT RepositoryRootFK FOREIGN KEY (rootDirectory) REFERENCES Directory(ID),
     CONSTRAINT RepositoryDefaultBranchFK FOREIGN KEY (defaultBranch) REFERENCES Branch(name)
@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS Contribution (
 
 CREATE TABLE IF NOT EXISTS PullRequest (
     ID INT,
-    pullRequestNumber INT UNIQUE CHECK (ID >= 1), /* Is it a good use for AUTOINCREMENT here? */
+    pullRequestNumber INT UNIQUE CHECK (pullRequestNumber >= 1), /* Is it a good use for AUTOINCREMENT here? */
     status INT CHECK (status >= 0 AND status <= 1),
     message TEXT,
     CONSTRAINT PullRequestPK PRIMARY KEY (ID),
@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS PullRequest (
 
 CREATE TABLE IF NOT EXISTS Issue (
     ID INT, 
-    issueNumber INT INT UNIQUE CHECK (ID >= 1), /* Is it a good use for AUTOINCREMENT here? */
+    issueNumber INT INT UNIQUE CHECK (issueNumber >= 1), /* Is it a good use for AUTOINCREMENT here? */
     message TEXT,
     CONSTRAINT IssuePK PRIMARY KEY (ID),
     CONSTRAINT IssueContributionFK FOREIGN KEY (ID) REFERENCES Contribution(ID)
