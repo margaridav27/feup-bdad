@@ -1,1 +1,1 @@
-# feup_bdad
+# feup-bdad
