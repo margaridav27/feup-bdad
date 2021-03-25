@@ -143,7 +143,9 @@ CREATE TABLE IF NOT EXISTS Contribution (
 
 CREATE TABLE IF NOT EXISTS PullRequest (
     ID INT,
-    pullRequestNumber INT UNIQUE CHECK (pullRequestNumber >= 1), /* Is it a good use for AUTOINCREMENT here? */
+    /* Is it a good use for AUTOINCREMENT here? */
+    /* How to calculate this number based on the Date from Contribution? */
+    pullRequestNumber INT CHECK (pullRequestNumber >= 1),
     status INT CHECK (status >= 0 AND status <= 1),
     message TEXT,
     CONSTRAINT PullRequestPK PRIMARY KEY (ID),
@@ -151,8 +153,10 @@ CREATE TABLE IF NOT EXISTS PullRequest (
 );
 
 CREATE TABLE IF NOT EXISTS Issue (
-    ID INT, 
-    issueNumber INT INT UNIQUE CHECK (issueNumber >= 1), /* Is it a good use for AUTOINCREMENT here? */
+    ID INT,
+    /* Is it a good use for AUTOINCREMENT here? */
+    /* How to calculate this number based on the Date from Contribution? */
+    issueNumber INT CHECK (issueNumber >= 1),
     message TEXT,
     CONSTRAINT IssuePK PRIMARY KEY (ID),
     CONSTRAINT IssueContributionFK FOREIGN KEY (ID) REFERENCES Contribution(ID)
@@ -169,7 +173,7 @@ CREATE TABLE IF NOT EXISTS Merge (
     CONSTRAINT MergeBranchOursNameFK FOREIGN KEY (oursName, oursRepository) REFERENCES Branch(name, repository),
     CONSTRAINT MergeBranchTheirsNameFK FOREIGN KEY (theirsName, theirsRepository) REFERENCES Branch(name, repository),
     CONSTRAINT MergeSameRepository CHECK (oursRepository == theirsRepository),
-    CONSTRAINT MergeDifferentBranches CHECK(oursName != theirsName)
+    CONSTRAINT MergeDifferentBranches CHECK (oursName != theirsName)
 );
 
 /* Files And Directories */
@@ -193,7 +197,7 @@ CREATE TABLE IF NOT EXISTS File (
 );
 
 CREATE TABLE IF NOT EXISTS ProgrammingLanguage (
-    name TEXT NOT NULL,
+    name TEXT UNIQUE NOT NULL,
     CONSTRAINT ProgrammingLanguagePK PRIMARY KEY (name)
 );
 
