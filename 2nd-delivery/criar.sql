@@ -19,6 +19,22 @@ CREATE TABLE IF NOT EXISTS OrganizationMemberVisibility (
     CONSTRAINT OrganizationMemberVisibilityOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(name)
 );
 
+CREATE TABLE IF NOT EXISTS OrganizationUserOwner (
+    user TEXT,
+    organization TEXT,
+    CONSTRAINT OrganizationUserOwnerPK PRIMARY KEY (user, organization),
+    CONSTRAINT OrganizationUserOwnerUserFK FOREIGN KEY (user) REFERENCES User(name),
+    CONSTRAINT OrganizationUserOwnerOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(name)
+);
+
+CREATE TABLE IF NOT EXISTS OrganizationUserMember (
+    user TEXT,
+    organization TEXT,
+    CONSTRAINT OrganizationUserMemberPK PRIMARY KEY (user, organization),
+    CONSTRAINT OrganizationUserMemberUserFK FOREIGN KEY (user) REFERENCES User(name),
+    CONSTRAINT OrganizationUserMemberOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(name)
+);
+
 CREATE TABLE IF NOT EXISTS Team (
     name TEXT NOT NULL,
     description TEXT,
@@ -33,6 +49,7 @@ CREATE TABLE IF NOT EXISTS TeamRole (
     CONSTRAINT TeamRoleUserFK FOREIGN KEY (user) REFERENCES User(name),
     CONSTRAINT TeamRoleTeamFK FOREIGN KEY (team) REFERENCES Team(name)
 );
+
 
 /* Repos & Stuff */
 
@@ -70,6 +87,23 @@ CREATE TABLE IF NOT EXISTS ContributorRepository (
     CONSTRAINT ContributorRepositoryUserFK FOREIGN KEY (user) REFERENCES User(name),
     CONSTRAINT ContributorRepositoryRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
 );
+
+CREATE TABLE IF NOT EXISTS TeamRepository (
+    team TEXT,
+    repository INT,
+    CONSTRAINT TeamRepositoryPK PRIMARY KEY (team, repository),
+    CONSTRAINT TeamRepositoryTeamFK FOREIGN KEY (team) REFERENCES Team(name),
+    CONSTRAINT TeamRepositoryRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
+);
+
+CREATE TABLE IF NOT EXISTS OrganizationRepository (
+    organization TEXT,
+    repository INT,
+    CONSTRAINT OrganizationRepositoryPK PRIMARY KEY (organization, repository),
+    CONSTRAINT OrganizationRepositoryOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(name),
+    CONSTRAINT OrganizationRepositoryRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
+);
+
 
 /* Git Stuff */
 
