@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS Branch (
 
 CREATE TABLE IF NOT EXISTS "Commit" (
     ID INT, 
-    commitHash CHAR(40) NOT NULL,
+    commitHash TEXT NOT NULL CHECK (LENGTH(commitHash) == 40),
     message TEXT,
     CONSTRAINT CommitPK PRIMARY KEY (ID),
     CONSTRAINT CommitContributionFK FOREIGN KEY (ID) REFERENCES Contribution(ID)
@@ -143,7 +143,6 @@ CREATE TABLE IF NOT EXISTS Contribution (
 
 CREATE TABLE IF NOT EXISTS PullRequest (
     ID INT,
-    /* Is it a good use for AUTOINCREMENT here? */
     /* How to calculate this number based on the Date from Contribution? */
     pullRequestNumber INT CHECK (pullRequestNumber >= 1),
     status INT CHECK (status >= 0 AND status <= 1),
@@ -154,7 +153,6 @@ CREATE TABLE IF NOT EXISTS PullRequest (
 
 CREATE TABLE IF NOT EXISTS Issue (
     ID INT,
-    /* Is it a good use for AUTOINCREMENT here? */
     /* How to calculate this number based on the Date from Contribution? */
     issueNumber INT CHECK (issueNumber >= 1),
     message TEXT,
@@ -181,13 +179,15 @@ CREATE TABLE IF NOT EXISTS Merge (
 /* Still Missing The Checks for prohibited chars in folders */
 
 CREATE TABLE IF NOT EXISTS Directory (
-    ID INT UNIQUE CHECK (ID >= 1),   /* Limit the number of chars for a directory imposed in UNIX */
-    name VARCHAR(255) NOT NULL,
+    /* Limit the number of chars for a directory imposed in UNIX */
+    ID INT UNIQUE CHECK (ID >= 1),
+    name TEXT NOT NULL CHECK (LENGTH(name) <= 255),
     CONSTRAINT DirectoryPK PRIMARY KEY (ID)
 );
 
 CREATE TABLE IF NOT EXISTS File (
-    name VARCHAR(255) NOT NULL, /* Limit the number of chars for a file imposed in UNIX */
+    /* Limit the number of chars for a file imposed in UNIX */
+    name TEXT NOT NULL CHECK (LENGTH(name) <= 255),
     directory INT,
     content TEXT,
     programmingLanguage TEXT,
