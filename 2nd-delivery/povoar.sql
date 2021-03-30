@@ -75,6 +75,7 @@ VALUES
     ("JuniFEUP"),
     ("OnlyFans");
 
+
 INSERT INTO OrganizationMemberVisibility (user, organization, isPrivate)
 VALUES
     ("margaridav27", "BDAD", 0),
@@ -225,9 +226,6 @@ VALUES
     ("nunottlopes", "webappDist");
 
 
-
-
-
 INSERT INTO Directory (ID, name)
 VALUES
     (1, "feup-lpoo"),
@@ -266,6 +264,7 @@ VALUES
     (34, "feup-laig"),
     (35, "proj-xmod-tool");
 
+
 INSERT INTO ProgrammingLanguage (name)
 VALUES
     ("Assembly"),
@@ -297,6 +296,7 @@ VALUES
     ("Swift"),
     ("SQL"),
     ("Shell");
+
 
 INSERT INTO Repository (ID, name, rootDirectory, isVisible)
 VALUES
@@ -335,3 +335,4 @@ VALUES
     (33, "feup-fpro", 29, 0),
     (34, "feup-laig", 34, 1),
     (35, "proj-xmod-tool", 35, 1);
+    
