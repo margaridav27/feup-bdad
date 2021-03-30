@@ -8,6 +8,7 @@ VALUES
     ("sofiagermer"),
     ("Retchup"),
     ("rodrigotuna"),
+    ("BiguelBodrigues"),
     ("brunogomes30"),
     ("Jumaruba"),
     ("JoaoAMarinho"),
@@ -74,19 +75,20 @@ VALUES
     ("JuniFEUP"),
     ("OnlyFans");
 
-INSERT INTO OrganizationMemberVisibility(user, organization, isPrivate)
+INSERT INTO OrganizationMemberVisibility (user, organization, isPrivate)
 VALUES
-    ("margaridav27", "BDAD", 1),
+    ("margaridav27", "BDAD", 0),
     ("margaridav27", "NIAEFEUP", 0),
     ("margaridav27", "linux", 1),
     ("beatriz-ag", "JuniFEUP", 0),
     ("beatriz-ag", "BDAD", 1),
     ("beatriz-ag", "apple", 1),
-    ("mikRodrigues", "linux", 1),
+    ("mikRodrigues", "linux", 0),
     ("mikRodrigues", "twitter", 1),
     ("mikRodrigues", "mmarket", 1),
     ("mikRodrigues", "LCOM", 1),
     ("mikRodrigues", "BDAD", 1),
+    ("BiguelBodrigues", "twitter", 0),
     ("torvalds", "linux", 0),
     ("arestivo", "adobe", 0),
     ("arestivo", "codes", 0),
@@ -100,16 +102,17 @@ VALUES
     ("beatrizlopesdossantos", "instagram", 0),
     ("beatrizlopesdossantos", "OnlyFans", 0),
     ("DTPreda", "discordapi", 0),
+    ("DTPreda", "netflix", 0),
     ("miguelpduarte", "NIAEFEUP", 0),
     ("miguelpduarte", "discordapi", 0),
     ("miguelpduarte", "sonic", 0),
     ("TiagoCaldaSilva", "NIAEFEUP", 0),
     ("TiagoCaldaSilva", "LCOM", 0),
-    ("Andrepereira2001", "youtube", 1),
-    ("Andrepereira2001", "CGRA", 1),
+    ("Andrepereira2001", "youtube", 0),
+    ("Andrepereira2001", "CGRA", 0),
     ("RuiVieira456", "facebook", 1),
-    ("Rickyfer205", "mmarket", 1),
-    ("Rickyfer205", "NEEM", 1),
+    ("Rickyfer205", "mmarket", 0),
+    ("Rickyfer205", "NEEM", 0),
     ("Rickyfer205", "sonic", 0),
     ("Goncalerta", "weba", 0),
     ("Goncalerta", "IBASE", 0),
@@ -122,10 +125,46 @@ VALUES
     ("DoStini", "discordapi", 0),
     ("DoStini", "NIAEFEUP", 0),
     ("DoStini", "microsoft", 0),
+    ("DoStini", "LCOM", 0),
     ("ferrolho", "apple", 0),
     ("ferrolho", "adobe", 0),
     ("ferrolho", "square", 0),
     ("nunottlopes", "facebook", 1);
+    ("nunottlopes", "webappDist", 0);
+
+
+INSERT INTO OrganizationUserOwner (user, organization)
+VALUES
+    ("developful", "arestivo"),
+    ("weba", "Goncalerta"),
+    ("codes", "arestivo"),
+    ("IBASE", "Goncalerta"),
+    ("WEBC", "SALajes"),
+    ("WEBITS", "leonormgomes"),
+    ("NIAEFEUP", "miguelpduarte"),
+    ("dalux", "AntoniooCruz"),
+    ("microsoft", "tmv11"),
+    ("google", "jfbaltazar"),
+    ("linux", "torvalds"),
+    ("netflix", "DTPreda"),
+    ("NEEC", "Jumaruba"),
+    ("NEEM", "Rickyfer205"),
+    ("LCOM", "DoStini"),
+    ("CGRA", "Andrepereira2001"),
+    ("BDAD", "margaridav27"),
+    ("adobe", "arestivo"),
+    ("square", "antbz"),
+    ("twitter", "BiguelBodrigues"),
+    ("instagram", "beatrizlopesdossantos"),
+    ("facebook", "nunottlopes"),
+    ("sonic", "miguelpduarte"),
+    ("discordapi", "DTPreda"),
+    ("apple", "ferrolho"),
+    ("webappDist", "nunottlopes"),
+    ("youtube", "Andrepereira2001"),
+    ("mmarket", "Rickyfer205"),
+    ("JuniFEUP", "beatriz-ag"),
+    ("OnlyFans", "beatrizlopesdossantos");
 
 
 INSERT INTO Directory (ID, name)
@@ -166,7 +205,7 @@ VALUES
     (34, "feup-laig"),
     (35, "proj-xmod-tool");
 
-INSERT INTO ProgrammingLanguage(name)
+INSERT INTO ProgrammingLanguage (name)
 VALUES
     ("Assembly"),
     ("Bash"),
