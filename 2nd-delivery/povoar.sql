@@ -106,7 +106,8 @@ VALUES
     (31, "space-shuttle-reentry-trajectory"),
     (32, "corona"),
     (33, "workshop-LaTex"),
-    (34, "feup-laig");
+    (34, "feup-laig"),
+    (35, "proj-xmod-tool");
 
 INSERT INTO ProgrammingLanguage(name)
 VALUES
@@ -175,10 +176,5 @@ VALUES
     (31, "feup-vcom", 21, 1),
     (32, "feup-ltw", 28, 0),
     (33, "feup-fpro", 29, 0),
-    (34, "feup-laig", 34, 1);
-
-
-
-
-
-
+    (34, "feup-laig", 34, 1),
+    (35, "proj-xmod-tool", 35, 1);
