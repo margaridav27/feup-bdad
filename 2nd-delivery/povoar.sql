@@ -129,7 +129,7 @@ VALUES
     ("ferrolho", "apple", 0),
     ("ferrolho", "adobe", 0),
     ("ferrolho", "square", 0),
-    ("nunottlopes", "facebook", 1);
+    ("nunottlopes", "facebook", 1),
     ("nunottlopes", "webappDist", 0);
 
 
@@ -165,6 +165,67 @@ VALUES
     ("mmarket", "Rickyfer205"),
     ("JuniFEUP", "beatriz-ag"),
     ("OnlyFans", "beatrizlopesdossantos");
+
+
+INSERT INTO OrganizationUserMember (user, organization)
+VALUES
+    ("margaridav27", "BDAD"),
+    ("margaridav27", "NIAEFEUP"),
+    ("margaridav27", "linux"),
+    ("beatriz-ag", "JuniFEUP"),
+    ("beatriz-ag", "BDAD"),
+    ("beatriz-ag", "apple"),
+    ("mikRodrigues", "linux"),
+    ("mikRodrigues", "twitter"),
+    ("mikRodrigues", "mmarket"),
+    ("mikRodrigues", "LCOM"),
+    ("mikRodrigues", "BDAD"),
+    ("BiguelBodrigues", "twitter"),
+    ("torvalds", "linux"),
+    ("arestivo", "adobe"),
+    ("arestivo", "codes"),
+    ("arestivo", "developful"),
+    ("rodrigotuna", "LCOM"),
+    ("Jumaruba", "NEEC"),
+    ("jfbaltazar", "google"),
+    ("jfbaltazar", "square"),
+    ("tmv11", "linux"),
+    ("tmv11", "microsoft"),
+    ("beatrizlopesdossantos", "instagram"),
+    ("beatrizlopesdossantos", "OnlyFans"),
+    ("DTPreda", "discordapi"),
+    ("DTPreda", "netflix"),
+    ("miguelpduarte", "NIAEFEUP"),
+    ("miguelpduarte", "discordapi"),
+    ("miguelpduarte", "sonic"),
+    ("TiagoCaldaSilva", "NIAEFEUP"),
+    ("TiagoCaldaSilva", "LCOM"),
+    ("Andrepereira2001", "youtube"),
+    ("Andrepereira2001", "CGRA"),
+    ("RuiVieira456", "facebook"),
+    ("Rickyfer205", "mmarket"),
+    ("Rickyfer205", "NEEM"),
+    ("Rickyfer205", "sonic"),
+    ("Goncalerta", "weba"),
+    ("Goncalerta", "IBASE"),
+    ("leonormgomes", "WEBC"),
+    ("leonormgomes", "WEBITS"),
+    ("AntoniooCruz", "dalux"),
+    ("SALajes", "apple"),
+    ("SALajes", "WEBC"),
+    ("antbz", "square"),
+    ("DoStini", "discordapi"),
+    ("DoStini", "NIAEFEUP"),
+    ("DoStini", "microsoft"),
+    ("DoStini", "LCOM"),
+    ("ferrolho", "apple"),
+    ("ferrolho", "adobe"),
+    ("ferrolho", "square"),
+    ("nunottlopes", "facebook"),
+    ("nunottlopes", "webappDist");
+
+
+
 
 
 INSERT INTO Directory (ID, name)
