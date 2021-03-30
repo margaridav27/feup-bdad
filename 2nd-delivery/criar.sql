@@ -1,13 +1,13 @@
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE IF NOT EXISTS User (
-    name TEXT UNIQUE NOT NULL,
-    CONSTRAINT UserPK PRIMARY KEY (name) 
+    userName TEXT UNIQUE NOT NULL,
+    CONSTRAINT UserPK PRIMARY KEY (userName) 
 );
 
 CREATE TABLE IF NOT EXISTS Organization (
-    name TEXT UNIQUE NOT NULL,
-    CONSTRAINT OrganizationPK PRIMARY KEY (name)
+    organizationName TEXT UNIQUE NOT NULL,
+    CONSTRAINT OrganizationPK PRIMARY KEY (organizationName)
 );
 
 CREATE TABLE IF NOT EXISTS OrganizationMemberVisibility (
@@ -15,30 +15,30 @@ CREATE TABLE IF NOT EXISTS OrganizationMemberVisibility (
     organization TEXT,
     isPrivate INTEGER CHECK (isPrivate >= 0 AND isPrivate <= 1),
     CONSTRAINT OrganizationMemberVisibilityPK PRIMARY KEY (user, organization),
-    CONSTRAINT OrganizationMemberVisibilityUserFK FOREIGN KEY (user) REFERENCES User(name),
-    CONSTRAINT OrganizationMemberVisibilityOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(name)
+    CONSTRAINT OrganizationMemberVisibilityUserFK FOREIGN KEY (user) REFERENCES User(userName),
+    CONSTRAINT OrganizationMemberVisibilityOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(organizationName)
 );
 
 CREATE TABLE IF NOT EXISTS OrganizationUserOwner (
     user TEXT,
     organization TEXT,
     CONSTRAINT OrganizationUserOwnerPK PRIMARY KEY (user, organization),
-    CONSTRAINT OrganizationUserOwnerUserFK FOREIGN KEY (user) REFERENCES User(name),
-    CONSTRAINT OrganizationUserOwnerOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(name)
+    CONSTRAINT OrganizationUserOwnerUserFK FOREIGN KEY (user) REFERENCES User(userName),
+    CONSTRAINT OrganizationUserOwnerOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(organizationName)
 );
 
 CREATE TABLE IF NOT EXISTS OrganizationUserMember (
     user TEXT,
     organization TEXT,
     CONSTRAINT OrganizationUserMemberPK PRIMARY KEY (user, organization),
-    CONSTRAINT OrganizationUserMemberUserFK FOREIGN KEY (user) REFERENCES User(name),
-    CONSTRAINT OrganizationUserMemberOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(name)
+    CONSTRAINT OrganizationUserMemberUserFK FOREIGN KEY (user) REFERENCES User(userName),
+    CONSTRAINT OrganizationUserMemberOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(organizationName)
 );
 
 CREATE TABLE IF NOT EXISTS Team (
-    name TEXT NOT NULL,
+    teamName TEXT NOT NULL,
     description TEXT,
-    CONSTRAINT TeamPK PRIMARY KEY (name)
+    CONSTRAINT TeamPK PRIMARY KEY (teamName)
 );
 
 CREATE TABLE IF NOT EXISTS TeamRole (
@@ -46,8 +46,8 @@ CREATE TABLE IF NOT EXISTS TeamRole (
     team TEXT,
     isMaintainer INTEGER CHECK (isMaintainer >= 0 AND isMaintainer <= 1),
     CONSTRAINT TeamRolePK PRIMARY KEY (user, team),
-    CONSTRAINT TeamRoleUserFK FOREIGN KEY (user) REFERENCES User(name),
-    CONSTRAINT TeamRoleTeamFK FOREIGN KEY (team) REFERENCES Team(name)
+    CONSTRAINT TeamRoleUserFK FOREIGN KEY (user) REFERENCES User(userName),
+    CONSTRAINT TeamRoleTeamFK FOREIGN KEY (team) REFERENCES Team(organizationName)
 );
 
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS OwnerRepository (
     user TEXT,
     repository INTEGER,
     CONSTRAINT OwnerRepositoryPK PRIMARY KEY (user, repository),
-    CONSTRAINT OwnerRepositoryUserFK FOREIGN KEY (user) REFERENCES User(name),
+    CONSTRAINT OwnerRepositoryUserFK FOREIGN KEY (user) REFERENCES User(userName),
     CONSTRAINT OwnerRepositoryRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
 );
 
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS ContributorRepository (
     user TEXT,
     repository INTEGER,
     CONSTRAINT ContributorRepositoryPK PRIMARY KEY (user, repository),
-    CONSTRAINT ContributorRepositoryUserFK FOREIGN KEY (user) REFERENCES User(name),
+    CONSTRAINT ContributorRepositoryUserFK FOREIGN KEY (user) REFERENCES User(userName),
     CONSTRAINT ContributorRepositoryRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
 );
 
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS TeamRepository (
     team TEXT,
     repository INTEGER,
     CONSTRAINT TeamRepositoryPK PRIMARY KEY (team, repository),
-    CONSTRAINT TeamRepositoryTeamFK FOREIGN KEY (team) REFERENCES Team(name),
+    CONSTRAINT TeamRepositoryTeamFK FOREIGN KEY (team) REFERENCES Team(teamName),
     CONSTRAINT TeamRepositoryRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
 );
 
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS OrganizationRepository (
     organization TEXT,
     repository INTEGER,
     CONSTRAINT OrganizationRepositoryPK PRIMARY KEY (organization, repository),
-    CONSTRAINT OrganizationRepositoryOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(name),
+    CONSTRAINT OrganizationRepositoryOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(organizationName),
     CONSTRAINT OrganizationRepositoryRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
 );
 
@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS Contribution (
     repository INTEGER,
     date DATE,
     CONSTRAINT ContributionPK PRIMARY KEY (ID),
-    CONSTRAINT ContributionUserFK FOREIGN KEY (user) REFERENCES User(name),
+    CONSTRAINT ContributionUserFK FOREIGN KEY (user) REFERENCES User(userName),
     CONSTRAINT ContributionRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
 );
 
