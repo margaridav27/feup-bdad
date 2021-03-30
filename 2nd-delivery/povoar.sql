@@ -18,7 +18,27 @@ VALUES
     ("miguelpduarte"),
     ("TiagoCaldaSilva"),
     ("maildejoliveira"),
-    ("Andrepereira2001");
+    ("Andrepereira2001"),
+    ("RuiVieira456"),
+    ("reeckset"),
+    ("anaMendes123"),
+    ("xico2001pt"),
+    ("francisco-rente"),
+    ("Rickyfer205"),
+    ("caduonrails"),
+    ("FlyHigh1111"),
+    ("Goncalerta"),
+    ("leonormgomes"),
+    ("eukia"),
+    ("amargaridarl"),
+    ("AntoniooCruz"),
+    ("Ca-moes"),
+    ("SALajes"),
+    ("antbz"),
+    ("nunottlopes"),
+    ("ferrolho"),
+    ("DoStini");
+
 
 INSERT INTO Organization (organizationName)
 VALUES
@@ -53,26 +73,80 @@ VALUES
 
 INSERT INTO Directory (ID, name)
 VALUES
-    (1, "feup-lpoo")
-    (2, "feup-sope")
-    (3, "feup-bdad")
-    (4, "feup-cgra")
-    (5, "hero")
-    (6, "MindAPI")
-    (7, "codejam2021")
-    (8, "bitcoin")
-    (9, "go-ethereum")
-    (10, "covid19-growth")    
-    (11, "advent-of-code-2019")
-    (12, "website-NIAEFEUP")
-    (13, "uporto-timetable-scrapper")
-    (14, "linux")
-    (15, "hackerrank-contest")
-    (16, "iio-oscilloscope")
-    (17, "project-schrodinger")
-    (18, "holidata.net")
-    (19, "timewarrior")
-    (20, "gbf.org")
-    (21, "GothenburgBitFactory")
-    (22, "cognitivebing")
-    
+    (1, "feup-lpoo"),
+    (2, "feup-sope"),
+    (3, "feup-bdad"),
+    (4, "feup-cgra"),
+    (5, "hero"),
+    (6, "feup-comp"),
+    (7, "MindAPI"),
+    (8, "codejam2021"),
+    (9, "bitcoin"),
+    (10, "feup-aeda"),
+    (11, "go-ethereum"),
+    (12, "feup-lcom"),
+    (13, "covid19-growth"),  
+    (14, "advent-of-code-2019"),
+    (15, "website-NIAEFEUP"),
+    (16, "uporto-timetable-scrapper"),
+    (17, "linux"),
+    (18, "hackerrank-contest"),
+    (19, "iio-oscilloscope"),
+    (20, "feup-rcom"),
+    (21, "feup-vcom"),
+    (22, "project-schrodinger"),
+    (23, "holidata.net"),
+    (24, "timewarrior"),
+    (25, "gbf.org"),
+    (26, "GothenburgBitFactory"),
+    (27, "cognitivebing"),
+    (28, "feup-ltw"),  
+    (29, "feup-fpro"),
+    (30, "ModernRobotics.jl"),
+    (31, "space-shuttle-reentry-trajectory"),
+    (32, "corona"),
+    (33, "workshop-LaTex"),
+    (34, "feup-laig");
+   
+INSERT INTO Repository (ID, name, rootDirectory, isVisible)
+VALUES
+    (1, "feup-lpoo", 1, 0),
+    (2, "feup-sope", 2, 0),
+    (3, "feup-bdad", 3, 0),
+    (4, "feup-cgra", 4, 0),
+    (5, "hero", 5, 0),
+    (6, "MindAPI", 7, 1),
+    (7, "codejam2021", 8, 1),
+    (8, "bitcoin", 9, 1),
+    (9, "go-ethereum", 11, 1),
+    (10, "covid19-growth", 13, 1),    
+    (11, "advent-of-code-2019", 14, 1),
+    (12, "website-NIAEFEUP", 15, 1),
+    (13, "uporto-timetable-scrapper", 16, 1),
+    (14, "linux", 17, 1),
+    (15, "hackerrank-contest", 18, 1),
+    (16, "iio-oscilloscope", 19, 1),
+    (17, "project-schrodinger", 22, 1),
+    (18, "holidata.net", 23, 1),
+    (19, "timewarrior", 24, 1),
+    (20, "gbf.org", 25, 1),
+    (21, "GothenburgBitFactory", 26, 1),
+    (22, "cognitivebing", 27, 1),
+    (23, "ModernRobotics.jl", 30, 1),
+    (24, "space-shuttle-reentry-trajectory", 31, 1),
+    (25, "corona", 32, 1),
+    (26, "workshop-LaTex", 33, 0),
+    (27, "feup-comp", 6, 0),
+    (28, "feup-aeda", 10, 0),
+    (29, "feup-lcom", 12, 1),
+    (30, "feup-rcom", 20, 1),
+    (31, "feup-vcom", 21, 1),
+    (32, "feup-ltw", 28, 0),
+    (33, "feup-fpro", 29, 0),
+    (34, "feup-laig", 34, 1);
+
+
+
+
+
+
