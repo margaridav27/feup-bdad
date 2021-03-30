@@ -37,7 +37,8 @@ VALUES
     ("antbz"),
     ("nunottlopes"),
     ("ferrolho"),
-    ("DoStini");
+    ("DoStini"),
+    ("torvalds");
 
 
 INSERT INTO Organization (organizationName)
@@ -48,7 +49,7 @@ VALUES
     ("IBASE"),
     ("WEBC"),
     ("WEBITS"),
-    ("NIAFEUP"),
+    ("NIAEFEUP"),
     ("dalux"),
     ("microsoft"),
     ("google"),
@@ -69,7 +70,63 @@ VALUES
     ("apple"),
     ("webappDist"),
     ("youtube"),
-    ("mmarket");
+    ("mmarket"),
+    ("JuniFEUP"),
+    ("OnlyFans");
+
+INSERT INTO OrganizationMemberVisibility(user, organization, isPrivate)
+VALUES
+    ("margaridav27", "BDAD", 1),
+    ("margaridav27", "NIAEFEUP", 0),
+    ("margaridav27", "linux", 1),
+    ("beatriz-ag", "JuniFEUP", 0),
+    ("beatriz-ag", "BDAD", 1),
+    ("beatriz-ag", "apple", 1),
+    ("mikRodrigues", "linux", 1),
+    ("mikRodrigues", "twitter", 1),
+    ("mikRodrigues", "mmarket", 1),
+    ("mikRodrigues", "LCOM", 1),
+    ("mikRodrigues", "BDAD", 1),
+    ("torvalds", "linux", 0),
+    ("arestivo", "adobe", 0),
+    ("arestivo", "codes", 0),
+    ("arestivo", "developful", 0),
+    ("rodrigotuna", "LCOM", 1),
+    ("Jumaruba", "NEEC", 0),
+    ("jfbaltazar", "google", 0),
+    ("jfbaltazar", "square", 1),
+    ("tmv11", "linux", 0),
+    ("tmv11", "microsoft", 0),
+    ("beatrizlopesdossantos", "instagram", 0),
+    ("beatrizlopesdossantos", "OnlyFans", 0),
+    ("DTPreda", "discordapi", 0),
+    ("miguelpduarte", "NIAEFEUP", 0),
+    ("miguelpduarte", "discordapi", 0),
+    ("miguelpduarte", "sonic", 0),
+    ("TiagoCaldaSilva", "NIAEFEUP", 0),
+    ("TiagoCaldaSilva", "LCOM", 0),
+    ("Andrepereira2001", "youtube", 1),
+    ("Andrepereira2001", "CGRA", 1),
+    ("RuiVieira456", "facebook", 1),
+    ("Rickyfer205", "mmarket", 1),
+    ("Rickyfer205", "NEEM", 1),
+    ("Rickyfer205", "sonic", 0),
+    ("Goncalerta", "weba", 0),
+    ("Goncalerta", "IBASE", 0),
+    ("leonormgomes", "WEBC", 0),
+    ("leonormgomes", "WEBITS", 0),
+    ("AntoniooCruz", "dalux", 0),
+    ("SALajes", "apple", 0),
+    ("SALajes", "WEBC", 0),
+    ("antbz", "square", 0),
+    ("DoStini", "discordapi", 0),
+    ("DoStini", "NIAEFEUP", 0),
+    ("DoStini", "microsoft", 0),
+    ("ferrolho", "apple", 0),
+    ("ferrolho", "adobe", 0),
+    ("ferrolho", "square", 0),
+    ("nunottlopes", "facebook", 1);
+
 
 INSERT INTO Directory (ID, name)
 VALUES
