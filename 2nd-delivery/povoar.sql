@@ -107,7 +107,39 @@ VALUES
     (32, "corona"),
     (33, "workshop-LaTex"),
     (34, "feup-laig");
-   
+
+INSERT INTO ProgrammingLanguage(name)
+VALUES
+    ("Assembly"),
+    ("Bash"),
+    ("C"),
+    ("C++"),
+    ("C#"),
+    ("Curl"),
+    ("Dart"),
+    ("Go"),
+    ("HTML"),
+    ("Haskell"),
+    ("Java"),
+    ("JavaScript"),
+    ("JSON"),
+    ("Kotlin"),
+    ("MATLAB"),
+    ("Makefile"),
+    ("Pascal"),
+    ("PEARL"),
+    ("PHP"),
+    ("Prolog"),
+    ("Python"),
+    ("PowerShell")
+    ("Perl"),
+    ("Ruby"),
+    ("Rust"),
+    ("Scala"),
+    ("Swift"),
+    ("SQL"),
+    ("Shell");
+
 INSERT INTO Repository (ID, name, rootDirectory, isVisible)
 VALUES
     (1, "feup-lpoo", 1, 0),
