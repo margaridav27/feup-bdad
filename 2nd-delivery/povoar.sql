@@ -58,9 +58,6 @@ VALUES
     ("netflix"),
     ("NEEC"),
     ("NEEM"),
-    ("LCOM"),
-    ("CGRA"),
-    ("BDAD"),
     ("adobe"),
     ("square"),
     ("twitter"),
@@ -226,6 +223,53 @@ VALUES
     ("nunottlopes", "webappDist");
 
 
+INSERT INTO Team(teamName,description)
+VALUES
+    ("ubuntu-v9","Updates for ubuntu"),
+    ("ProjetoTimeTable","Implement AI to generate timetables"),
+    ("ProjetoShrodinger","Cat in the box project"),
+    ("Browsers","Google browsers"),
+    ("shadersHandler","Create shaders for sonic"),
+    ("adobeConverter","Converter to pdf"),
+    ("FollowersAlgorithmTwitter","Twitter follows advice"),
+    ("ExplorerAlgorithm","Instagram explore feed"),
+    ("FacebookLayout","New Facebook design"),
+    ("AppleWatchFitness","Monitor heart rate AI"),
+    ("JuniJobs","Organization candidatures site"),
+    ("PopUpGenarator","Create popups for OnlyFans"),
+    ("VirusInstaller","OnlyFans virtus add"),
+    ("PauseMovie","Algorithm to register and save movies time"),
+
+INSERT INTO TeamRole(user,team,isMaintainer)
+VALUES
+    ("margaridav27", "ProjetoShrodinger",0),
+    ("margaridav27", "ubuntu-v9",1),
+    ("beatriz-ag", "JuniJobs",0),
+    ("beatriz-ag", "AppleWatchFitness",1),
+    ("mikRodrigues", "ubuntu-v9",0),
+    ("mikRodrigues", "FollowersAlgorithmTwitter",1),
+    ("BiguelBodrigues", "FollowersAlgorithmTwitter",0),
+    ("torvalds", "ubuntu-v9",0),
+    ("arestivo", "adobeConverter",1),
+    ("jfbaltazar", "Browsers",1),
+    ("tmv11",  "ubuntu-v9",1),
+    ("tmv11", "Browsers",1),
+    ("beatrizlopesdossantos", "ExplorerAlgorithm",1),
+    ("beatrizlopesdossantos", "PopUpGenarator",1),
+    ("DTPreda", "PauseMovie",1),
+    ("miguelpduarte", "ProjetoShrodinger",1),
+    ("TiagoCaldaSilva", "ProjetoShrodinger",0),
+    ("Andrepereira2001", "youtube"),
+    ("RuiVieira456", "FacebookLayout",1),
+    ("Rickyfer205", "shadersHandler",1),
+    ("SALajes", "AppleWatchFitness",0),
+    ("DoStini", "ProjetoShrodinger",0),
+    ("ferrolho", "AppleWatchFitness",0),
+    ("ferrolho", "adobeConverter",0),
+    ("nunottlopes", "FacebookLayout",1)
+  
+
+
 INSERT INTO Directory (ID, name)
 VALUES
     (1, "feup-lpoo"),
@@ -385,6 +429,43 @@ VALUES
     (34, "feup-laig", 34, 1),
     (35, "proj-xmod-tool", 35, 1);
     
+INSERT INTO Submodule(source,destination)
+VALUES
+    (5,1)
+    (35,2)
+    (19,4)
+    (26,12)
+    (15,12)
+    (17,12)
+    (25,10)
+    (24,23)
+
+INSERT INTO OwnerRepository(user,repository)
+VALUES
+    ("beatriz-ag",1),
+    ("beatriz-ag",2),
+    ("beatriz-ag",3),
+    ("beatriz-ag",4),
+    ("beatriz-ag",5),
+    ("beatriz-ag",35),
+    ("margaridav27",27),
+    ("margaridav27",28),
+    ("margaridav27",29),
+    ("margaridav27",30),
+    ("mikRodrigues",31),
+    ("mikRodrigues",32),
+    ("mikRodrigues",33),
+    ("arestivo",6),
+    ("filipepcampos",7),
+    ("sofiagermer",8),
+    ("Retchup",9),
+    ("rodrigotuna",10),
+    ("BiguelBodrigues",11),
+    ("brunogomes30",12),
+    ("Jumaruba",13),
+    ("JoaoAMarinho",23),
+    ("jfbaltazar",15),
+
 
 INSERT INTO Branch (name, repository, isDefault)
 VALUES
