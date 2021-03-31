@@ -107,8 +107,8 @@ CREATE TABLE IF NOT EXISTS OrganizationRepository (
 
 CREATE TABLE IF NOT EXISTS Branch (
     name TEXT DEFAULT "main" NOT NULL,
-    isDefault INTEGER CHECK (isDefault >= 0 AND isDefault <= 1),
     repository INTEGER,
+    isDefault INTEGER CHECK (isDefault >= 0 AND isDefault <= 1),
     CONSTRAINT BranchPK PRIMARY KEY (name, repository),
     CONSTRAINT BranchRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
 );

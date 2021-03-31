@@ -336,3 +336,42 @@ VALUES
     (34, "feup-laig", 34, 1),
     (35, "proj-xmod-tool", 35, 1);
     
+
+INSERT INTO Branch (name, repository, isDefault)
+VALUES
+    ("main", 1, 1),
+    ("main", 2, 1),
+    ("main", 3, 1),
+    ("main", 4, 1),
+    ("main", 5, 1),
+    ("main", 6, 1),
+    ("main", 7, 1),
+    ("main", 8, 1),
+    ("main", 9, 1),
+    ("main", 10, 1),    
+    ("main", 11, 1),
+    ("main", 12, 1),
+    ("main", 13, 1),
+    ("main", 14, 1),
+    ("main", 15, 1),
+    ("main", 16, 1),
+    ("main", 17, 1),
+    ("main", 18, 1),
+    ("main", 19, 1),
+    ("main", 20, 1),
+    ("main", 21, 1),
+    ("main", 22, 1),
+    ("main", 23, 1),
+    ("main", 24, 1),
+    ("main", 25, 1),
+    ("main", 26, 1),
+    ("main", 27, 1),
+    ("main", 28, 1),
+    ("main", 29, 1),
+    ("main", 30, 1),
+    ("main", 31, 1),
+    ("main", 32, 1),
+    ("main", 33, 1),
+    ("main", 34, 1),
+    ("main", 35, 1);
+    
