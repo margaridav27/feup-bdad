@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS TeamRole (
     isMaintainer INTEGER CHECK (isMaintainer >= 0 AND isMaintainer <= 1),
     CONSTRAINT TeamRolePK PRIMARY KEY (user, team),
     CONSTRAINT TeamRoleUserFK FOREIGN KEY (user) REFERENCES User(userName),
-    CONSTRAINT TeamRoleTeamFK FOREIGN KEY (team) REFERENCES Team(organizationName)
+    CONSTRAINT TeamRoleTeamFK FOREIGN KEY (team) REFERENCES Team(teamName)
 );
 
 
