@@ -37,8 +37,10 @@ CREATE TABLE IF NOT EXISTS OrganizationUserMember (
 
 CREATE TABLE IF NOT EXISTS Team (
     teamName TEXT NOT NULL,
+    organization TEXT NOT NULL,
     description TEXT,
-    CONSTRAINT TeamPK PRIMARY KEY (teamName)
+    CONSTRAINT TeamPK PRIMARY KEY (teamName, organization),
+    CONSTRAINT TeamOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(organizationName)
 );
 
 CREATE TABLE IF NOT EXISTS TeamRole (
