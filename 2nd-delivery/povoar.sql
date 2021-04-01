@@ -1,16 +1,17 @@
 INSERT INTO User (userName)
 VALUES
-    ("beatriz-ag");
-    ("andrefmrocha")
+    ("beatriz-ag"),
+    ("andrefmrocha"),
+    ("GambuzX");
 
 INSERT INTO Organization (organizationName)
 VALUES
-    ("NIAEFEUP")
+    ("NIAEFEUP");
 
 INSERT INTO Team (name, organization)
 VALUES
-    ("uniApp","NIAEFEUP");
-    ("NIJobs","NIAEFEUP")
+    ("uniApp","NIAEFEUP"),
+    ("NIJobs","NIAEFEUP");
 
 INSERT INTO OrganizationUserOwner (user, organization)
 VALUES
@@ -18,40 +19,43 @@ VALUES
 
 INSERT INTO OrganizationUserMember (user, organization)
 VALUES
-    ("andrefmrocha", "NIAEFEUP");
-    ("beatriz-ag", "NIAEFEUP")
+    ("andrefmrocha", "NIAEFEUP"),
+    ("beatriz-ag", "NIAEFEUP"),
+    ("GambuzX", "NIAEFEUP");
 
 INSERT INTO Repository (ID, name, rootDirectory, isVisible)
 VALUES
-    (1, "feup-lpoo", 1, 0);
-    (2, "feup-sope", 2, 0);
-    (3, "feup-bdad", 3, 0);
-    (4, "feup-cgra", 4, 0);
-    (5, "feup-lcom", 5, 0);
-    (6, "feup-mnum", 7, 1);
-    (7, "projectSchrodinger", 56, 1);
-    (8, "CV_WEBSITE", 63, 1);
-    (9, "NativeBase", 65, 1);
-    (10, "Space-Wars", 66, 1);    
-    (11, "advent-of-code-2019", 14, 1);
-    (12, "website-NIAEFEUP", 67, 1);
-    (13, "nijobs-nbe",77,1);
-    (14, "nijobs-fe",78,1);
-    (15, "NI",81, 1)
+    (1, "feup-lpoo", 1, 0),
+    (2, "feup-sope", 2, 0),
+    (3, "feup-bdad", 3, 0),
+    (4, "feup-cgra", 4, 0),
+    (5, "feup-lcom", 5, 0),
+    (6, "feup-mnum", 7, 1),
+    (7, "projectSchrodinger", 56, 1),
+    (8, "CV_WEBSITE", 63, 1),
+    (9, "NativeBase", 65, 1),
+    (10, "Space-Wars", 66, 1),    
+    (11, "advent-of-code-2019", 14, 1),
+    (12, "website-NIAEFEUP", 67, 1),
+    (13, "nijobs-nbe", 77, 1),
+    (14, "nijobs-fe", 78, 1),
+    (15, "NI", 81, 1),
+    (16, "LeetCode", 82);
 
 INSERT INTO OwnerRepository (user,repository)
 VALUES
-    ("beatriz-ag",1);
-    ("beatriz-ag",2);
-    ("beatriz-ag",3);
-    ("beatriz-ag",4);
-    ("beatriz-ag",5);
-    ("beatriz-ag",6);
-    ("andrefmrocha",7);
-    ("andrefmrocha",8);
-    ("andrefmrocha",9);
-    ("andrefmrocha",10);
-    ("andrefmrocha",11;
+    ("beatriz-ag", 1),
+    ("beatriz-ag", 2),
+    ("beatriz-ag", 3),
+    ("beatriz-ag", 4),
+    ("beatriz-ag", 5),
+    ("beatriz-ag", 6),
+    ("andrefmrocha", 7),
+    ("andrefmrocha", 8),
+    ("andrefmrocha", 9),
+    ("andrefmrocha", 10),
+    ("andrefmrocha", 11),
+    ("GambuzX", 16);
 
 INSERT INTO Branch (name, repository, isDefault)
 VALUES
@@ -295,35 +299,35 @@ VALUES
  
 INSERT INTO Directory (ID, name)
 VALUES
-    (1, "feup-lpoo");
-    (2, "feup-sope");
-    (3, "feup-bdad");
-    (4, "feup-cgra");
-    (5, "feup-lcom");
+    (1, "feup-lpoo"),
+    (2, "feup-sope"),
+    (3, "feup-bdad"),
+    (4, "feup-cgra"),
+    (5, "feup-lcom"),
     (6, "feup-mnum"),
-    (7, "Projs"); 
-    (8, "Proj1");
-    (9, "Proj2");
-    (10, "proj3");
-    (11, "TPS");
-    (12, "TPS");
-    (13, "TP1");  
-    (14, "TP2");
-    (15, "TP3");
-    (16, "TP4");
-    (17, "TP5");
-    (18, "TP6");
-    (19, "TP7");
-    (20, "TP8");
-    (21, "QUIZZ");
-    (22, "PROJS");
-    (23, "PROJ1");
-    (24, "PROJ2");
-    (25, "TPS");
-    (26, "TP1");
-    (27, "TP2");
-    (28, "TP3"),; 
-    (29, "TP4");
+    (7, "Projs"),
+    (8, "Proj1"),
+    (9, "Proj2"),
+    (10, "Proj3"),
+    (11, "TPS"),
+    (12, "TPS"),
+    (13, "TP1"),  
+    (14, "TP2"),
+    (15, "TP3"),
+    (16, "TP4"),
+    (17, "TP5"),
+    (18, "TP6"),
+    (19, "TP7"),
+    (20, "TP8"),
+    (21, "QUIZZ"),
+    (22, "PROJS"),
+    (23, "PROJ1"),
+    (24, "PROJ2"),
+    (25, "TPS"),
+    (26, "TP1"),
+    (27, "TP2"),
+    (28, "TP3"), 
+    (29, "TP4"),
     (30, "PROJ1");
     (31, "PROJ2");
     (32, "METHODS");
@@ -375,7 +379,20 @@ VALUES
     (78, "nijobs-fe");
     (79, "test");
     (80, "test");
-    (81, "uniAPPdev")
+    (81, "uniAPPdev"),
+    (82, "LeetCode"),
+    (83, "algorithms"),
+    (84, "database"),
+    (85, "0023_merge_k_sorted_lists"),
+    (86, "0024_swap_nodes_in_pairs"),
+    (87, "0036_valid_sudoku"),
+    (88, "0042_trapping_rain_water"),
+    (89, "0044_wildcard_matching"),
+    (90, "0046_permutations"),
+    (91, "0047_permutations_II"),
+    (92, "0053_maximum_subarray"),
+    (93, "0076_minimum_window_substring"),
+  
 
 INSERT INTO File (name, directory,content,ProgrammingLanguage)
 VALUES
@@ -874,42 +891,42 @@ VALUES
 
 INSERT INTO OwnerRepository (user,repository)
 VALUES
-    ("beatriz-ag","feup-lpoo");
-    ("beatriz-ag","feup-sope");
-    ("beatriz-ag","feup-bdad");
-    ("beatriz-ag","feup-cgra");
-    ("beatriz-ag","feup-lcom");
-    ("beatriz-ag","feup-mnum");
-    ("andrefmrocha","NativeBase");
-    ("andrefmrocha","Space-Wars");
-    ("andrefmrocha","advent-of-code-2019")
+    ("beatriz-ag", 1);
+    ("beatriz-ag", 2);
+    ("beatriz-ag", 3);
+    ("beatriz-ag", 4);
+    ("beatriz-ag", 5);
+    ("beatriz-ag", 6);
+    ("andrefmrocha", 9);
+    ("andrefmrocha", 10);
+    ("andrefmrocha", 11),
+    ("GambuzX", 16),
 
 INSERT INTO ContributorRepository (user,repository)
 VALUES
-    ("beatriz-ag","feup-lpoo");
-    ("beatriz-ag","feup-sope");
-    ("beatriz-ag","feup-bdad");
-    ("beatriz-ag","feup-cgra");
-    ("beatriz-ag","feup-lcom");
-    ("beatriz-ag","feup-mnum");
-    ("beatriz-ag","NativeBase");
-    ("andrefmrocha","NativeBase");
-    ("andrefmrocha","Space-Wars");
-    ("andrefmrocha","advent-of-code-2019");
-    ("beatriz-ag","website-NIAEFEUP");
-    ("andrefmrocha","NativeBase");
-    ("andrefmrocha","nijobs-nbe");
-    ("andrefmrocha","nijobs-fe")
+    ("beatriz-ag", 1);
+    ("beatriz-ag", 2);
+    ("beatriz-ag", 3);
+    ("beatriz-ag", 4);
+    ("beatriz-ag", 5);
+    ("beatriz-ag", 6);
+    ("beatriz-ag", 9);
+    ("andrefmrocha", 9);
+    ("andrefmrocha", 10);
+    ("andrefmrocha", 11);
+    ("beatriz-ag", 12);
+    ("andrefmrocha", 13);
+    ("andrefmrocha", 14)
 
 INSERT INTO TeamRepository (team,repository)
 VALUES
-    ("NIJobs", "nijobs-ne");
-    ("NIJJobs", "nijobs-fe");
-    ("UniApp", "website-NIAEFEUP")
+    ("NIJobs", 13);
+    ("NIJJobs", 14);
+    ("UniApp", 12)
 
 INSERT INTO OrganizationRepository (organization,repository)
 VALUES
-    ("NIAFEUP", "NI")
+    ("NIAFEUP", 15)
 
 INSERT INTO OrganizationUserOwner (user,organization)
 VALUES
@@ -918,7 +935,8 @@ VALUES
 INSERT INTO OrganizationUserMember (user, organization)
 VALUES
     ("andrefmrocha", "NIAFEUP");
-    ("beatriz-ag", "NIAFEUP")
+    ("beatriz-ag", "NIAFEUP"),
+    ("GambuzX", "NIAFEUP"),
 
 INSERT INTO TeamRole (user, team, isMaintainer)
 VALUES  
@@ -929,7 +947,8 @@ VALUES
 INSERT INTO OrganizationMemberVisibility (user, organization, isPrivate)
 VALUES
     ("beatriz-ag", "NIAFEUP",1);
-    ("andrefmrocha", "NIAFEUP",1)
+    ("andrefmrocha", "NIAFEUP",1),
+    ("GambuzX", "NIAFEUP", 1),
 
 INSERT INTO Submodule (source,destination)
 VALUES
@@ -1003,8 +1022,19 @@ VALUES
     (74,77);
     (75,78);
     (76,81);
-    (79,77);
-    (80,81)
+    (79, 77);
+    (80, 81),
+    (82, 83),
+    (82, 84),
+    (83, 85),
+    (83, 86),
+    (83, 87),
+    (83, 88),
+    (83, 89),
+    (83, 90),
+    (83, 91),
+    (83, 92),
+    (83, 93),
 
 INSERT INTO PullRequest (Contribution, PullRequestNumber, message, status)
 VALUES
