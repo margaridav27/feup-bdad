@@ -2,7 +2,11 @@ INSERT INTO User (userName)
 VALUES
     ("beatriz-ag"),
     ("andrefmrocha"),
-    ("GambuzX");
+    ("GambuzX"),
+    ("margaridav27"),
+    ("AndrePereira2001"),
+    ("tmv11"),
+    ("francisco-rente");
 
 INSERT INTO Organization (organizationName)
 VALUES
@@ -40,29 +44,17 @@ VALUES
     (13, "nijobs-nbe", 77, 1),
     (14, "nijobs-fe", 78, 1),
     (15, "NI", 81, 1),
-    (16, "LeetCode", 82);
+    (16, "LeetCode", 82),
+    (17, "feup-sope", 94),
+    (18, "feup-sope-xmod", 95);
 
-INSERT INTO OwnerRepository (user,repository)
-VALUES
-    ("beatriz-ag", 1),
-    ("beatriz-ag", 2),
-    ("beatriz-ag", 3),
-    ("beatriz-ag", 4),
-    ("beatriz-ag", 5),
-    ("beatriz-ag", 6),
-    ("andrefmrocha", 7),
-    ("andrefmrocha", 8),
-    ("andrefmrocha", 9),
-    ("andrefmrocha", 10),
-    ("andrefmrocha", 11),
-    ("GambuzX", 16);
 
 INSERT INTO Branch (name, repository, isDefault)
 VALUES
-    ("main", 2, 1),
     ("main", 1, 1),
-    ("main", 4, 1),
+    ("main", 2, 1),
     ("main", 3, 1),
+    ("main", 4, 1),
     ("main", 5, 1),
     ("main", 6, 1),
     ("main", 8, 1),
@@ -76,49 +68,57 @@ VALUES
     ("main", 15, 1),
     ("main", 16, 1),
     ("main", 17, 1),
-    ("development", 1, 1),
-    ("development", 2, 1),
-    ("development", 3, 1),
-    ("development", 4, 1),
-    ("development", 5, 1),
-    ("development", 6, 1),
-    ("development", 7, 1),
-    ("development", 8, 1),
-    ("development", 9, 1),
-    ("development", 10, 1),    
-    ("development", 11, 1),
-    ("development", 12, 1),
-    ("development", 13, 1),
-    ("development", 14, 1),
-    ("development", 15, 1),
-    ("feature-api", 3, 1),
-    ("feature-kernel", 7, 1),
-    ("testing-generator", 7, 1),
-    ("testing-xmod", 1, 1),
-    ("feature-getFlags", 1, 1),
-    ("testing-bitcoin", 9, 1),
-    ("feature-bits", 2, 1),
-    ("feature-spaceship", 10, 1),
-    ("testing-fly", 10, 1),
-    ("feature-coviddata", 13, 1),
-    ("testing-bulletproff", 13, 1),
-    ("testing-timetableOverlaps", 12, 1),
-    ("testing-tests", 8, 1),
-    ("feature-dataOrganizer", 8, 1),
-    ("feature-compiler", 2, 1),
-    ("testing-growth", 9, 1),
-    ("testing-AI", 7, 1),
-    ("testing-randomgenerator", 7, 1),
-    ("testing-move", 1, 1),
-    ("feature-jumpLoop", 1, 1),
-    ("feature-gbfST", 9, 1),
-    ("testing-display", 1, 1),
-    ("testing-shaders", 4, 1),
-    ("testing-usrLe", 10, 1),
-    ("testing-robotsL", 10, 1),
-    ("feature-mindT", 9, 1)
+    ("main", 18, 1),
+    ("development", 1, 0),
+    ("development", 2, 0),
+    ("development", 3, 0),
+    ("development", 4, 0),
+    ("development", 5, 0),
+    ("development", 6, 0),
+    ("development", 7, 0),
+    ("development", 8, 0),
+    ("development", 9, 0),
+    ("development", 10, 0),    
+    ("development", 11, 0),
+    ("development", 12, 0),
+    ("development", 13, 0),
+    ("development", 14, 0),
+    ("development", 15, 0),
+    ("feature-api", 3, 0),
+    ("feature/kernel", 7, 0),
+    ("testing/generator", 7, 0),
+    ("testing-xmod", 1, 0),
+    ("feature-getFlags", 1, 0),
+    ("testing-bitcoin", 9, 0),
+    ("feature-bits", 2, 0),
+    ("feature/spaceship", 10, 0),
+    ("testing/fly", 10, 0),
+    ("feature-coviddata", 13, 0),
+    ("testing-bulletproff", 13, 0),
+    ("testing-timetableOverlaps", 12, 0),
+    ("testing-tests", 8, 0),
+    ("feature-dataOrganizer", 8, 0),
+    ("feature-compiler", 2, 0),
+    ("testing-growth", 9, 0),
+    ("testing/AI", 7, 0),
+    ("testing/randomgenerator", 7, 0),
+    ("testing-move", 1, 0),
+    ("feature-jumpLoop", 1, 0),
+    ("feature-gbfST", 9, 0),
+    ("testing-display", 1, 0),
+    ("testing-shaders", 4, 0),
+    ("testing/usrLe", 10, 0),
+    ("testing/robotsL", 10, 0),
+    ("feature-mindT", 9, 0),
+    ("feature-signal_handling", 18, 0),
+    ("feature-logging", 18, 0),
+    ("feature-proc_creation", 18, 0),
+    ("feature-recursive_mode", 18, 0),
+    ("testing-signal_handling", 18, 0),
+    ("testing-recursive_mode", 18, 0),
+    ("testing-change_permissions", 18, 0);
 
-INSERT INTO Contribution (id, userName,repository,date)
+INSERT INTO Contribution (id, userName, repository, date)
 VALUES
     (1, "beatriz-ag", 1, "2016-05-23"),
     (2, "beatriz-ag", 1, "2016-06-22"),
@@ -171,6 +171,44 @@ VALUES
     (49, "GambuzX", 16, "2020-11-03"),
     (50, "GambuzX", 16, "2020-11-18"),
     (51, "GambuzX", 16, "2020-12-18"),
+    (52, "margaridav27", 18, "2021-02-01"),
+    (53, "margaridav27", 18, "2021-02-02"),
+    (54, "margaridav27", 18, "2021-02-04"),
+    (55, "francisco-rente", 18, "2021-02-05"),
+    (56, "francisco-rente", 18, "2021-02-06"), 
+    (57, "tmv11", 18, "2021-02-07"), 
+    (58, "tmv11", 18, "2021-02-08"), 
+    (59, "tmv11", 18, "2021-02-09"), 
+    (60, "tmv11", 18, "2021-02-10"), 
+    (61, "tmv11", 18, "2021-02-11"),
+    (62, "tmv11", 18, "2021-02-12"),
+    (63, "tmv11", 18, "2021-02-13"),
+    (64, "tmv11", 18, "2021-02-14"),
+    (65, "tmv11", 18, "2021-02-15"),
+    (66, "tmv11", 18, "2021-02-16"),
+    (67, "tmv11", 18, "2021-02-17"),
+    (68, "tmv11", 18, "2021-02-18"), 
+    (69, "margaridav27", 18, "2021-02-19"),
+    (70, "margaridav27", 18, "2021-02-20"),
+    (71, "margaridav27", 18, "2021-02-20"),
+    (72, "francisco-rente", 18, "2021-02-20"),
+    (73, "francisco-rente", 18, "2021-02-20"),
+    (74, "AndrePereira2001", 18, "2021-02-21"),
+    (75, "AndrePereira2001", 18, "2021-02-21"),
+    (76, "AndrePereira2001", 18, "2021-02-21"),
+    (77, "AndrePereira2001", 18,"2021-02-21"),
+    (78, "AndrePereira2001", 18,"2021-02-21"), 
+    (79, "margaridav27", 18, "2021-02-23"),
+    (80, "margaridav27", 18, "2021-02-23"), 
+    (81, "margaridav27", 18, "2021-02-23"),
+    (82, "francisco-rente", 18, "2021-02-23"),
+    (83, "francisco-rente", 18, "2021-02-23"),
+    (84, "tmv11", 18, "2021-02-23"), 
+    (85, "tmv11", 18, "2021-02-23"),
+    (86, "tmv11", 18, "2021-02-24"),
+    (87, "tmv11", 18, "2021-02-24"),
+    (88, "tmv11", 18, "2021-02-24"),
+    (89, "tmv11", 18, "2021-02-24");
 
 INSERT INTO Tag (name, commit)
 VALUES
@@ -279,6 +317,12 @@ VALUES
     (91, "0047_permutations_II"),
     (92, "0053_maximum_subarray"),
     (93, "0076_minimum_window_substring"),
+    (94, "feup-sope"),
+    (95, "feup-sope-xmod"),
+    
+
+
+
 
 INSERT INTO File (name, directory,content,ProgrammingLanguage)
 VALUES
@@ -807,10 +851,14 @@ VALUES
     ("beatriz-ag", 4),
     ("beatriz-ag", 5),
     ("beatriz-ag", 6),
+    ("andrefmrocha", 7),
+    ("andrefmrocha", 8),
     ("andrefmrocha", 9),
     ("andrefmrocha", 10),
     ("andrefmrocha", 11),
-    ("GambuzX", 16);
+    ("GambuzX", 16),
+    ("margaridav27", 17),
+    ("margaridav27", 18);
 
 INSERT INTO ContributorRepository (user,repository)
 VALUES
@@ -826,7 +874,10 @@ VALUES
     ("andrefmrocha", 11),
     ("beatriz-ag", 12),
     ("andrefmrocha", 13),
-    ("andrefmrocha", 14);
+    ("andrefmrocha", 14),
+    ("AndrePereira2001", 18),
+    ("tmv11", 18),
+    ("francisco-rente", 18);
 
 INSERT INTO TeamRepository (team,repository)
 VALUES
@@ -844,27 +895,33 @@ VALUES
 
 INSERT INTO OrganizationUserMember (user, organization)
 VALUES
-    ("andrefmrocha", "NIAFEUP"),
-    ("beatriz-ag", "NIAFEUP"),
-    ("GambuzX", "NIAFEUP");
+    ("andrefmrocha", "NIAEFEUP"),
+    ("beatriz-ag", "NIAEFEUP"),
+    ("GambuzX", "NIAEFEUP"),
+    ("margaridav27", "NIAEFEUP"),
+    ("AndrePereira2001", "NIAEFEUP");
 
 INSERT INTO TeamRole (user, team, isMaintainer)
 VALUES  
     ("beatriz-ag", "UniApp", 0),
-    ("andrefmrocha", "UniApp",1),
-    ("andrefmrocha", "NIJobs",1);
+    ("andrefmrocha", "UniApp", 1),
+    ("andrefmrocha", "NIJobs", 1),
+    ("AndrePereira2001", "NIJobs", 0);
 
 INSERT INTO OrganizationMemberVisibility (user, organization, isPrivate)
 VALUES
-    ("beatriz-ag", "NIAFEUP",1),
-    ("andrefmrocha", "NIAFEUP",1),
-    ("GambuzX", "NIAFEUP", 1);
+    ("beatriz-ag", "NIAEFEUP", 1),
+    ("andrefmrocha", "NIAEFEUP", 0),
+    ("GambuzX", "NIAEFEUP", 0),
+    ("margaridav27", "NIAEFEUP", 1),
+    ("AndrePereira2001", "NIAEFEUP", 1);
 
 INSERT INTO Submodule (source,destination)
 VALUES
-    (13,14),
-    (11,9),
-    (11,10);
+    (13, 14),
+    (11, 9),
+    (11, 10),
+    (18, 17);
 
 INSERT INTO FolderRelationship (parent, child)
 VALUES
@@ -943,10 +1000,15 @@ VALUES
     (83, 93);
 
 INSERT INTO PullRequest (Contribution, PullRequestNumber, message, status)
-VALUES
-    (13, 1,"implemented xyz", 1),
-    (18, 2,"implemented xyz", 0),
-    (24, 2,"implemented xyz", 0)
+VALUES 
+    (13, 1, "pull request xyz", 1),
+    (18, 2, "pull request xyz", 0),
+    (24, 1, "pull request xyz", 0),
+    (56, 1, "pull request xyz", 0),
+    (68, 2, "pull request xyz", 0),
+    (78, 3, "pull request xyz", 0),
+    (84, 4, "pull request xyz", 0);
+
 
 INSERT INTO Commit (contribution, commitHash, message)
 VALUES
@@ -993,13 +1055,55 @@ VALUES
     (48, "d9fe666b212cad7aea1e0741517755b52175d3d5", "a relevant commit indeed"),
     (49, "b80b8fb8f193e0ada8ee8ceae2127f4f7d34b1e0", "a relevant commit indeed"),
     (50, "a4a73c756baccb5d1f05fa5a816f368a2056c4eb", "a relevant commit indeed"),
-    (51, "1fe9070bb46d27178fc735c7b9a171fe6786dda2", "a relevant commit indeed");
+    (51, "1fe9070bb46d27178fc735c7b9a171fe6786dda2", "a relevant commit indeed"),
+    (52, "2e5c6f91b735576124785c9341d4faf94ca5f5e4", "a relevant commit indeed"),
+    (53, "c4f8dd60077d0180413c26d3d5b89c2fb6108f5a", "a relevant commit indeed"),
+    (54, "1d509d991144c1285ad8f35eb7a1425b61a608f3", "a relevant commit indeed"),
+    (55, "93a61bf9bf15e2395e87f832b6b87d82444d2dec", "a relevant commit indeed"),
+    (61, "622a67c75926c710dc3898ec9563edfd777c8555", "a relevant commit indeed"),
+    (62, "f91224311c29790ceac56c2a5a2b7c72a81cbdf2", "a relevant commit indeed"),
+    (63, "ce913bd76cf1b6fac450860fcdfcfbedbb00785a", "a relevant commit indeed"),
+    (64, "0d32bf03a46a318ca515bbd777bb3b70a26a2e84", "a relevant commit indeed"),
+    (65, "1718599400280f350b3a7ba8d963d41ad2afcd57", "a relevant commit indeed"),
+    (66, "72f18ff02bee0a08d4998b60f12a2ad5f8efc6e5", "a relevant commit indeed"),
+    (67, "6e7252c7dad5ea60367c16bd5ae5c3a7af54bac6", "a relevant commit indeed"),
+    (69, "f54f25d0e7b7499d7997007ffb324f20421348c9", "a relevant commit indeed"),
+    (70, "84817be361b5173b0ea1c9796e48219a9dd9ee38", "a relevant commit indeed"),
+    (71, "792714d01d5a80fd2601a7f4c57d75ce1dfecdae", "a relevant commit indeed"),
+    (72, "747faf84cc2e9c924a8fdd52c0a86a8f92dda3cd", "a relevant commit indeed"),
+    (73, "3b8d55a1f26091cc7863d94530309dd90b7cbea1", "a relevant commit indeed"),
+    (74, "486fb2e21427a201f354cf9d906fb13abdca6c1d", "a relevant commit indeed"),
+    (75, "4035d189f77bcfe3892d345d3a73a1ce32d9f659", "a relevant commit indeed"),
+    (76, "de5a9d0593f62234988b91fc3ad21fef89a07c12", "a relevant commit indeed"),
+    (77, "62e2fff08f2cad689c433367af8d9846ad459257", "a relevant commit indeed"),
+    (79, "5f044af325fb5e66d270520e0493ca6ac8a22541", "a relevant commit indeed"),
+    (81, "896149aed99f1de783ac595bb294e4ba5d9a3c65", "a relevant commit indeed"),
+    (82, "ee291738ac4d61c2226275ac41a67aaf8de00a37", "a relevant commit indeed"),
+    (83, "1fa006e5c35bfdbfc740cf4d4b2eaf9832507c09", "a relevant commit indeed"),
+    (85, "d63ae94d164e4cb5f057f15bfa4f60360afa5369", "a relevant commit indeed"),
+    (86, "590bc5f97d21cbde421a177c8b74fd2d5154eb56", "a relevant commit indeed"),
+    (87, "2d564f5f8a2132bc520b7ea592da219fa4e5f918", "a relevant commit indeed"),
+    (88, "79bad431a0cbce2d4a526f44b98210bd989b8872", "a relevant commit indeed"),
+    (89, "37f055a5434cdda3f18793218ca66b28e6555f52", "a relevant commit indeed");
 
 INSERT INTO Issue (contribution, issueNumber, message)
 VALUES  
     (24, 1, "Issue xx"),
-    (14, 2, "Issue xx");
+    (14, 1, "Issue xx"),
+    (57, 1, "Issue xx"),
+    (58, 2, "Issue xx"),
+    (59, 3, "Issue xx"),
+    (60, 4, "Issue xx"),
+    (80, 5, "Issue xx");
+
 
 INSERT INTO Merge (commit, ours, theirs)
 VALUES  
-    (30, "main", "development");
+    (30, "main", "development"),
+    (70, "main", "feature-signal_handling"),
+    (72, "main", "feature-logging"),
+    (77, "main", "feature-proc_creation"),
+    (79, "main", "feature-recursive_mode"),
+    (80, "main", "testing-signal_handling"),
+    (86, "main", "testing-recursive_mode"),
+    (89, "main", "testing-change_permissions");
