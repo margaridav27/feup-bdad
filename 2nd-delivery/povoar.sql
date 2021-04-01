@@ -319,9 +319,11 @@ VALUES
     (93, "0076_minimum_window_substring"),
     (94, "feup-sope"),
     (95, "feup-sope-xmod"),
-    
-
-
+    (96, "project"),
+    (97, "doc"),
+    (98, "include"),
+    (99, "src"),
+    (100, "exercicios_TPs");
 
 
 INSERT INTO File (name, directory,content,ProgrammingLanguage)
@@ -479,7 +481,18 @@ VALUES
     (".ignore", 78, "some content", NULL),
     (".ignore", 79, "some content", NULL),
     (".ignore", 80, "some content", NULL),
-    ("ni.txt", 81, "some content", "HTML"),
+    (".ignore", 95, "some content", NULL),
+    ("file1.txt", 97, "some content", NULL),
+    ("file2.txt", 97, "some content", NULL),
+    ("file3.txt", 97, "some content", NULL),
+    ("file4.txt", 97, "some content", NULL),
+    ("file5.txt", 97, "some content", NULL),
+    ("file1.txt", 81, "some content", NULL),
+    ("file1.txt", 100, "some content", NULL),
+    ("file2.txt", 100, "some content", NULL),
+    ("file3.txt", 100, "some content", NULL),
+    ("file4.txt", 100, "some content", NULL),
+    ("file5.txt", 100, "some content", NULL),
     ("code1.java", 8,"some content", "java"),
     ("code2.java", 8,"some content", "java"),
     ("code3.java", 8,"some content", "java"),
@@ -570,6 +583,30 @@ VALUES
     ("code6.c", 31, "some content", "C"),
     ("code7.c", 31, "some content", "C"),
     ("code8.c", 31, "some content", "C"),
+    ("code1.c", 99, "some content", "C"),
+    ("code2.c", 99, "some content", "C"),
+    ("code3.c", 99, "some content", "C"),
+    ("code4.c", 99, "some content", "C"),
+    ("code5.c", 99, "some content", "C"),
+    ("code6.c", 99, "some content", "C"),
+    ("code7.c", 99, "some content", "C"),
+    ("header1.h", 98, "some content", "C"),
+    ("header2.h", 98, "some content", "C"),
+    ("header3.h", 98, "some content", "C"),
+    ("header4.h", 98, "some content", "C"),
+    ("header5.h", 98, "some content", "C"),
+    ("header6.h", 98, "some content", "C"),
+    ("header7.h", 98, "some content", "C"),
+    ("code1.c", 100, "some content", "C"),
+    ("code2.c", 100, "some content", "C"),
+    ("code3.c", 100, "some content", "C"),
+    ("code4.c", 100, "some content", "C"),
+    ("code5.c", 100, "some content", "C"),
+    ("code6.c", 100, "some content", "C"),
+    ("code7.c", 100, "some content", "C"),
+    ("code8.c", 100, "some content", "C"),
+    ("code9.c", 100, "some content", "C"),
+    ("code10.c", 100, "some content", "C"),
     ("code1.cpp", 32, "some content", "C++"),
     ("code2.cpp", 32, "some content", "C++"),
     ("code3.cpp", 32, "some content", "C++"),
@@ -997,7 +1034,12 @@ VALUES
     (83, 90),
     (83, 91),
     (83, 92),
-    (83, 93);
+    (83, 93),
+    (94, 100),
+    (95, 96),
+    (96, 97),
+    (96, 98),
+    (96, 99);
 
 INSERT INTO PullRequest (Contribution, PullRequestNumber, message, status)
 VALUES 
