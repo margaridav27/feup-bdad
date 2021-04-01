@@ -8,24 +8,29 @@ VALUES
     ("tmv11"),
     ("francisco-rente");
 
+
 INSERT INTO Organization (organizationName)
 VALUES
     ("NIAEFEUP");
+
 
 INSERT INTO Team (name, organization)
 VALUES
     ("uniApp","NIAEFEUP"),
     ("NIJobs","NIAEFEUP");
 
+
 INSERT INTO OrganizationUserOwner (user, organization)
 VALUES
     ("NIAEFEUP", "andrefmrocha");
+
 
 INSERT INTO OrganizationUserMember (user, organization)
 VALUES
     ("andrefmrocha", "NIAEFEUP"),
     ("beatriz-ag", "NIAEFEUP"),
     ("GambuzX", "NIAEFEUP");
+
 
 INSERT INTO Repository (ID, name, rootDirectory, isVisible)
 VALUES
@@ -117,6 +122,7 @@ VALUES
     ("testing-signal_handling", 18, 0),
     ("testing-recursive_mode", 18, 0),
     ("testing-change_permissions", 18, 0);
+
 
 INSERT INTO Contribution (id, userName, repository, date)
 VALUES
@@ -210,6 +216,7 @@ VALUES
     (88, "tmv11", 18, "2021-02-24"),
     (89, "tmv11", 18, "2021-02-24");
 
+
 INSERT INTO Tag (name, commit)
 VALUES
     ("tp1", 1),
@@ -222,6 +229,7 @@ VALUES
     ("nijobs-1", 23),
     ("adventCode-hard", 34);
  
+
 INSERT INTO Directory (ID, name)
 VALUES
     (1, "feup-lpoo"),
@@ -846,7 +854,8 @@ VALUES
     ("code5.sc", 76, "some content", "Scala"),
     ("code6.sc", 76, "some content", "Scala"),
     ("script.sh", 77, "some content", "Shell"),
-    ("script.sh", 78, "some content", "Shell")
+    ("script.sh", 78, "some content", "Shell");
+
 
 INSERT INTO ProgrammingLanguage (name)
 VALUES
@@ -878,7 +887,7 @@ VALUES
     ("Scala"),
     ("SWIFT"),
     ("SQL"),
-    ("Shell")
+    ("Shell");
 
 INSERT INTO OwnerRepository (user,repository)
 VALUES
@@ -896,6 +905,7 @@ VALUES
     ("GambuzX", 16),
     ("margaridav27", 17),
     ("margaridav27", 18);
+
 
 INSERT INTO ContributorRepository (user,repository)
 VALUES
@@ -916,19 +926,22 @@ VALUES
     ("tmv11", 18),
     ("francisco-rente", 18);
 
+
 INSERT INTO TeamRepository (team,repository)
 VALUES
     ("NIJobs", 13),
     ("NIJJobs", 14),
     ("UniApp", 12);
 
+
 INSERT INTO OrganizationRepository (organization,repository)
 VALUES
-    ("NIAFEUP", 15)
+    ("NIAFEUP", 15);
 
 INSERT INTO OrganizationUserOwner (user,organization)
 VALUES
-    ("andrefmrocha", "NIAFEUP")
+    ("andrefmrocha", "NIAFEUP");
+
 
 INSERT INTO OrganizationUserMember (user, organization)
 VALUES
@@ -938,12 +951,14 @@ VALUES
     ("margaridav27", "NIAEFEUP"),
     ("AndrePereira2001", "NIAEFEUP");
 
+
 INSERT INTO TeamRole (user, team, isMaintainer)
 VALUES  
     ("beatriz-ag", "UniApp", 0),
     ("andrefmrocha", "UniApp", 1),
     ("andrefmrocha", "NIJobs", 1),
     ("AndrePereira2001", "NIJobs", 0);
+
 
 INSERT INTO OrganizationMemberVisibility (user, organization, isPrivate)
 VALUES
@@ -953,12 +968,14 @@ VALUES
     ("margaridav27", "NIAEFEUP", 1),
     ("AndrePereira2001", "NIAEFEUP", 1);
 
+
 INSERT INTO Submodule (source,destination)
 VALUES
     (13, 14),
     (11, 9),
     (11, 10),
     (18, 17);
+
 
 INSERT INTO FolderRelationship (parent, child)
 VALUES
@@ -1040,6 +1057,7 @@ VALUES
     (96, 97),
     (96, 98),
     (96, 99);
+
 
 INSERT INTO PullRequest (Contribution, PullRequestNumber, message, status)
 VALUES 
@@ -1128,6 +1146,7 @@ VALUES
     (88, "79bad431a0cbce2d4a526f44b98210bd989b8872", "a relevant commit indeed"),
     (89, "37f055a5434cdda3f18793218ca66b28e6555f52", "a relevant commit indeed");
 
+
 INSERT INTO Issue (contribution, issueNumber, message)
 VALUES  
     (24, 1, "Issue xx"),
@@ -1149,3 +1168,4 @@ VALUES
     (80, "main", "testing-signal_handling"),
     (86, "main", "testing-recursive_mode"),
     (89, "main", "testing-change_permissions");
+    
