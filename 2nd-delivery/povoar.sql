@@ -17,16 +17,6 @@ VALUES
     ("UniApp","NIAEFEUP"),
     ("NIJobs","NIAEFEUP");
 
-INSERT INTO OrganizationUserOwner (user, organization)
-VALUES
-    ("andrefmrocha", "NIAEFEUP");
-
-INSERT INTO OrganizationUserMember (user, organization)
-VALUES
-    ("andrefmrocha", "NIAEFEUP"),
-    ("beatriz-ag", "NIAEFEUP"),
-    ("GambuzX", "NIAEFEUP");
-
 INSERT INTO Directory (ID, "name")
 VALUES
     (1, "feup-lpoo"), 
@@ -1055,4 +1045,24 @@ VALUES
     (97, 96),
     (98, 96),
     (99, 96);
-  
+
+INSERT INTO OrganizationUserOwner (user,organization)
+VALUES
+    ("andrefmrocha", "NIAEFEUP");
+
+INSERT INTO OrganizationUserMember (user, organization)
+VALUES
+    ("andrefmrocha", "NIAEFEUP"),
+    ("beatriz-ag", "NIAEFEUP"),
+    ("GambuzX", "NIAEFEUP"),
+    ("margaridav27", "NIAEFEUP"),
+    ("AndrePereira2001", "NIAEFEUP");
+
+
+INSERT INTO OrganizationMemberVisibility (user, organization, isPrivate)
+VALUES
+    ("beatriz-ag", "NIAEFEUP", 1),
+    ("andrefmrocha", "NIAEFEUP", 0),
+    ("GambuzX", "NIAEFEUP", 0),
+    ("margaridav27", "NIAEFEUP", 1),
+    ("AndrePereira2001", "NIAEFEUP", 1);
