@@ -8,22 +8,18 @@ VALUES
     ("tmv11"),
     ("francisco-rente");
 
-
 INSERT INTO Organization (organizationName)
 VALUES
     ("NIAEFEUP");
-
 
 INSERT INTO Team (teamName, organization)
 VALUES
     ("UniApp","NIAEFEUP"),
     ("NIJobs","NIAEFEUP");
 
-
 INSERT INTO OrganizationUserOwner (user, organization)
 VALUES
     ("andrefmrocha", "NIAEFEUP");
-
 
 INSERT INTO OrganizationUserMember (user, organization)
 VALUES
@@ -31,12 +27,9 @@ VALUES
     ("beatriz-ag", "NIAEFEUP"),
     ("GambuzX", "NIAEFEUP");
 
-
-
-
 INSERT INTO Directory (ID, "name")
 VALUES
-    (1, "feup-lpoo"),
+    (1, "feup-lpoo"), 
     (2, "feup-sope"),
     (3, "feup-bdad"),
     (4, "feup-cgra"),
@@ -72,7 +65,7 @@ VALUES
     (34, "EXAM2018"),
     (35, "TP1"),
     (36, "TP2"),
-    (38, "TP3",
+    (38, "TP3"),
     (39, "TP4"),
     (37, "TP5"),
     (40, "TP6"),
@@ -138,7 +131,6 @@ VALUES
     (100, "exercicios_TPs"),
     (101, "website-NIAEFEUP"),
     (102, "NI");
-    
 
 INSERT INTO Repository (ID, "name", rootDirectory, isVisible)
 VALUES
@@ -160,7 +152,6 @@ VALUES
     (16, "LeetCode", 82, 0),
     (17, "feup-sope", 94, 1),
     (18, "feup-sope-xmod", 95, 1);
-
 
 INSERT INTO Branch ("name", repository, isDefault)
 VALUES
@@ -230,7 +221,6 @@ VALUES
     ("testing-signal_handling", 18, 0),
     ("testing-recursive_mode", 18, 0),
     ("testing-change_permissions", 18, 0);
-
 
 INSERT INTO Contribution (ID, user, repository, "date")
 VALUES
@@ -324,7 +314,6 @@ VALUES
     (88, "tmv11", 18, "2021-02-24"),
     (89, "tmv11", 18, "2021-02-24");
 
-
 INSERT INTO "Commit" (ID, commitHash, "message")
 VALUES
     (1, "9b6082773657656c58fa176e0d009c6a6b781823", "a relevant commit indeed"),
@@ -401,7 +390,6 @@ VALUES
     (88, "79bad431a0cbce2d4a526f44b98210bd989b8872", "a relevant commit indeed"),
     (89, "37f055a5434cdda3f18793218ca66b28e6555f52", "a relevant commit indeed");
 
-
 INSERT INTO Tag ("name", "commit")
 VALUES
     ("tp1", 1),
@@ -413,7 +401,6 @@ VALUES
     ("tp7", 1),
     ("nijobs-1", 23),
     ("adventCode-hard", 34);
- 
 
 INSERT INTO PullRequest (ID, pullRequestNumber, "status", "message")
 VALUES 
@@ -425,7 +412,6 @@ VALUES
     (78, 3, 0, "pull request xyz"),
     (84, 4, 0, "pull request xyz");
 
-
 INSERT INTO Issue (ID, issueNumber, "message")
 VALUES  
     (24, 1, "Issue xx"),
@@ -436,18 +422,16 @@ VALUES
     (60, 4, "Issue xx"),
     (80, 5, "Issue xx");
 
-
-INSERT INTO Merge (ID, oursName, oursRepository, theirsName, theirsRepository)
+INSERT INTO "Merge" (ID, oursName, oursRepository, theirsName, theirsRepository)
 VALUES  
-    (30, "main", 9, "development", 9),
+    (31, "main", 10, "development", 10),
     (70, "main", 18, "feature-signal_handling", 18),
     (72, "main", 18, "feature-logging", 18),
     (77, "main", 18, "feature-proc_creation", 18),
     (79, "main", 18, "feature-recursive_mode", 18),
-    (80, "main", 18, "testing-signal_handling", 18),
+    (81, "main", 18, "testing-signal_handling", 18),
     (86, "main", 18, "testing-recursive_mode", 18),
     (89, "main", 18, "testing-change_permissions", 18);
-
 
 INSERT INTO ProgrammingLanguage ("name")
 VALUES
@@ -481,9 +465,35 @@ VALUES
     ("SQL"),
     ("Shell");
 
-
-INSERT INTO File ("name", directory,content,programmingLanguage)
+INSERT INTO "File" ("name", directory,content,programmingLanguage)
 VALUES
+    ("code1.java", 8,"some content", "Java"),
+    ("code2.java", 8, "some content", "Java"),
+    ("code3.java", 8, "some content", "Java"),
+    ("code4.java", 8, "some content", "Java"),
+    ("code5.java", 8, "some content", "Java"),
+    ("code6.java", 8, "some content", "Java"),
+    ("code7.java", 8, "some content", "Java"),
+    ("code8.java", 8, "some content", "Java"),
+    ("code9.java", 8, "some content", "Java"),
+    ("code1.java", 9, "some content", "Java"),
+    ("code2.java", 9, "some content", "Java"),
+    ("code3.java", 9, "some content", "Java"),
+    ("code4.java", 9, "some content", "Java"),
+    ("code5.java", 9, "some content", "Java"),
+    ("code6.java", 9, "some content", "Java"),
+    ("code7.java", 9, "some content", "Java"),
+    ("code8.java", 9, "some content", "Java"),
+    ("code9.java", 9, "some content", "Java"),
+    ("code1.java", 10, "some content", "Java"),
+    ("code2.java", 10, "some content", "Java"),
+    ("code3.java", 10, "some content", "Java"),
+    ("code4.java", 10, "some content", "Java"),
+    ("code5.java", 10, "some content", "Java"),
+    ("code6.java", 10, "some content", "Java"),
+    ("code7.java", 10, "some content", "Java"),
+    ("code8.java", 10, "some content", "Java"),
+    ("code9.java", 10, "some content", "Java"),
     ("code1.java", 12, "some content", "Java"),
     ("code2.java", 12, "some content", "Java"),
     ("code3.java", 12, "some content", "Java"),
@@ -562,81 +572,15 @@ VALUES
     (".ignore", 4, "some content", NULL),
     (".ignore", 5, "some content", NULL),
     (".ignore", 6, "some content", NULL),
-    (".ignore", 7, "some content", NULL),
-    (".ignore", 8, "some content", NULL),
-    (".ignore", 9, "some content", NULL),
-    (".ignore", 10, "some content", NULL),
-    (".ignore", 11, "some content", NULL),
-    (".ignore", 12, "some content", NULL),
-    (".ignore", 13, "some content", NULL),
-    (".ignore", 14, "some content", NULL),
-    (".ignore", 15, "some content", NULL),
-    (".ignore", 16, "some content", NULL),
-    (".ignore", 17, "some content", NULL),
-    (".ignore", 18, "some content", NULL),
-    (".ignore", 19, "some content", NULL),
-    (".ignore", 20, "some content", NULL),
-    (".ignore", 21, "some content", NULL),
-    (".ignore", 22, "some content", NULL),
-    (".ignore", 23, "some content", NULL),
-    (".ignore", 24, "some content", NULL),
-    (".ignore", 25, "some content", NULL),
-    (".ignore", 26, "some content", NULL),
-    (".ignore", 27, "some content", NULL),
-    (".ignore", 28, "some content", NULL),
-    (".ignore", 28, "some content", NULL),
-    (".ignore", 29, "some content", NULL),
-    (".ignore", 30, "some content", NULL),
-    (".ignore", 31, "some content", NULL),
-    (".ignore", 32, "some content", NULL),
-    (".ignore", 33, "some content", NULL),
-    (".ignore", 34, "some content", NULL),
-    (".ignore", 35, "some content", NULL),
-    (".ignore", 36, "some content", NULL),
-    (".ignore", 37, "some content", NULL),
-    (".ignore", 38, "some content", NULL),
-    (".ignore", 39, "some content", NULL),
-    (".ignore", 40, "some content", NULL),
-    (".ignore", 41, "some content", NULL),
-    (".ignore", 42, "some content", NULL),
-    (".ignore", 43, "some content", NULL),
-    (".ignore", 44, "some content", NULL),
-    (".ignore", 45, "some content", NULL),
-    (".ignore", 46, "some content", NULL),
-    (".ignore", 47, "some content", NULL),
-    (".ignore", 48, "some content", NULL),
-    (".ignore", 49, "some content", NULL),
-    (".ignore", 50, "some content", NULL),
-    (".ignore", 51, "some content", NULL),
-    (".ignore", 52, "some content", NULL),
-    (".ignore", 53, "some content", NULL),
-    (".ignore", 54, "some content", NULL),
-    (".ignore", 55, "some content", NULL),
     (".ignore", 56, "some content", NULL),
-    (".ignore", 57, "some content", NULL),
-    (".ignore", 58, "some content", NULL),
-    (".ignore", 59, "some content", NULL),
-    (".ignore", 60, "some content", NULL),
-    (".ignore", 61, "some content", NULL),
-    (".ignore", 62, "some content", NULL),
     (".ignore", 63, "some content", NULL),
-    (".ignore", 64, "some content", NULL),
     (".ignore", 65, "some content", NULL),
     (".ignore", 66, "some content", NULL),
     (".ignore", 67, "some content", NULL),
-    (".ignore", 68, "some content", NULL),
-    (".ignore", 69, "some content", NULL),
-    (".ignore", 70, "some content", NULL),
-    (".ignore", 71, "some content", NULL),
-    (".ignore", 72, "some content", NULL),
-    (".ignore", 73, "some content", NULL),
-    (".ignore", 74, "some content", NULL),
-    (".ignore", 75, "some content", NULL),
-    (".ignore", 76, "some content", NULL),
     (".ignore", 77, "some content", NULL),
     (".ignore", 78, "some content", NULL),
-    (".ignore", 79, "some content", NULL),
-    (".ignore", 80, "some content", NULL),
+    (".ignore", 82, "some content", NULL),
+    (".ignore", 94, "some content", NULL),
     (".ignore", 95, "some content", NULL),
     ("file1.txt", 97, "some content", NULL),
     ("file2.txt", 97, "some content", NULL),
@@ -649,33 +593,6 @@ VALUES
     ("file3.txt", 100, "some content", NULL),
     ("file4.txt", 100, "some content", NULL),
     ("file5.txt", 100, "some content", NULL),
-    ("code1.java", 8,"some content", "Java"),
-    ("code2.java", 8,"some content", "Java"),
-    ("code3.java", 8,"some content", "Java"),
-    ("code4.java", 8,"some content", "Java"),
-    ("code5.java", 8,"some content", "Java"),
-    ("code6.java", 8,"some content", "Java"),
-    ("code7.java", 8,"some content", "Java"),
-    ("code8.java", 8,"some content", "Java"),
-    ("code9.java", 8,"some content", "Java"),
-    ("code1.java", 9,"some content", "Java"),
-    ("code2.java", 9,"some content", "Java"),
-    ("code3.java", 9,"some content", "Java"),
-    ("code4.java", 9,"some content", "Java"),
-    ("code5.java", 9,"some content", "Java"),
-    ("code6.java", 9,"some content", "Java"),
-    ("code7.java", 9,"some content", "Java"),
-    ("code8.java", 9,"some content", "Java"),
-    ("code9.java", 9,"some content", "Java"),
-    ("code1.java", 10, "some content", "Java"),
-    ("code2.java", 10, "some content", "Java"),
-    ("code3.java", 10, "some content", "Java"),
-    ("code4.java", 10, "some content", "Java"),
-    ("code5.java", 10, "some content", "Java"),
-    ("code6.java", 10, "some content", "Java"),
-    ("code7.java", 10, "some content", "Java"),
-    ("code8.java", 10, "some content", "Java"),
-    ("code9.java", 10, "some content", "Java"),
     ("code1.c", 23, "some content","C"),
     ("code2.c", 23, "some content" ,"C"),
     ("code3.c", 23, "some content", "C"),
@@ -739,6 +656,9 @@ VALUES
     ("code6.c", 31, "some content", "C"),
     ("code7.c", 31, "some content", "C"),
     ("code8.c", 31, "some content", "C"),
+    ("code1.c", 46, "some content", "C"),
+    ("code2.c", 46, "some content", "C"),
+    ("code3.c", 46, "some content", "C"),
     ("code1.c", 99, "some content", "C"),
     ("code2.c", 99, "some content", "C"),
     ("code3.c", 99, "some content", "C"),
@@ -875,13 +795,9 @@ VALUES
     ("code6.js", 45, "some content", "JavaScript"),
     ("code7.js", 45, "some content", "JavaScript"),
     ("code8.js", 45, "some content", "JavaScript"),
-    ("code1.c", 46, "some content", "C"),
-    ("code2.c", 46, "some content", "C"),
-    ("code3.c", 46, "some content", "C"),
-    ("makefile", 46, "some content", "MAKEFILE"),
+    ("makefile", 46, "some content", "Makefile"),
     ("code1.asm", 48, "some content", "Assembly"),
     ("code2.asm", 48, "some content", "Assembly"),
-    ("code3.asm", 48, "some content", "Assembly"),
     ("code3.asm", 48, "some content", "Assembly"),
     ("code1.sql", 52, "some content", "SQL"),
     ("code2.sql", 52, "some content", "SQL"),
@@ -995,17 +911,8 @@ VALUES
     ("code4.sc", 76, "some content", "Scala"),
     ("code5.sc", 76, "some content", "Scala"),
     ("code6.sc", 76, "some content", "Scala"),
-    ("code1.sc", 76, "some content", "Scala"),
-    ("code2.sc", 76, "some content", "Scala"),
-    ("code3.sc", 76, "some content", "Scala"),
-    ("code4.sc", 76, "some content", "Scala"),
-    ("code5.sc", 76, "some content", "Scala"),
-    ("code6.sc", 76, "some content", "Scala"),
     ("script.sh", 77, "some content", "Shell"),
     ("script.sh", 78, "some content", "Shell");
-
-
-
 
 INSERT INTO OwnerRepository (user,repository)
 VALUES
@@ -1023,7 +930,6 @@ VALUES
     ("GambuzX", 16),
     ("margaridav27", 17),
     ("margaridav27", 18);
-
 
 INSERT INTO ContributorRepository (user,repository)
 VALUES
@@ -1047,48 +953,22 @@ VALUES
     ("tmv11", 18),
     ("francisco-rente", 18);
 
-
-INSERT INTO TeamRepository (team,repository)
+INSERT INTO TeamRepository (teamName, teamOrganization, repository)
 VALUES
-    ("NIJobs", 13),
-    ("NIJobs", 14),
-    ("UniApp", 12);
+    ("NIJobs", "NIAEFEUP", 13),
+    ("NIJobs", "NIAEFEUP", 14),
+    ("UniApp", "NIAEFEUP", 12);
 
-
-INSERT INTO TeamRole (user, team, isMaintainer)
+INSERT INTO TeamRole (user, teamName, teamOrganization, isMaintainer)
 VALUES  
-    ("beatriz-ag", "UniApp", 0),
-    ("andrefmrocha", "UniApp", 1),
-    ("andrefmrocha", "NIJobs", 1),
-    ("AndrePereira2001", "NIJobs", 0);
-
+    ("beatriz-ag", "UniApp", "NIAEFEUP", 0),
+    ("andrefmrocha", "UniApp", "NIAEFEUP", 1),
+    ("andrefmrocha", "NIJobs", "NIAEFEUP", 1),
+    ("AndrePereira2001", "NIJobs", "NIAEFEUP", 0);
 
 INSERT INTO OrganizationRepository (organization,repository)
 VALUES
     ("NIAEFEUP", 15);
-
-INSERT INTO OrganizationUserOwner (user,organization)
-VALUES
-    ("andrefmrocha", "NIAEFEUP");
-
-
-INSERT INTO OrganizationUserMember (user, organization)
-VALUES
-    ("andrefmrocha", "NIAEFEUP"),
-    ("beatriz-ag", "NIAEFEUP"),
-    ("GambuzX", "NIAEFEUP"),
-    ("margaridav27", "NIAEFEUP"),
-    ("AndrePereira2001", "NIAEFEUP");
-
-
-INSERT INTO OrganizationMemberVisibility (user, organization, isPrivate)
-VALUES
-    ("beatriz-ag", "NIAEFEUP", 1),
-    ("andrefmrocha", "NIAEFEUP", 0),
-    ("GambuzX", "NIAEFEUP", 0),
-    ("margaridav27", "NIAEFEUP", 1),
-    ("AndrePereira2001", "NIAEFEUP", 1);
-
 
 INSERT INTO Submodule (source,destination)
 VALUES
@@ -1097,14 +977,15 @@ VALUES
     (11, 10),
     (18, 17);
 
-
-INSERT INTO FolderRelationship (parent, child)
+INSERT INTO FolderRelationship (child, parent)
 VALUES
     (7, 1),
+    (12, 1),
+    (49, 1),
+    (50, 1),
     (8, 7),
     (9, 7),
     (10, 7),
-    (12, 1),
     (13, 12),
     (14, 12),
     (15, 12),
@@ -1114,15 +995,13 @@ VALUES
     (19, 12),
     (20, 12),
     (22, 5),
+    (25, 5),
     (23, 22),
     (24, 22),
-    (25, 5),
     (26, 25),
     (27, 25),
     (28, 25),
     (29, 25),
-    (26, 25),
-    (26, 25),
     (32, 6),
     (33, 6),
     (34, 33),
@@ -1137,8 +1016,6 @@ VALUES
     (46, 50),
     (47, 50),
     (48, 50),
-    (49, 1),
-    (50, 1),
     (51, 3),
     (52, 51),
     (53, 51),
@@ -1162,24 +1039,20 @@ VALUES
     (76, 81),
     (79, 77),
     (80, 81),
-    (82, 83),
-    (82, 84),
-    (83, 85),
-    (83, 86),
-    (83, 87),
-    (83, 88),
-    (83, 89),
-    (83, 90),
-    (83, 91),
-    (83, 92),
-    (83, 93),
-    (94, 100),
-    (95, 96),
-    (96, 97),
-    (96, 98),
-    (96, 99);
-
-
-
-   
-    
+    (83, 82),
+    (84, 82),
+    (85, 83),
+    (86, 83),
+    (87, 83),
+    (88, 83),
+    (89, 83),
+    (90, 83),
+    (91, 83),
+    (92, 83),
+    (93, 83),
+    (100, 94),
+    (96, 95),
+    (97, 96),
+    (98, 96),
+    (99, 96);
+  

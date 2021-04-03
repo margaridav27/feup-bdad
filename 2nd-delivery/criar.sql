@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS Issue (
     CONSTRAINT IssueContributionFK FOREIGN KEY (ID) REFERENCES Contribution(ID)
 );
 
-CREATE TABLE IF NOT EXISTS Merge (
+CREATE TABLE IF NOT EXISTS "Merge" (
     ID INTEGER,
     oursName TEXT,
     oursRepository INTEGER,
@@ -93,8 +93,8 @@ CREATE TABLE IF NOT EXISTS Merge (
     theirsRepository INTEGER,
     CONSTRAINT MergePK PRIMARY KEY (ID),
     CONSTRAINT MergeCommitFK FOREIGN KEY (ID) REFERENCES "Commit"(ID),
-    CONSTRAINT MergeBranchOursNameFK FOREIGN KEY (oursName, oursRepository) REFERENCES Branch("name", repository),
-    CONSTRAINT MergeBranchTheirsNameFK FOREIGN KEY (theirsName, theirsRepository) REFERENCES Branch("name", repository),
+    CONSTRAINT MergeBranchOursFK FOREIGN KEY (oursName, oursRepository) REFERENCES Branch("name", repository),
+    CONSTRAINT MergeBranchTheirsFK FOREIGN KEY (theirsName, theirsRepository) REFERENCES Branch("name", repository),
     CONSTRAINT MergeSameRepository CHECK (oursRepository == theirsRepository),
     CONSTRAINT MergeDifferentBranches CHECK (oursName != theirsName)
 );
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS ProgrammingLanguage (
     CONSTRAINT ProgrammingLanguagePK PRIMARY KEY ("name")
 );
 
-CREATE TABLE IF NOT EXISTS File (
+CREATE TABLE IF NOT EXISTS "File" (
     /* Limit the number of chars for a file imposed in UNIX */
     "name" TEXT NOT NULL CHECK (LENGTH("name") <= 255),
     directory INTEGER,
@@ -132,20 +132,22 @@ CREATE TABLE IF NOT EXISTS ContributorRepository (
 );
 
 CREATE TABLE IF NOT EXISTS TeamRepository (
-    team TEXT,
+    teamName TEXT,
+    teamOrganization TEXT,
     repository INTEGER,
-    CONSTRAINT TeamRepositoryPK PRIMARY KEY (team, repository),
-    CONSTRAINT TeamRepositoryTeamFK FOREIGN KEY (team) REFERENCES Team(teamName),
+    CONSTRAINT TeamRepositoryPK PRIMARY KEY (teamName, teamOrganization, repository),
+    CONSTRAINT TeamRepositoryTeamFK FOREIGN KEY (teamName, teamOrganization) REFERENCES Team(teamName, organization),
     CONSTRAINT TeamRepositoryRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
 );
 
 CREATE TABLE IF NOT EXISTS TeamRole (
     user TEXT,
-    team TEXT,
+    teamName TEXT,
+    teamOrganization TEXT,
     isMaintainer INTEGER CHECK (isMaintainer >= 0 AND isMaintainer <= 1),
-    CONSTRAINT TeamRolePK PRIMARY KEY (user, team),
+    CONSTRAINT TeamRolePK PRIMARY KEY (user, teamName, teamOrganization),
     CONSTRAINT TeamRoleUserFK FOREIGN KEY (user) REFERENCES User(userName),
-    CONSTRAINT TeamRoleTeamFK FOREIGN KEY (team) REFERENCES Team(teamName)
+    CONSTRAINT TeamRoleTeamFK FOREIGN KEY (teamName, teamOrganization) REFERENCES Team(teamName, organization)
 );
 
 CREATE TABLE IF NOT EXISTS OrganizationRepository (
@@ -190,9 +192,9 @@ CREATE TABLE IF NOT EXISTS Submodule (
 );
 
 CREATE TABLE IF NOT EXISTS FolderRelationship (
-    parent INTEGER,
     child INTEGER,
-    CONSTRAINT FolderRelationshipPK PRIMARY KEY (parent, child),
+    parent INTEGER,
+    CONSTRAINT FolderRelationshipPK PRIMARY KEY (child, parent),
     CONSTRAINT FolderRelationshipParentFK FOREIGN KEY (parent) REFERENCES Directory(ID),
     CONSTRAINT FolderRelationshipChildFK FOREIGN KEY (child) REFERENCES Directory(ID)
 );
