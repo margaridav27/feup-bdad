@@ -6,11 +6,14 @@ VALUES
     ("margaridav27"),
     ("AndrePereira2001"),
     ("tmv11"),
-    ("francisco-rente");
+    ("francisco-rente"),
+    ("pemesteves"),
+    ("mikRodrigues");
 
 INSERT INTO Organization (organizationName)
 VALUES
-    ("NIAEFEUP");
+    ("NIAEFEUP"),
+    ("NECG");
 
 INSERT INTO Team (teamName, organization)
 VALUES
@@ -956,7 +959,7 @@ VALUES
     ("andrefmrocha", "NIJobs", "NIAEFEUP", 1),
     ("AndrePereira2001", "NIJobs", "NIAEFEUP", 0);
 
-INSERT INTO OrganizationRepository (organization,repository)
+INSERT INTO OrganizationRepository (organization, repository)
 VALUES
     ("NIAEFEUP", 15);
 
@@ -1046,23 +1049,18 @@ VALUES
     (98, 96),
     (99, 96);
 
-INSERT INTO OrganizationUserOwner (user,organization)
-VALUES
-    ("andrefmrocha", "NIAEFEUP");
-
-INSERT INTO OrganizationUserMember (user, organization)
+INSERT INTO OrganizationUserOwner (user, organization)
 VALUES
     ("andrefmrocha", "NIAEFEUP"),
-    ("beatriz-ag", "NIAEFEUP"),
-    ("GambuzX", "NIAEFEUP"),
-    ("margaridav27", "NIAEFEUP"),
-    ("AndrePereira2001", "NIAEFEUP");
+    ("pemesteves", "NECG");
 
-
-INSERT INTO OrganizationMemberVisibility (user, organization, isPrivate)
+INSERT INTO OrganizationUserMember (user, organization, isPrivate)
 VALUES
+    ("andrefmrocha", "NIAEFEUP", 1),
     ("beatriz-ag", "NIAEFEUP", 1),
-    ("andrefmrocha", "NIAEFEUP", 0),
     ("GambuzX", "NIAEFEUP", 0),
-    ("margaridav27", "NIAEFEUP", 1),
-    ("AndrePereira2001", "NIAEFEUP", 1);
+    ("GambuzX", "NECG", 0),
+    ("margaridav27", "NIAEFEUP", 0),
+    ("AndrePereira2001", "NIAEFEUP", 1),
+    ("pemesteves", "NECG", 1),
+    ("mikRodrigues", "NECG", 0);
