@@ -1,16 +1,19 @@
 PRAGMA foreign_keys = ON;
 
-CREATE TABLE IF NOT EXISTS User (
+DROP TABLE IF EXISTS User;
+CREATE TABLE User (
     userName TEXT       CONSTRAINT userNameNN NOT NULL,
     CONSTRAINT UserPK PRIMARY KEY (userName)
 );
 
-CREATE TABLE IF NOT EXISTS Organization (
+DROP TABLE IF EXISTS Organization;
+CREATE TABLE Organization (
     organizationName TEXT   CONSTRAINT organizationNameNN  NOT NULL,
     CONSTRAINT OrganizationPK PRIMARY KEY (organizationName)
 );
 
-CREATE TABLE IF NOT EXISTS Team (
+DROP TABLE IF EXISTS Team;
+CREATE TABLE Team (
     teamName TEXT       CONSTRAINT teamNameNN NOT NULL,
     organization TEXT,
     CONSTRAINT TeamPK PRIMARY KEY (teamName, organization),
@@ -19,7 +22,8 @@ CREATE TABLE IF NOT EXISTS Team (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS Directory (
+DROP TABLE IF EXISTS Directory;
+CREATE TABLE Directory (
     /* Limit the number of chars for a directory imposed in UNIX */
     ID INTEGER CONSTRAINT DirectoryIdValid CHECK (ID >= 1),
     "name" TEXT         CONSTRAINT DirectoryNameNN NOT NULL 
@@ -27,7 +31,8 @@ CREATE TABLE IF NOT EXISTS Directory (
     CONSTRAINT DirectoryPK PRIMARY KEY (ID)
 );
 
-CREATE TABLE IF NOT EXISTS Repository (
+DROP TABLE IF EXISTS Repository;
+CREATE TABLE Repository (
     ID INTEGER              CONSTRAINT RepositoryIdValid CHECK (ID >= 1),
     "name" TEXT             CONSTRAINT RepositoryNameNN NOT NULL,
     rootDirectory INTEGER   CONSTRAINT RepositoryRootDirectoryUNIQUE UNIQUE,
@@ -38,7 +43,8 @@ CREATE TABLE IF NOT EXISTS Repository (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS Branch (
+DROP TABLE IF EXISTS Branch;
+CREATE TABLE Branch (
     "name" TEXT         CONSTRAINT BranchNameDEFAULT DEFAULT "main" 
                         CONSTRAINT BranchNameNN NOT NULL,
     repository INTEGER,
@@ -49,7 +55,8 @@ CREATE TABLE IF NOT EXISTS Branch (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS Contribution (
+DROP TABLE IF EXISTS Contribution;
+CREATE TABLE Contribution (
     ID INTEGER  CONSTRAINT ContributionIdUNIQUE UNIQUE
                 CONSTRAINT ContributionIdValid CHECK (ID >= 1),
     user TEXT,
@@ -65,7 +72,8 @@ CREATE TABLE IF NOT EXISTS Contribution (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS "Commit" (
+DROP TABLE IF EXISTS "Commit";
+CREATE TABLE "Commit" (
     ID INTEGER, 
     commitHash TEXT     CONSTRAINT commitHashNN NOT NULL
                         CONSTRAINT commitHashSHAFormat CHECK (LENGTH(commitHash) == 40),
@@ -76,7 +84,8 @@ CREATE TABLE IF NOT EXISTS "Commit" (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS Tag (
+DROP TABLE IF EXISTS Tag;
+CREATE TABLE Tag (
     "name" TEXT         CONSTRAINT TagNameNN NOT NULL,
     "commit" INTEGER,
     CONSTRAINT TagPK PRIMARY KEY ("name", "commit"),
@@ -85,7 +94,8 @@ CREATE TABLE IF NOT EXISTS Tag (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS PullRequest (
+DROP TABLE IF EXISTS PullRequest;
+CREATE TABLE PullRequest (
     ID INTEGER,
     /* How to calculate this number based on the Date from Contribution? */
     pullRequestNumber INTEGER   CONSTRAINT PullRequestNumberValid CHECK (pullRequestNumber >= 1),
@@ -97,7 +107,8 @@ CREATE TABLE IF NOT EXISTS PullRequest (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS Issue (
+DROP TABLE IF EXISTS Issue;
+CREATE TABLE Issue (
     ID INTEGER,
     /* How to calculate this number based on the Date from Contribution? */
     issueNumber INTEGER     CONSTRAINT IssueNumberValid CHECK (issueNumber >= 1),
@@ -108,7 +119,8 @@ CREATE TABLE IF NOT EXISTS Issue (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS "Merge" (
+DROP TABLE IF EXISTS "Merge";
+CREATE TABLE "Merge" (
     ID INTEGER,
     oursName TEXT,
     oursRepository INTEGER,
@@ -128,13 +140,15 @@ CREATE TABLE IF NOT EXISTS "Merge" (
     CONSTRAINT MergeDifferentBranches CHECK (oursName != theirsName)
 );
 
-CREATE TABLE IF NOT EXISTS ProgrammingLanguage (
+DROP TABLE IF EXISTS ProgrammingLanguage;
+CREATE TABLE ProgrammingLanguage (
     "name" TEXT     CONSTRAINT ProgrammingLanguageNameUNIQUE UNIQUE 
                     CONSTRAINT ProgrammingLanguageNameNN NOT NULL,
     CONSTRAINT ProgrammingLanguagePK PRIMARY KEY ("name")
 );
 
-CREATE TABLE IF NOT EXISTS "File" (
+DROP TABLE IF EXISTS "File";
+CREATE TABLE "File" (
     /* Limit the number of chars for a file imposed in UNIX */
     "name" TEXT     CONSTRAINT FileNameNN NOT NULL 
                     CONSTRAINT FileNameMaxLen CHECK (LENGTH("name") <= 255),
@@ -151,7 +165,8 @@ CREATE TABLE IF NOT EXISTS "File" (
         ON DELETE RESTRICT
 );
 
-CREATE TABLE IF NOT EXISTS OwnerRepository (
+DROP TABLE IF EXISTS OwnerRepository;
+CREATE TABLE OwnerRepository (
     user TEXT,
     repository INTEGER,
     CONSTRAINT OwnerRepositoryPK PRIMARY KEY (user, repository),
@@ -163,7 +178,8 @@ CREATE TABLE IF NOT EXISTS OwnerRepository (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS ContributorRepository (
+DROP TABLE IF EXISTS ContributorRepository;
+CREATE TABLE ContributorRepository (
     user TEXT,
     repository INTEGER,
     CONSTRAINT ContributorRepositoryPK PRIMARY KEY (user, repository),
@@ -176,7 +192,8 @@ CREATE TABLE IF NOT EXISTS ContributorRepository (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS TeamRepository (
+DROP TABLE IF EXISTS TeamRepository;
+CREATE TABLE TeamRepository (
     teamName TEXT,
     teamOrganization TEXT,
     repository INTEGER,
@@ -189,7 +206,8 @@ CREATE TABLE IF NOT EXISTS TeamRepository (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS TeamRole (
+DROP TABLE IF EXISTS TeamRole;
+CREATE TABLE TeamRole (
     user TEXT,
     teamName TEXT,
     teamOrganization TEXT,
@@ -203,7 +221,8 @@ CREATE TABLE IF NOT EXISTS TeamRole (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS OrganizationRepository (
+DROP TABLE IF EXISTS OrganizationRepository;
+CREATE TABLE OrganizationRepository (
     organization TEXT,
     repository INTEGER,
     CONSTRAINT OrganizationRepositoryPK PRIMARY KEY (organization, repository),
@@ -215,7 +234,8 @@ CREATE TABLE IF NOT EXISTS OrganizationRepository (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS OrganizationUserOwner (
+DROP TABLE IF EXISTS OrganizationUserOwner;
+CREATE TABLE OrganizationUserOwner (
     user TEXT,
     organization TEXT,
     CONSTRAINT OrganizationUserOwnerPK PRIMARY KEY (user, organization),
@@ -227,7 +247,8 @@ CREATE TABLE IF NOT EXISTS OrganizationUserOwner (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS OrganizationUserMember (
+DROP TABLE IF EXISTS OrganizationUserMember;
+CREATE TABLE OrganizationUserMember (
     user TEXT,
     organization TEXT,
     isPrivate INTEGER   CONSTRAINT OrganizationUserMemberisPrivateValid CHECK (isPrivate >= 0 AND isPrivate <= 1),
@@ -240,7 +261,8 @@ CREATE TABLE IF NOT EXISTS OrganizationUserMember (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS Submodule (
+DROP TABLE IF EXISTS Submodule;
+CREATE TABLE Submodule (
     source INTEGER,
     destination INTEGER, 
     CONSTRAINT SubmodulePK PRIMARY KEY (source, destination),
@@ -252,7 +274,8 @@ CREATE TABLE IF NOT EXISTS Submodule (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS FolderRelationship (
+DROP TABLE IF EXISTS FolderRelationship;
+CREATE TABLE FolderRelationship (
     child INTEGER,
     parent INTEGER,
     CONSTRAINT FolderRelationshipPK PRIMARY KEY (child, parent),
