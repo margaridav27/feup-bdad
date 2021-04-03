@@ -1,12 +1,12 @@
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE IF NOT EXISTS User (
-    userName TEXT UNIQUE NOT NULL,
+    userName TEXT NOT NULL,
     CONSTRAINT UserPK PRIMARY KEY (userName) 
 );
 
 CREATE TABLE IF NOT EXISTS Organization (
-    organizationName TEXT UNIQUE NOT NULL,
+    organizationName TEXT NOT NULL,
     CONSTRAINT OrganizationPK PRIMARY KEY (organizationName)
 );
 
@@ -19,15 +19,15 @@ CREATE TABLE IF NOT EXISTS Team (
 
 CREATE TABLE IF NOT EXISTS Directory (
     /* Limit the number of chars for a directory imposed in UNIX */
-    ID INTEGER UNIQUE CHECK (ID >= 1),
+    ID INTEGER CHECK (ID >= 1),
     "name" TEXT NOT NULL CHECK (LENGTH("name") <= 255),
     CONSTRAINT DirectoryPK PRIMARY KEY (ID)
 );
 
 CREATE TABLE IF NOT EXISTS Repository (
-    ID INTEGER UNIQUE CHECK (ID >= 1),
+    ID INTEGER CHECK (ID >= 1),
     "name" TEXT NOT NULL,
-    rootDirectory INTEGER,
+    rootDirectory INTEGER UNIQUE,
     isVisible INTEGER CHECK (isVisible >= 0 AND isVisible <= 1),
     CONSTRAINT RepositoryPK PRIMARY KEY (ID),
     CONSTRAINT RepositoryRootFK FOREIGN KEY (rootDirectory) REFERENCES Directory(ID) ON UPDATE CASCADE ON DELETE CASCADE
