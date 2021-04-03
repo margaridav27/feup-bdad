@@ -1,18 +1,18 @@
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE IF NOT EXISTS User (
-    userName TEXT NOT NULL,
+    userName TEXT       CONSTRAINT userNameNN NOT NULL,
     CONSTRAINT UserPK PRIMARY KEY (userName)
 );
 
 CREATE TABLE IF NOT EXISTS Organization (
-    organizationName TEXT NOT NULL,
+    organizationName TEXT   CONSTRAINT organizationNameNN  NOT NULL,
     CONSTRAINT OrganizationPK PRIMARY KEY (organizationName)
 );
 
 CREATE TABLE IF NOT EXISTS Team (
-    teamName TEXT NOT NULL,
-    organization TEXT NOT NULL,
+    teamName TEXT       CONSTRAINT teamNameNN NOT NULL,
+    organization TEXT,
     CONSTRAINT TeamPK PRIMARY KEY (teamName, organization),
     CONSTRAINT TeamOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(organizationName) 
         ON UPDATE CASCADE 
@@ -21,16 +21,17 @@ CREATE TABLE IF NOT EXISTS Team (
 
 CREATE TABLE IF NOT EXISTS Directory (
     /* Limit the number of chars for a directory imposed in UNIX */
-    ID INTEGER CHECK (ID >= 1),
-    "name" TEXT NOT NULL CHECK (LENGTH("name") <= 255),
+    ID INTEGER CONSTRAINT DirectoryIdValid CHECK (ID >= 1),
+    "name" TEXT         CONSTRAINT DirectoryNameNN NOT NULL 
+                        CONSTRAINT DirectoryNameMaxLen CHECK (LENGTH("name") <= 255),
     CONSTRAINT DirectoryPK PRIMARY KEY (ID)
 );
 
 CREATE TABLE IF NOT EXISTS Repository (
-    ID INTEGER CHECK (ID >= 1),
-    "name" TEXT NOT NULL,
-    rootDirectory INTEGER UNIQUE,
-    isVisible INTEGER CHECK (isVisible >= 0 AND isVisible <= 1),
+    ID INTEGER              CONSTRAINT RepositoryIdValid CHECK (ID >= 1),
+    "name" TEXT             CONSTRAINT RepositoryNameNN NOT NULL,
+    rootDirectory INTEGER   CONSTRAINT RepositoryRootDirectoryUNIQUE UNIQUE,
+    isVisible INTEGER       CONSTRAINT RepositoryisVisibleValid CHECK (isVisible >= 0 AND isVisible <= 1),
     CONSTRAINT RepositoryPK PRIMARY KEY (ID),
     CONSTRAINT RepositoryRootFK FOREIGN KEY (rootDirectory) REFERENCES Directory(ID)
         ON UPDATE CASCADE
@@ -38,9 +39,10 @@ CREATE TABLE IF NOT EXISTS Repository (
 );
 
 CREATE TABLE IF NOT EXISTS Branch (
-    "name" TEXT DEFAULT "main" NOT NULL,
+    "name" TEXT         CONSTRAINT BranchNameDEFAULT DEFAULT "main" 
+                        CONSTRAINT BranchNameNN NOT NULL,
     repository INTEGER,
-    isDefault INTEGER CHECK (isDefault >= 0 AND isDefault <= 1),
+    isDefault INTEGER   CONSTRAINT BranchisDafaultValid CHECK (isDefault >= 0 AND isDefault <= 1),
     CONSTRAINT BranchPK PRIMARY KEY ("name", repository),
     CONSTRAINT BranchRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
         ON UPDATE CASCADE
@@ -48,7 +50,8 @@ CREATE TABLE IF NOT EXISTS Branch (
 );
 
 CREATE TABLE IF NOT EXISTS Contribution (
-    ID INTEGER UNIQUE CHECK (ID >= 1),
+    ID INTEGER  CONSTRAINT ContributionIdUNIQUE UNIQUE
+                CONSTRAINT ContributionIdValid CHECK (ID >= 1),
     user TEXT,
     repository INTEGER,
     "date" DATE,
@@ -64,7 +67,8 @@ CREATE TABLE IF NOT EXISTS Contribution (
 
 CREATE TABLE IF NOT EXISTS "Commit" (
     ID INTEGER, 
-    commitHash TEXT NOT NULL CHECK (LENGTH(commitHash) == 40),
+    commitHash TEXT     CONSTRAINT commitHashNN NOT NULL
+                        CONSTRAINT commitHashSHAFormat CHECK (LENGTH(commitHash) == 40),
     "message" TEXT,
     CONSTRAINT CommitPK PRIMARY KEY (ID),
     CONSTRAINT CommitContributionFK FOREIGN KEY (ID) REFERENCES Contribution(ID)
@@ -73,7 +77,7 @@ CREATE TABLE IF NOT EXISTS "Commit" (
 );
 
 CREATE TABLE IF NOT EXISTS Tag (
-    "name" TEXT NOT NULL,
+    "name" TEXT         CONSTRAINT TagNameNN NOT NULL,
     "commit" INTEGER,
     CONSTRAINT TagPK PRIMARY KEY ("name", "commit"),
     CONSTRAINT TagCommitFK FOREIGN KEY ("commit") REFERENCES "Commit"(ID)
@@ -84,8 +88,8 @@ CREATE TABLE IF NOT EXISTS Tag (
 CREATE TABLE IF NOT EXISTS PullRequest (
     ID INTEGER,
     /* How to calculate this number based on the Date from Contribution? */
-    pullRequestNumber INTEGER CHECK (pullRequestNumber >= 1),
-    "status" INTEGER CHECK ("status" >= 0 AND "status" <= 1),
+    pullRequestNumber INTEGER   CONSTRAINT PullRequestNumberValid CHECK (pullRequestNumber >= 1),
+    "status" INTEGER            CONSTRAINT PullRequestStatusValid CHECK ("status" >= 0 AND "status" <= 1),
     "message" TEXT,
     CONSTRAINT PullRequestPK PRIMARY KEY (ID),
     CONSTRAINT PullRequestContributionFK FOREIGN KEY (ID) REFERENCES Contribution(ID)
@@ -96,7 +100,7 @@ CREATE TABLE IF NOT EXISTS PullRequest (
 CREATE TABLE IF NOT EXISTS Issue (
     ID INTEGER,
     /* How to calculate this number based on the Date from Contribution? */
-    issueNumber INTEGER CHECK (issueNumber >= 1),
+    issueNumber INTEGER     CONSTRAINT IssueNumberValid CHECK (issueNumber >= 1),
     "message" TEXT,
     CONSTRAINT IssuePK PRIMARY KEY (ID),
     CONSTRAINT IssueContributionFK FOREIGN KEY (ID) REFERENCES Contribution(ID)
@@ -125,13 +129,15 @@ CREATE TABLE IF NOT EXISTS "Merge" (
 );
 
 CREATE TABLE IF NOT EXISTS ProgrammingLanguage (
-    "name" TEXT UNIQUE NOT NULL,
+    "name" TEXT     CONSTRAINT ProgrammingLanguageNameUNIQUE UNIQUE 
+                    CONSTRAINT ProgrammingLanguageNameNN NOT NULL,
     CONSTRAINT ProgrammingLanguagePK PRIMARY KEY ("name")
 );
 
 CREATE TABLE IF NOT EXISTS "File" (
     /* Limit the number of chars for a file imposed in UNIX */
-    "name" TEXT NOT NULL CHECK (LENGTH("name") <= 255),
+    "name" TEXT     CONSTRAINT FileNameNN NOT NULL 
+                    CONSTRAINT FileNameMaxLen CHECK (LENGTH("name") <= 255),
     directory INTEGER,
     content TEXT,
     programmingLanguage TEXT,
@@ -187,7 +193,7 @@ CREATE TABLE IF NOT EXISTS TeamRole (
     user TEXT,
     teamName TEXT,
     teamOrganization TEXT,
-    isMaintainer INTEGER CHECK (isMaintainer >= 0 AND isMaintainer <= 1),
+    isMaintainer INTEGER CONSTRAINT TeamRoleisMaintainerValid CHECK (isMaintainer >= 0 AND isMaintainer <= 1),
     CONSTRAINT TeamRolePK PRIMARY KEY (user, teamName, teamOrganization),
     CONSTRAINT TeamRoleUserFK FOREIGN KEY (user) REFERENCES User(userName)
         ON UPDATE CASCADE
@@ -224,7 +230,7 @@ CREATE TABLE IF NOT EXISTS OrganizationUserOwner (
 CREATE TABLE IF NOT EXISTS OrganizationUserMember (
     user TEXT,
     organization TEXT,
-    isPrivate INTEGER CHECK (isPrivate >= 0 AND isPrivate <= 1),
+    isPrivate INTEGER   CONSTRAINT OrganizationUserMemberisPrivateValid CHECK (isPrivate >= 0 AND isPrivate <= 1),
     CONSTRAINT OrganizationUserMemberPK PRIMARY KEY (user, organization),
     CONSTRAINT OrganizationUserMemberUserFK FOREIGN KEY (user) REFERENCES User(userName)
         ON UPDATE CASCADE
