@@ -1,5 +1,34 @@
 PRAGMA foreign_keys = ON;
 
+DROP TABLE IF EXISTS Entity;
+CREATE TABLE Entity (
+    ID INTEGER,
+    "name" TEXT       CONSTRAINT nameNN NOT NULL,
+    CONSTRAINT entityPK PRIMARY KEY (ID)
+);
+
+CREATE TABLE User (
+    ID INTEGER,
+    CONSTRAINT userPK PRIMARY KEY (ID),
+    CONSTRAINT userFK FOREIGN KEY (ID) REFERENCES Entity(ID)
+);
+
+CREATE TABLE Team (
+    ID INTEGER,
+    organization INTEGER,
+    "description" TEXT,
+    CONSTRAINT teamPK PRIMARY KEY (ID),
+    CONSTRAINT teamFK FOREIGN KEY (ID) REFERENCES Entity(ID),
+    CONSTRAINT teamOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(ID)
+);
+
+CREATE TABLE Organization (
+    ID INTEGER,
+    CONSTRAINT organizationPK PRIMARY KEY (ID),
+    CONSTRAINT organizationFK FOREIGN KEY (ID) REFERENCES Entity(ID)
+);
+
+/*
 DROP TABLE IF EXISTS User;
 CREATE TABLE User (
     userName TEXT       CONSTRAINT userNameNN NOT NULL,
@@ -20,7 +49,7 @@ CREATE TABLE Team (
     CONSTRAINT TeamOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(organizationName) 
         ON UPDATE CASCADE 
         ON DELETE CASCADE
-);
+);*/
 
 DROP TABLE IF EXISTS Directory;
 CREATE TABLE Directory (
@@ -59,12 +88,12 @@ DROP TABLE IF EXISTS Contribution;
 CREATE TABLE Contribution (
     ID INTEGER  CONSTRAINT ContributionIdUNIQUE UNIQUE
                 CONSTRAINT ContributionIdValid CHECK (ID >= 1),
-    user TEXT,
+    user INTEGER,
     repository INTEGER,
     "date" DATE,
     CONSTRAINT ContributionPK PRIMARY KEY (ID),
     /* Contribution should remain even if User is deleted */
-    CONSTRAINT ContributionUserFK FOREIGN KEY (user) REFERENCES User(userName)
+    CONSTRAINT ContributionUserFK FOREIGN KEY (user) REFERENCES User(ID)
         ON UPDATE CASCADE
         ON DELETE SET NULL,
     CONSTRAINT ContributionRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
@@ -167,10 +196,10 @@ CREATE TABLE "File" (
 
 DROP TABLE IF EXISTS OwnerRepository;
 CREATE TABLE OwnerRepository (
-    user TEXT,
+    entity INTEGER,
     repository INTEGER,
-    CONSTRAINT OwnerRepositoryPK PRIMARY KEY (user, repository),
-    CONSTRAINT OwnerRepositoryUserFK FOREIGN KEY (user) REFERENCES User(userName)
+    CONSTRAINT OwnerRepositoryPK PRIMARY KEY (entity, repository),
+    CONSTRAINT OwnerRepositoryUserFK FOREIGN KEY (entity) REFERENCES Entity(ID)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
     CONSTRAINT OwnerRepositoryRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
@@ -180,11 +209,11 @@ CREATE TABLE OwnerRepository (
 
 DROP TABLE IF EXISTS ContributorRepository;
 CREATE TABLE ContributorRepository (
-    user TEXT,
+    user INTEGER,
     repository INTEGER,
     CONSTRAINT ContributorRepositoryPK PRIMARY KEY (user, repository),
     /* Contribution should remain even if User is deleted */
-    CONSTRAINT ContributorRepositoryUserFK FOREIGN KEY (user) REFERENCES User(userName)
+    CONSTRAINT ContributorRepositoryUserFK FOREIGN KEY (user) REFERENCES User(ID)
         ON UPDATE CASCADE
         ON DELETE SET NULL,
     CONSTRAINT ContributorRepositoryRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
@@ -192,6 +221,7 @@ CREATE TABLE ContributorRepository (
         ON DELETE CASCADE
 );
 
+/*
 DROP TABLE IF EXISTS TeamRepository;
 CREATE TABLE TeamRepository (
     teamName TEXT,
@@ -206,20 +236,7 @@ CREATE TABLE TeamRepository (
         ON DELETE CASCADE
 );
 
-DROP TABLE IF EXISTS TeamRole;
-CREATE TABLE TeamRole (
-    user TEXT,
-    teamName TEXT,
-    teamOrganization TEXT,
-    isMaintainer INTEGER CONSTRAINT TeamRoleisMaintainerValid CHECK (isMaintainer >= 0 AND isMaintainer <= 1),
-    CONSTRAINT TeamRolePK PRIMARY KEY (user, teamName, teamOrganization),
-    CONSTRAINT TeamRoleUserFK FOREIGN KEY (user) REFERENCES User(userName)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
-    CONSTRAINT TeamRoleTeamFK FOREIGN KEY (teamName, teamOrganization) REFERENCES Team(teamName, organization)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
-);
+
 
 DROP TABLE IF EXISTS OrganizationRepository;
 CREATE TABLE OrganizationRepository (
@@ -232,14 +249,14 @@ CREATE TABLE OrganizationRepository (
     CONSTRAINT OrganizationRepositoryRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
         ON UPDATE CASCADE 
         ON DELETE CASCADE
-);
+);*/
 
 DROP TABLE IF EXISTS OrganizationUserOwner;
 CREATE TABLE OrganizationUserOwner (
-    user TEXT,
+    user INTEGER,
     organization TEXT,
     CONSTRAINT OrganizationUserOwnerPK PRIMARY KEY (user, organization),
-    CONSTRAINT OrganizationUserOwnerUserFK FOREIGN KEY (user) REFERENCES User(userName)
+    CONSTRAINT OrganizationUserOwnerUserFK FOREIGN KEY (user) REFERENCES User(ID)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
     CONSTRAINT OrganizationUserOwnerOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(organizationName)
@@ -249,14 +266,28 @@ CREATE TABLE OrganizationUserOwner (
 
 DROP TABLE IF EXISTS OrganizationUserMember;
 CREATE TABLE OrganizationUserMember (
-    user TEXT,
+    user INTEGER,
     organization TEXT,
     isPrivate INTEGER   CONSTRAINT OrganizationUserMemberisPrivateValid CHECK (isPrivate >= 0 AND isPrivate <= 1),
     CONSTRAINT OrganizationUserMemberPK PRIMARY KEY (user, organization),
-    CONSTRAINT OrganizationUserMemberUserFK FOREIGN KEY (user) REFERENCES User(userName)
+    CONSTRAINT OrganizationUserMemberUserFK FOREIGN KEY (user) REFERENCES User(ID)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
     CONSTRAINT OrganizationUserMemberOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(organizationName)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+
+DROP TABLE IF EXISTS TeamUserMember;
+CREATE TABLE TeamUserMember (
+    user INTEGER,
+    team INTEGER,
+    isMaintainer INTEGER CONSTRAINT TeamRoleisMaintainerValid CHECK (isMaintainer >= 0 AND isMaintainer <= 1),
+    CONSTRAINT TeamRolePK PRIMARY KEY (user, teamName, teamOrganization),
+    CONSTRAINT TeamRoleUserFK FOREIGN KEY (user) REFERENCES User(ID)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT TeamRoleTeamFK FOREIGN KEY (team) REFERENCES Team(ID)
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
