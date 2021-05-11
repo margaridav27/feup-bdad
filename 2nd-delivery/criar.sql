@@ -1,4 +1,5 @@
 PRAGMA foreign_keys = ON;
+BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS Entity;
 CREATE TABLE Entity (
@@ -31,20 +32,23 @@ CREATE TABLE Organization (
 /*
 DROP TABLE IF EXISTS User;
 CREATE TABLE User (
-    userName TEXT       CONSTRAINT userNameNN NOT NULL,
+    userName TEXT CONSTRAINT userNameNN NOT NULL,
+
     CONSTRAINT UserPK PRIMARY KEY (userName)
 );
 
 DROP TABLE IF EXISTS Organization;
 CREATE TABLE Organization (
-    organizationName TEXT   CONSTRAINT organizationNameNN  NOT NULL,
+    organizationName TEXT CONSTRAINT organizationNameNN  NOT NULL,
+
     CONSTRAINT OrganizationPK PRIMARY KEY (organizationName)
 );
 
 DROP TABLE IF EXISTS Team;
 CREATE TABLE Team (
-    teamName TEXT       CONSTRAINT teamNameNN NOT NULL,
-    organization TEXT,
+    teamName TEXT CONSTRAINT teamNameNN NOT NULL,
+    organization TEXT CONSTRAINT organizationNN NOT NULL,
+
     CONSTRAINT TeamPK PRIMARY KEY (teamName, organization),
     CONSTRAINT TeamOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(organizationName) 
         ON UPDATE CASCADE 
@@ -55,17 +59,19 @@ DROP TABLE IF EXISTS Directory;
 CREATE TABLE Directory (
     /* Limit the number of chars for a directory imposed in UNIX */
     ID INTEGER CONSTRAINT DirectoryIdValid CHECK (ID >= 1),
-    "name" TEXT         CONSTRAINT DirectoryNameNN NOT NULL 
-                        CONSTRAINT DirectoryNameMaxLen CHECK (LENGTH("name") <= 255),
+    "name" TEXT CONSTRAINT DirectoryNameNN NOT NULL 
+                CONSTRAINT DirectoryNameMaxLen CHECK (LENGTH("name") <= 255),
+
     CONSTRAINT DirectoryPK PRIMARY KEY (ID)
 );
 
 DROP TABLE IF EXISTS Repository;
 CREATE TABLE Repository (
-    ID INTEGER              CONSTRAINT RepositoryIdValid CHECK (ID >= 1),
-    "name" TEXT             CONSTRAINT RepositoryNameNN NOT NULL,
-    rootDirectory INTEGER   CONSTRAINT RepositoryRootDirectoryUNIQUE UNIQUE,
-    isVisible INTEGER       CONSTRAINT RepositoryisVisibleValid CHECK (isVisible >= 0 AND isVisible <= 1),
+    ID INTEGER CONSTRAINT RepositoryIdValid CHECK (ID >= 1),
+    "name" TEXT CONSTRAINT RepositoryNameNN NOT NULL,
+    rootDirectory INTEGER CONSTRAINT rootDirectoryValid CHECK(rootDirectory >= 1),
+    isVisible INTEGER CONSTRAINT RepositoryisVisibleValid CHECK (isVisible >= 0 AND isVisible <= 1),
+
     CONSTRAINT RepositoryPK PRIMARY KEY (ID),
     CONSTRAINT RepositoryRootFK FOREIGN KEY (rootDirectory) REFERENCES Directory(ID)
         ON UPDATE CASCADE
@@ -76,8 +82,9 @@ DROP TABLE IF EXISTS Branch;
 CREATE TABLE Branch (
     "name" TEXT         CONSTRAINT BranchNameDEFAULT DEFAULT "main" 
                         CONSTRAINT BranchNameNN NOT NULL,
-    repository INTEGER,
+    repository INTEGER  CONSTRAINT repositoryValid CHECK (repository >= 1),
     isDefault INTEGER   CONSTRAINT BranchisDafaultValid CHECK (isDefault >= 0 AND isDefault <= 1),
+
     CONSTRAINT BranchPK PRIMARY KEY ("name", repository),
     CONSTRAINT BranchRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
         ON UPDATE CASCADE
@@ -89,8 +96,8 @@ CREATE TABLE Contribution (
     ID INTEGER  CONSTRAINT ContributionIdUNIQUE UNIQUE
                 CONSTRAINT ContributionIdValid CHECK (ID >= 1),
     user INTEGER,
-    repository INTEGER,
-    "date" DATE,
+    repository INTEGER CONSTRAINT repositoryValid CHECK (repository >= 1),
+    "date" DATE CONSTRAINT dateNN NOT NULL,
     CONSTRAINT ContributionPK PRIMARY KEY (ID),
     /* Contribution should remain even if User is deleted */
     CONSTRAINT ContributionUserFK FOREIGN KEY (user) REFERENCES User(ID)
@@ -103,10 +110,12 @@ CREATE TABLE Contribution (
 
 DROP TABLE IF EXISTS "Commit";
 CREATE TABLE "Commit" (
-    ID INTEGER, 
+    ID INTEGER          CONSTRAINT idValid CHECK(ID >= 1), 
     commitHash TEXT     CONSTRAINT commitHashNN NOT NULL
                         CONSTRAINT commitHashSHAFormat CHECK (LENGTH(commitHash) == 40),
-    "message" TEXT,
+    "message" TEXT      CONSTRAINT defaultMessage DEFAULT "No commit message provided"
+                        CONSTRAINT messageNN NOT NULL,
+
     CONSTRAINT CommitPK PRIMARY KEY (ID),
     CONSTRAINT CommitContributionFK FOREIGN KEY (ID) REFERENCES Contribution(ID)
         ON UPDATE CASCADE
@@ -115,9 +124,11 @@ CREATE TABLE "Commit" (
 
 DROP TABLE IF EXISTS Tag;
 CREATE TABLE Tag (
+    ID INTEGER          CONSTRAINT idValid CHECK(ID >= 1),
     "name" TEXT         CONSTRAINT TagNameNN NOT NULL,
-    "commit" INTEGER,
-    CONSTRAINT TagPK PRIMARY KEY ("name", "commit"),
+    "commit" INTEGER    CONSTRAINT commitValid CHECK("commit" >= 1),
+
+    CONSTRAINT TagPK PRIMARY KEY (ID),
     CONSTRAINT TagCommitFK FOREIGN KEY ("commit") REFERENCES "Commit"(ID)
         ON UPDATE CASCADE
         ON DELETE CASCADE
@@ -125,11 +136,13 @@ CREATE TABLE Tag (
 
 DROP TABLE IF EXISTS PullRequest;
 CREATE TABLE PullRequest (
-    ID INTEGER,
+    ID INTEGER          CONSTRAINT idValid CHECK(ID >= 1),
     /* How to calculate this number based on the Date from Contribution? */
     pullRequestNumber INTEGER   CONSTRAINT PullRequestNumberValid CHECK (pullRequestNumber >= 1),
     "status" INTEGER            CONSTRAINT PullRequestStatusValid CHECK ("status" >= 0 AND "status" <= 1),
-    "message" TEXT,
+    "message" TEXT              CONSTRAINT defaultMessage DEFAULT "No pull request message provided",
+                                CONSTRAINT messageNN CHECK("message" >= 1),
+
     CONSTRAINT PullRequestPK PRIMARY KEY (ID),
     CONSTRAINT PullRequestContributionFK FOREIGN KEY (ID) REFERENCES Contribution(ID)
         ON UPDATE CASCADE
@@ -138,10 +151,12 @@ CREATE TABLE PullRequest (
 
 DROP TABLE IF EXISTS Issue;
 CREATE TABLE Issue (
-    ID INTEGER,
+    ID INTEGER          CONSTRAINT idValid CHECK(ID >= 1),
     /* How to calculate this number based on the Date from Contribution? */
     issueNumber INTEGER     CONSTRAINT IssueNumberValid CHECK (issueNumber >= 1),
-    "message" TEXT,
+    "message" TEXT          CONSTRAINT defaultMessage DEFAULT "No issue message provided"
+                            CONSTRAINT messageNN NOT NULL,
+
     CONSTRAINT IssuePK PRIMARY KEY (ID),
     CONSTRAINT IssueContributionFK FOREIGN KEY (ID) REFERENCES Contribution(ID)
         ON UPDATE CASCADE
@@ -150,11 +165,12 @@ CREATE TABLE Issue (
 
 DROP TABLE IF EXISTS "Merge";
 CREATE TABLE "Merge" (
-    ID INTEGER,
-    oursName TEXT,
-    oursRepository INTEGER,
-    theirsName TEXT,
-    theirsRepository INTEGER,
+    ID INTEGER              CONSTRAINT idValid CHECK(ID >= 1),
+    oursName TEXT           CONSTRAINT oursNameNN NOT NULL,
+    oursRepository INTEGER  CONSTRAINT oursRepositoryValid CHECK(oursRepository >= 1),
+    theirsName TEXT         CONSTRAINT theirsNameNN NOT NULL,
+    theirsRepository INTEGER CONSTRAINT theirsRepositoryValid CHECK(theirsRepository >= 1),
+
     CONSTRAINT MergePK PRIMARY KEY (ID),
     CONSTRAINT MergeCommitFK FOREIGN KEY (ID) REFERENCES "Commit"(ID)
         ON UPDATE CASCADE
@@ -171,19 +187,20 @@ CREATE TABLE "Merge" (
 
 DROP TABLE IF EXISTS ProgrammingLanguage;
 CREATE TABLE ProgrammingLanguage (
-    "name" TEXT     CONSTRAINT ProgrammingLanguageNameUNIQUE UNIQUE 
-                    CONSTRAINT ProgrammingLanguageNameNN NOT NULL,
+    "name" TEXT     CONSTRAINT ProgrammingLanguageNameUNIQUE UNIQUE,
+
     CONSTRAINT ProgrammingLanguagePK PRIMARY KEY ("name")
 );
 
 DROP TABLE IF EXISTS "File";
 CREATE TABLE "File" (
     /* Limit the number of chars for a file imposed in UNIX */
-    "name" TEXT     CONSTRAINT FileNameNN NOT NULL 
-                    CONSTRAINT FileNameMaxLen CHECK (LENGTH("name") <= 255),
-    directory INTEGER,
-    content TEXT,
+    "name" TEXT         CONSTRAINT FileNameNN NOT NULL 
+                        CONSTRAINT FileNameMaxLen CHECK(LENGTH("name") <= 255),
+    directory INTEGER   CONSTRAINT DirectoryValid CHECK(directory >= 1),
+    content TEXT        CONSTRAINT contentNN NOT NULL,
     programmingLanguage TEXT,
+
     CONSTRAINT FilePK PRIMARY KEY ("name", directory),
     CONSTRAINT FileDirectoryFK FOREIGN KEY (directory) REFERENCES Directory(ID)
         ON UPDATE CASCADE
@@ -197,7 +214,7 @@ CREATE TABLE "File" (
 DROP TABLE IF EXISTS OwnerRepository;
 CREATE TABLE OwnerRepository (
     entity INTEGER,
-    repository INTEGER,
+    repository INTEGER CONSTRAINT repositoryValid CHECK(repository >= 1),
     CONSTRAINT OwnerRepositoryPK PRIMARY KEY (entity, repository),
     CONSTRAINT OwnerRepositoryUserFK FOREIGN KEY (entity) REFERENCES Entity(ID)
         ON UPDATE CASCADE
@@ -210,7 +227,7 @@ CREATE TABLE OwnerRepository (
 DROP TABLE IF EXISTS ContributorRepository;
 CREATE TABLE ContributorRepository (
     user INTEGER,
-    repository INTEGER,
+    repository INTEGER CONSTRAINT repositoryValid CHECK(repository >= 1),
     CONSTRAINT ContributorRepositoryPK PRIMARY KEY (user, repository),
     /* Contribution should remain even if User is deleted */
     CONSTRAINT ContributorRepositoryUserFK FOREIGN KEY (user) REFERENCES User(ID)
@@ -224,9 +241,10 @@ CREATE TABLE ContributorRepository (
 /*
 DROP TABLE IF EXISTS TeamRepository;
 CREATE TABLE TeamRepository (
-    teamName TEXT,
-    teamOrganization TEXT,
-    repository INTEGER,
+    teamName TEXT               CONSTRAINT teamNameNN NOT NULL,
+    teamOrganization TEXT       CONSTRAINT teamOrganizationNN NOT NULL,
+    repository INTEGER          CONSTRAINT repositoryValid CHECK(repository >= 1),
+
     CONSTRAINT TeamRepositoryPK PRIMARY KEY (teamName, teamOrganization, repository),
     CONSTRAINT TeamRepositoryTeamFK FOREIGN KEY (teamName, teamOrganization) REFERENCES Team(teamName, organization)
         ON UPDATE CASCADE
@@ -237,11 +255,28 @@ CREATE TABLE TeamRepository (
 );
 
 
+=======
+DROP TABLE IF EXISTS TeamRole;
+CREATE TABLE TeamRole (
+    user TEXT               CONSTRAINT userNN NOT NULL,
+    teamName TEXT           CONSTRAINT teamNameNN NOT NULL,
+    teamOrganization TEXT   CONSTRAINT teamOrganizationNN NOT NULL,
+    isMaintainer INTEGER CONSTRAINT TeamRoleisMaintainerValid CHECK (isMaintainer >= 0 AND isMaintainer <= 1),
+
+    CONSTRAINT TeamRolePK PRIMARY KEY (user, teamName, teamOrganization),
+    CONSTRAINT TeamRoleUserFK FOREIGN KEY (user) REFERENCES User(userName)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT TeamRoleTeamFK FOREIGN KEY (teamName, teamOrganization) REFERENCES Team(teamName, organization)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
 
 DROP TABLE IF EXISTS OrganizationRepository;
 CREATE TABLE OrganizationRepository (
-    organization TEXT,
-    repository INTEGER,
+    organization TEXT       CONSTRAINT organizationNN NOT NULL,
+    repository INTEGER      CONSTRAINT repositoryNN NOT NULL,
+
     CONSTRAINT OrganizationRepositoryPK PRIMARY KEY (organization, repository),
     CONSTRAINT OrganizationRepositoryOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(organizationName)
         ON UPDATE CASCADE
@@ -254,7 +289,7 @@ CREATE TABLE OrganizationRepository (
 DROP TABLE IF EXISTS OrganizationUserOwner;
 CREATE TABLE OrganizationUserOwner (
     user INTEGER,
-    organization TEXT,
+    organization TEXT       CONSTRAINT organizationNN NOT NULL,
     CONSTRAINT OrganizationUserOwnerPK PRIMARY KEY (user, organization),
     CONSTRAINT OrganizationUserOwnerUserFK FOREIGN KEY (user) REFERENCES User(ID)
         ON UPDATE CASCADE
@@ -267,8 +302,8 @@ CREATE TABLE OrganizationUserOwner (
 DROP TABLE IF EXISTS OrganizationUserMember;
 CREATE TABLE OrganizationUserMember (
     user INTEGER,
-    organization TEXT,
-    isPrivate INTEGER   CONSTRAINT OrganizationUserMemberisPrivateValid CHECK (isPrivate >= 0 AND isPrivate <= 1),
+    organization TEXT       CONSTRAINT organizationNN NOT NULL,
+    isPrivate INTEGER       CONSTRAINT OrganizationUserMemberisPrivateValid CHECK (isPrivate >= 0 AND isPrivate <= 1),
     CONSTRAINT OrganizationUserMemberPK PRIMARY KEY (user, organization),
     CONSTRAINT OrganizationUserMemberUserFK FOREIGN KEY (user) REFERENCES User(ID)
         ON UPDATE CASCADE
@@ -294,8 +329,9 @@ CREATE TABLE TeamUserMember (
 
 DROP TABLE IF EXISTS Submodule;
 CREATE TABLE Submodule (
-    source INTEGER,
-    destination INTEGER, 
+    source INTEGER          CONSTRAINT sourceValid CHECK(source >= 1),
+    destination INTEGER     CONSTRAINT destinationValid CHECK(destination >= 1), 
+
     CONSTRAINT SubmodulePK PRIMARY KEY (source, destination),
     CONSTRAINT SubmoduleSourceFK FOREIGN KEY (source) REFERENCES Repository(ID)
         ON UPDATE CASCADE
@@ -307,8 +343,9 @@ CREATE TABLE Submodule (
 
 DROP TABLE IF EXISTS FolderRelationship;
 CREATE TABLE FolderRelationship (
-    child INTEGER,
-    parent INTEGER,
+    child INTEGER           CONSTRAINT childValid CHECK(child >= 1),
+    parent INTEGER          CONSTRAINT parentValid CHECK(parent >= 1),
+
     CONSTRAINT FolderRelationshipPK PRIMARY KEY (child, parent),
     CONSTRAINT FolderRelationshipParentFK FOREIGN KEY (parent) REFERENCES Directory(ID)
         ON UPDATE CASCADE
@@ -317,3 +354,6 @@ CREATE TABLE FolderRelationship (
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
+
+COMMIT TRANSACTION;
+PRAGMA foreign_keys = ON;

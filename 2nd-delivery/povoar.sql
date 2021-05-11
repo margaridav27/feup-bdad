@@ -1,4 +1,5 @@
 PRAGMA foreign_keys = ON;
+BEGIN TRANSACTION;
 
 INSERT INTO User (userName)
 VALUES
@@ -385,17 +386,17 @@ VALUES
     (88, "79bad431a0cbce2d4a526f44b98210bd989b8872", "a relevant commit indeed"),
     (89, "37f055a5434cdda3f18793218ca66b28e6555f52", "a relevant commit indeed");
 
-INSERT INTO Tag ("name", "commit")
+INSERT INTO Tag (ID, "name", "commit")
 VALUES
-    ("tp1", 1),
-    ("tp2", 1),
-    ("tp3", 1),
-    ("tp4", 1),
-    ("tp5", 1),
-    ("tp6", 1),
-    ("tp7", 1),
-    ("nijobs-1", 23),
-    ("adventCode-hard", 34);
+    (1, "tp1", 1),
+    (2, "tp2", 1),
+    (3, "tp3", 1),
+    (4, "tp4", 1),
+    (5, "tp5", 1),
+    (6, "tp6", 1),
+    (7, "tp7", 1),
+    (8, "nijobs-1", 23),
+    (9, "adventCode-hard", 34);
 
 INSERT INTO PullRequest (ID, pullRequestNumber, "status", "message")
 VALUES 
@@ -1066,3 +1067,6 @@ VALUES
     ("AndrePereira2001", "NIAEFEUP", 1),
     ("pemesteves", "NECG", 1),
     ("mikRodrigues", "NECG", 0);
+
+COMMIT TRANSACTION;
+PRAGMA foreign_keys = ON;
