@@ -1,27 +1,43 @@
 PRAGMA foreign_keys = ON;
 BEGIN TRANSACTION;
 
-INSERT INTO User (userName)
+INSERT INTO Entity (ID,"name")
 VALUES
-    ("beatriz-ag"),
-    ("andrefmrocha"),
-    ("GambuzX"),
-    ("margaridav27"),
-    ("AndrePereira2001"),
-    ("tmv11"),
-    ("francisco-rente"),
-    ("pemesteves"),
-    ("mikRodrigues");
+    (1,"beatriz-ag"),
+    (2,"andrefmrocha"),
+    (3,"GambuzX"),
+    (4,"margaridav27"),
+    (5,"AndrePereira2001"),
+    (6,"tmv11"),
+    (7,"francisco-rente"),
+    (8,"pemesteves"),
+    (9,"mikRodrigues"),
+    (10,"NIAEFEUP"),
+    (11,"NECG"),
+    (12,"UniApp"),
+    (13,"NIJobs");
 
-INSERT INTO Organization (organizationName)
+INSERT INTO User (ID)
 VALUES
-    ("NIAEFEUP"),
-    ("NECG");
+    (1),
+    (2),
+    (3),
+    (4),
+    (5),
+    (6),
+    (7),
+    (8),
+    (9);
 
-INSERT INTO Team (teamName, organization)
+INSERT INTO Organization (ID)
 VALUES
-    ("UniApp","NIAEFEUP"),
-    ("NIJobs","NIAEFEUP");
+    (10),
+    (11);
+
+INSERT INTO Team (ID, organization, "description")
+VALUES
+    (12,10,"This is a description for UniApp"),
+    (13,10, "This is a description for NIJOBS");
 
 INSERT INTO Directory (ID, "name")
 VALUES
@@ -220,95 +236,95 @@ VALUES
 
 INSERT INTO Contribution (ID, user, repository, "date")
 VALUES
-    (1, "beatriz-ag", 1, "2016-05-23"),
-    (2, "beatriz-ag", 1, "2016-06-22"),
-    (3, "beatriz-ag", 2, "2016-06-30"),
-    (4, "beatriz-ag", 4, "2016-07-06"),
-    (5, "beatriz-ag", 5, "2016-08-04"),
-    (6, "beatriz-ag", 5, "2016-09-08"),
-    (7, "beatriz-ag", 6, "2016-09-21"),
-    (8, "beatriz-ag", 3, "2016-09-23"),
-    (9, "beatriz-ag", 3, "2016-12-15"),
-    (10, "beatriz-ag", 12, "2017-01-10"),
-    (11, "beatriz-ag", 12, "2017-02-10"),
-    (12, "beatriz-ag", 12, "2017-02-20"),
-    (13, "beatriz-ag", 12, "2017-05-30"),
-    (14, "beatriz-ag", 12, "2017-06-15"),
-    (15, "beatriz-ag", 12, "2017-07-18"),
-    (16, "andrefmrocha", 12, "2017-09-22"),
-    (17, "andrefmrocha", 12, "2017-09-29"),
-    (18, "andrefmrocha", 12, "2017-10-19"),
-    (19, "andrefmrocha", 8, "2018-01-01"),
-    (20, "andrefmrocha", 8, "2018-01-12"),
-    (21, "andrefmrocha", 10, "2018-02-06"),
-    (22, "andrefmrocha", 10, "2018-02-08"),
-    (23, "andrefmrocha", 13, "2018-02-19"),
-    (24, "andrefmrocha", 7, "2018-09-03"),
-    (25, "andrefmrocha", 10, "2018-09-19"),
-    (26, "andrefmrocha", 10, "2018-09-28"),
-    (27, "andrefmrocha", 11, "2018-10-16"),
-    (28, "andrefmrocha", 11, "2018-11-06"),
-    (29, "andrefmrocha", 9, "2018-11-19"),
-    (30, "andrefmrocha", 9, "2018-12-25"),
-    (31, "andrefmrocha", 10,"2019-01-10"),
-    (32, "andrefmrocha", 10,"2019-01-15"),
-    (33, "andrefmrocha", 11,"2019-01-22"),
-    (34, "andrefmrocha", 11,"2019-01-28"),
-    (35, "andrefmrocha", 9,"2019-04-22"),
-    (36, "andrefmrocha", 9,"2019-04-26"),
-    (37, "GambuzX", 16, "2020-02-19"),
-    (38, "GambuzX", 16, "2020-02-27"),
-    (39, "GambuzX", 16, "2020-03-05"),
-    (40, "GambuzX", 16, "2020-03-13"),
-    (41, "GambuzX", 16, "2020-03-27"),
-    (42, "GambuzX", 16, "2020-04-08"),
-    (43, "GambuzX", 16, "2020-04-28"),
-    (44, "GambuzX", 16, "2020-05-12"),
-    (45, "GambuzX", 16, "2020-06-08"),
-    (46, "GambuzX", 16, "2020-08-12"),
-    (47, "GambuzX", 16, "2020-08-19"),
-    (48, "GambuzX", 16, "2020-10-29"),
-    (49, "GambuzX", 16, "2020-11-03"),
-    (50, "GambuzX", 16, "2020-11-18"),
-    (51, "GambuzX", 16, "2020-12-18"),
-    (52, "margaridav27", 18, "2021-02-01"),
-    (53, "margaridav27", 18, "2021-02-02"),
-    (54, "margaridav27", 18, "2021-02-04"),
-    (55, "francisco-rente", 18, "2021-02-05"),
-    (56, "francisco-rente", 18, "2021-02-06"), 
-    (57, "tmv11", 18, "2021-02-07"), 
-    (58, "tmv11", 18, "2021-02-08"), 
-    (59, "tmv11", 18, "2021-02-09"), 
-    (60, "tmv11", 18, "2021-02-10"), 
-    (61, "tmv11", 18, "2021-02-11"),
-    (62, "tmv11", 18, "2021-02-12"),
-    (63, "tmv11", 18, "2021-02-13"),
-    (64, "tmv11", 18, "2021-02-14"),
-    (65, "tmv11", 18, "2021-02-15"),
-    (66, "tmv11", 18, "2021-02-16"),
-    (67, "tmv11", 18, "2021-02-17"),
-    (68, "tmv11", 18, "2021-02-18"), 
-    (69, "margaridav27", 18, "2021-02-19"),
-    (70, "margaridav27", 18, "2021-02-20"),
-    (71, "margaridav27", 18, "2021-02-20"),
-    (72, "francisco-rente", 18, "2021-02-20"),
-    (73, "francisco-rente", 18, "2021-02-20"),
-    (74, "AndrePereira2001", 18, "2021-02-21"),
-    (75, "AndrePereira2001", 18, "2021-02-21"),
-    (76, "AndrePereira2001", 18, "2021-02-21"),
-    (77, "AndrePereira2001", 18,"2021-02-21"),
-    (78, "AndrePereira2001", 18,"2021-02-21"), 
-    (79, "margaridav27", 18, "2021-02-23"),
-    (80, "margaridav27", 18, "2021-02-23"), 
-    (81, "margaridav27", 18, "2021-02-23"),
-    (82, "francisco-rente", 18, "2021-02-23"),
-    (83, "francisco-rente", 18, "2021-02-23"),
-    (84, "tmv11", 18, "2021-02-23"), 
-    (85, "tmv11", 18, "2021-02-23"),
-    (86, "tmv11", 18, "2021-02-24"),
-    (87, "tmv11", 18, "2021-02-24"),
-    (88, "tmv11", 18, "2021-02-24"),
-    (89, "tmv11", 18, "2021-02-24");
+    (1, 1, 1, "2016-05-23"),
+    (2, 1, 1, "2016-06-22"),
+    (3, 1, 2, "2016-06-30"),
+    (4, 1, 4, "2016-07-06"),
+    (5, 1, 5, "2016-08-04"),
+    (6, 1, 5, "2016-09-08"),
+    (7, 1, 6, "2016-09-21"),
+    (8, 1, 3, "2016-09-23"),
+    (9, 1, 3, "2016-12-15"),
+    (10, 1, 12, "2017-01-10"),
+    (11, 1, 12, "2017-02-10"),
+    (12, 1, 12, "2017-02-20"),
+    (13, 1, 12, "2017-05-30"),
+    (14, 1, 12, "2017-06-15"),
+    (15, 1, 12, "2017-07-18"),
+    (16, 2, 12, "2017-09-22"),
+    (17, 2, 12, "2017-09-29"),
+    (18, 2, 12, "2017-10-19"),
+    (19, 2, 8, "2018-01-01"),
+    (20, 2, 8, "2018-01-12"),
+    (21, 2, 10, "2018-02-06"),
+    (22, 2, 10, "2018-02-08"),
+    (23, 2, 13, "2018-02-19"),
+    (24, 2, 7, "2018-09-03"),
+    (25, 2, 10, "2018-09-19"),
+    (26, 2, 10, "2018-09-28"),
+    (27, 2, 11, "2018-10-16"),
+    (28, 2, 11, "2018-11-06"),
+    (29, 2, 9, "2018-11-19"),
+    (30, 2, 9, "2018-12-25"),
+    (31, 2, 10,"2019-01-10"),
+    (32, 2, 10,"2019-01-15"),
+    (33, 2, 11,"2019-01-22"),
+    (34, 2, 11,"2019-01-28"),
+    (35, 2, 9,"2019-04-22"),
+    (36, 2, 9,"2019-04-26"),
+    (37, 3, 16, "2020-02-19"),
+    (38, 3, 16, "2020-02-27"),
+    (39, 3, 16, "2020-03-05"),
+    (40, 3, 16, "2020-03-13"),
+    (41, 3, 16, "2020-03-27"),
+    (42, 3, 16, "2020-04-08"),
+    (43, 3, 16, "2020-04-28"),
+    (44, 3, 16, "2020-05-12"),
+    (45, 3, 16, "2020-06-08"),
+    (46, 3, 16, "2020-08-12"),
+    (47, 3, 16, "2020-08-19"),
+    (48, 3, 16, "2020-10-29"),
+    (49, 3, 16, "2020-11-03"),
+    (50, 3, 16, "2020-11-18"),
+    (51, 3, 16, "2020-12-18"),
+    (52, 4, 18, "2021-02-01"),
+    (53, 4, 18, "2021-02-02"),
+    (54, 4, 18, "2021-02-04"),
+    (55, 5, 18, "2021-02-05"),
+    (56, 5, 18, "2021-02-06"), 
+    (57, 6, 18, "2021-02-07"), 
+    (58, 6, 18, "2021-02-08"), 
+    (59, 6, 18, "2021-02-09"), 
+    (60, 6, 18, "2021-02-10"), 
+    (61, 6, 18, "2021-02-11"),
+    (62, 6, 18, "2021-02-12"),
+    (63, 6, 18, "2021-02-13"),
+    (64, 6, 18, "2021-02-14"),
+    (65, 6, 18, "2021-02-15"),
+    (66, 6, 18, "2021-02-16"),
+    (67, 6, 18, "2021-02-17"),
+    (68, 6, 18, "2021-02-18"), 
+    (69, 4, 18, "2021-02-19"),
+    (70, 4, 18, "2021-02-20"),
+    (71, 4, 18, "2021-02-20"),
+    (72, 7, 18, "2021-02-20"),
+    (73, 7, 18, "2021-02-20"),
+    (74, 5, 18, "2021-02-21"),
+    (75, 5, 18, "2021-02-21"),
+    (76, 5, 18, "2021-02-21"),
+    (77, 5, 18,"2021-02-21"),
+    (78, 5, 18,"2021-02-21"), 
+    (79, 4, 18, "2021-02-23"),
+    (80, 4, 18, "2021-02-23"), 
+    (81, 4, 18, "2021-02-23"),
+    (82, 7, 18, "2021-02-23"),
+    (83, 7, 18, "2021-02-23"),
+    (84, 6, 18, "2021-02-23"), 
+    (85, 6, 18, "2021-02-23"),
+    (86, 6, 18, "2021-02-24"),
+    (87, 6, 18, "2021-02-24"),
+    (88, 6, 18, "2021-02-24"),
+    (89, 6, 18, "2021-02-24");
 
 INSERT INTO "Commit" (ID, commitHash, "message")
 VALUES
@@ -910,61 +926,58 @@ VALUES
     ("script.sh", 77, "some content", "Shell"),
     ("script.sh", 78, "some content", "Shell");
 
-INSERT INTO OwnerRepository (user,repository)
+INSERT INTO OwnerRepository (entity,repository)
 VALUES
-    ("beatriz-ag", 1),
-    ("beatriz-ag", 2),
-    ("beatriz-ag", 3),
-    ("beatriz-ag", 4),
-    ("beatriz-ag", 5),
-    ("beatriz-ag", 6),
-    ("andrefmrocha", 7),
-    ("andrefmrocha", 8),
-    ("andrefmrocha", 9),
-    ("andrefmrocha", 10),
-    ("andrefmrocha", 11),
-    ("GambuzX", 16),
-    ("margaridav27", 17),
-    ("margaridav27", 18);
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (1, 4),
+    (1, 5),
+    (1, 6),
+    (2, 7),
+    (2, 8),
+    (2, 9),
+    (2, 10),
+    (2, 11),
+    (3, 16),
+    (4, 17),
+    (4, 18),
+    (13, 13),
+    (13, 14),
+    (12, 12),
+    (10, 15);
 
 INSERT INTO ContributorRepository (user,repository)
 VALUES
-    ("beatriz-ag", 1),
-    ("beatriz-ag", 2),
-    ("beatriz-ag", 3),
-    ("beatriz-ag", 4),
-    ("beatriz-ag", 5),
-    ("beatriz-ag", 6),
-    ("beatriz-ag", 9),
-    ("andrefmrocha", 9),
-    ("andrefmrocha", 10),
-    ("andrefmrocha", 11),
-    ("beatriz-ag", 12),
-    ("andrefmrocha", 13),
-    ("andrefmrocha", 14),
-    ("GambuzX", 16),
-    ("margaridav27", 17),
-    ("margaridav27", 18),
-    ("AndrePereira2001", 18),
-    ("tmv11", 18),
-    ("francisco-rente", 18);
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (1, 4),
+    (1, 5),
+    (1, 6),
+    (1, 9),
+    (2, 9),
+    (2, 10),
+    (2, 11),
+    (1, 12),
+    (2, 13),
+    (2, 14),
+    (3, 16),
+    (4, 17),
+    (4, 18),
+    (5, 18),
+    (6, 18),
+    (7, 18);
 
-INSERT INTO TeamRepository (teamName, teamOrganization, repository)
-VALUES
-    ("NIJobs", "NIAEFEUP", 13),
-    ("NIJobs", "NIAEFEUP", 14),
-    ("UniApp", "NIAEFEUP", 12);
 
-INSERT INTO TeamRole (user, teamName, teamOrganization, isMaintainer)
+INSERT INTO TeamUserMember (user, team, isMaintainer)
 VALUES  
-    ("beatriz-ag", "UniApp", "NIAEFEUP", 0),
-    ("andrefmrocha", "UniApp", "NIAEFEUP", 1),
-    ("andrefmrocha", "NIJobs", "NIAEFEUP", 1),
-    ("AndrePereira2001", "NIJobs", "NIAEFEUP", 0);
+    (1, 12, 0),
+    (2, 12, 1),
+    (2, 13, 1),
+    (5, 13, 0);
 
-INSERT INTO OrganizationRepository (organization, repository)
-VALUES
-    ("NIAEFEUP", 15);
+
 
 INSERT INTO Submodule (source,destination)
 VALUES
@@ -1054,19 +1067,19 @@ VALUES
 
 INSERT INTO OrganizationUserOwner (user, organization)
 VALUES
-    ("andrefmrocha", "NIAEFEUP"),
-    ("pemesteves", "NECG");
+    (2, 10),
+    (8, 11);
 
 INSERT INTO OrganizationUserMember (user, organization, isPrivate)
 VALUES
-    ("andrefmrocha", "NIAEFEUP", 1),
-    ("beatriz-ag", "NIAEFEUP", 1),
-    ("GambuzX", "NIAEFEUP", 0),
-    ("GambuzX", "NECG", 0),
-    ("margaridav27", "NIAEFEUP", 0),
-    ("AndrePereira2001", "NIAEFEUP", 1),
-    ("pemesteves", "NECG", 1),
-    ("mikRodrigues", "NECG", 0);
+    (2, 10, 1),
+    (1, 10, 1),
+    (3, 10, 0),
+    (3, 11, 0),
+    (4, 10, 0),
+    (5, 10, 1),
+    (8, 11, 1),
+    (9, 11, 0);
 
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = ON;

@@ -32,32 +32,6 @@ CREATE TABLE Organization (
     CONSTRAINT organizationFK FOREIGN KEY (ID) REFERENCES Entity(ID)
 );
 
-/*
-DROP TABLE IF EXISTS User;
-CREATE TABLE User (
-    userName TEXT CONSTRAINT userNameNN NOT NULL,
-
-    CONSTRAINT UserPK PRIMARY KEY (userName)
-);
-
-DROP TABLE IF EXISTS Organization;
-CREATE TABLE Organization (
-    organizationName TEXT CONSTRAINT organizationNameNN  NOT NULL,
-
-    CONSTRAINT OrganizationPK PRIMARY KEY (organizationName)
-);
-
-DROP TABLE IF EXISTS Team;
-CREATE TABLE Team (
-    teamName TEXT CONSTRAINT teamNameNN NOT NULL,
-    organization TEXT CONSTRAINT organizationNN NOT NULL,
-
-    CONSTRAINT TeamPK PRIMARY KEY (teamName, organization),
-    CONSTRAINT TeamOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(organizationName) 
-        ON UPDATE CASCADE 
-        ON DELETE CASCADE
-);*/
-
 DROP TABLE IF EXISTS Directory;
 CREATE TABLE Directory (
     /* Limit the number of chars for a directory imposed in UNIX */
@@ -241,63 +215,16 @@ CREATE TABLE ContributorRepository (
         ON DELETE CASCADE
 );
 
-/*
-DROP TABLE IF EXISTS TeamRepository;
-CREATE TABLE TeamRepository (
-    teamName TEXT               CONSTRAINT teamNameNN NOT NULL,
-    teamOrganization TEXT       CONSTRAINT teamOrganizationNN NOT NULL,
-    repository INTEGER          CONSTRAINT repositoryValid CHECK(repository >= 1),
-
-    CONSTRAINT TeamRepositoryPK PRIMARY KEY (teamName, teamOrganization, repository),
-    CONSTRAINT TeamRepositoryTeamFK FOREIGN KEY (teamName, teamOrganization) REFERENCES Team(teamName, organization)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
-    CONSTRAINT TeamRepositoryRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
-);
-
-
-=======
-DROP TABLE IF EXISTS TeamRole;
-CREATE TABLE TeamRole (
-    user TEXT               CONSTRAINT userNN NOT NULL,
-    teamName TEXT           CONSTRAINT teamNameNN NOT NULL,
-    teamOrganization TEXT   CONSTRAINT teamOrganizationNN NOT NULL,
-    isMaintainer INTEGER CONSTRAINT TeamRoleisMaintainerValid CHECK (isMaintainer >= 0 AND isMaintainer <= 1),
-
-    CONSTRAINT TeamRolePK PRIMARY KEY (user, teamName, teamOrganization),
-    CONSTRAINT TeamRoleUserFK FOREIGN KEY (user) REFERENCES User(userName)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
-    CONSTRAINT TeamRoleTeamFK FOREIGN KEY (teamName, teamOrganization) REFERENCES Team(teamName, organization)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
-);
-
-DROP TABLE IF EXISTS OrganizationRepository;
-CREATE TABLE OrganizationRepository (
-    organization TEXT       CONSTRAINT organizationNN NOT NULL,
-    repository INTEGER      CONSTRAINT repositoryNN NOT NULL,
-
-    CONSTRAINT OrganizationRepositoryPK PRIMARY KEY (organization, repository),
-    CONSTRAINT OrganizationRepositoryOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(organizationName)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
-    CONSTRAINT OrganizationRepositoryRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
-        ON UPDATE CASCADE 
-        ON DELETE CASCADE
-);*/
 
 DROP TABLE IF EXISTS OrganizationUserOwner;
 CREATE TABLE OrganizationUserOwner (
     user INTEGER,
-    organization TEXT       CONSTRAINT organizationNN NOT NULL,
+    organization INTEGER       CONSTRAINT organizationNN NOT NULL,
     CONSTRAINT OrganizationUserOwnerPK PRIMARY KEY (user, organization),
     CONSTRAINT OrganizationUserOwnerUserFK FOREIGN KEY (user) REFERENCES User(ID)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
-    CONSTRAINT OrganizationUserOwnerOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(organizationName)
+    CONSTRAINT OrganizationUserOwnerOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(ID)
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
@@ -305,10 +232,12 @@ CREATE TABLE OrganizationUserOwner (
 DROP TABLE IF EXISTS OrganizationUserMember;
 CREATE TABLE OrganizationUserMember (
     user INTEGER,
-    organization TEXT       CONSTRAINT organizationNN NOT NULL,
+    organization INTEGER       CONSTRAINT organizationNN NOT NULL,
     isPrivate INTEGER       CONSTRAINT OrganizationUserMemberisPrivateValid CHECK (isPrivate >= 0 AND isPrivate <= 1),
     CONSTRAINT OrganizationUserMemberPK PRIMARY KEY (user, organization),
-    CONSTRAINT OrganizationUserMemberUserFK FOREIGN KEY (user) REFERENCES User(ID)
+    CONSTRAINT OrganizationUserMemberUserFK FOREIGN KEY (user) REFERENCES User(ID),
+    CONSTRAINT OrganizationUserMemberOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(ID)
+
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
