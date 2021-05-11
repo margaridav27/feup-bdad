@@ -8,12 +8,14 @@ CREATE TABLE Entity (
     CONSTRAINT entityPK PRIMARY KEY (ID)
 );
 
+DROP TABLE IF EXISTS User;
 CREATE TABLE User (
     ID INTEGER,
     CONSTRAINT userPK PRIMARY KEY (ID),
     CONSTRAINT userFK FOREIGN KEY (ID) REFERENCES Entity(ID)
 );
 
+DROP TABLE IF EXISTS Team;
 CREATE TABLE Team (
     ID INTEGER,
     organization INTEGER,
@@ -23,6 +25,7 @@ CREATE TABLE Team (
     CONSTRAINT teamOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(ID)
 );
 
+DROP TABLE IF EXISTS Organization;
 CREATE TABLE Organization (
     ID INTEGER,
     CONSTRAINT organizationPK PRIMARY KEY (ID),
@@ -307,9 +310,6 @@ CREATE TABLE OrganizationUserMember (
     CONSTRAINT OrganizationUserMemberPK PRIMARY KEY (user, organization),
     CONSTRAINT OrganizationUserMemberUserFK FOREIGN KEY (user) REFERENCES User(ID)
         ON UPDATE CASCADE
-        ON DELETE CASCADE,
-    CONSTRAINT OrganizationUserMemberOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(organizationName)
-        ON UPDATE CASCADE
         ON DELETE CASCADE
 );
 
@@ -318,7 +318,7 @@ CREATE TABLE TeamUserMember (
     user INTEGER,
     team INTEGER,
     isMaintainer INTEGER CONSTRAINT TeamRoleisMaintainerValid CHECK (isMaintainer >= 0 AND isMaintainer <= 1),
-    CONSTRAINT TeamRolePK PRIMARY KEY (user, teamName, teamOrganization),
+    CONSTRAINT TeamRolePK PRIMARY KEY (user, team),
     CONSTRAINT TeamRoleUserFK FOREIGN KEY (user) REFERENCES User(ID)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
