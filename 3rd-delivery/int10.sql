@@ -1,10 +1,26 @@
-SELECT Repository.name, COUNT(*)
-FROM Repository, (SELECT Contribution.ID, Contribution.repository FROM Contribution JOIN Issue ON Contribution.ID = Issue.ID) AS Issues
-WHERE Repository.ID = Issues.repository
-GROUP BY Repository
+DROP View if exists "Group";
+CREATE View "Group" AS 
+    SELECT Team.ID 
+    FROM Team 
+            
+    UNION 
+            
+    SELECT Organization.ID 
+    FROM Organization;
 
-EXCEPT
+DROP View if exists UsersRepository;
+CREATE View UsersRepository AS
+    SELECT Repository.ID, Repository.name
+    FROM Repository 
 
-SELECT OwnerRepository.repository
-FROM OwnerRepository, (SELECT Team.ID FROM Team UNION SELECT Organization.ID FROM Organization) as ColectiveEntityOwners
-WHERE OwnerRepository.entity = ColectiveEntityOwners.ID;
+    EXCEPT
+
+    SELECT Repository.ID, Repository.name
+    FROM Repository, "Group", OwnerRepository
+    WHERE OwnerRepository.entity = "Group".ID and Repository.ID = OwnerRepository.repository;
+
+SELECT UsersRepository.name, count(Issue.ID)
+FROM UsersRepository, Issue, Contribution
+WHERE UsersRepository.ID = Contribution.repository and Contribution.ID = Issue.ID 
+GROUP BY UsersRepository.ID;
+
