@@ -237,7 +237,6 @@ CREATE TABLE OrganizationUserMember (
     CONSTRAINT OrganizationUserMemberPK PRIMARY KEY (user, organization),
     CONSTRAINT OrganizationUserMemberUserFK FOREIGN KEY (user) REFERENCES User(ID),
     CONSTRAINT OrganizationUserMemberOrganizationFK FOREIGN KEY (organization) REFERENCES Organization(ID)
-
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
