@@ -1,3 +1,7 @@
+.headers on
+.mode table
+.nullvalue NULL
+
 PRAGMA foreign_keys = ON;
 BEGIN TRANSACTION;
 
