@@ -324,7 +324,8 @@ VALUES
     (86, 6, 18, "2021-02-24"),
     (87, 6, 18, "2021-02-24"),
     (88, 6, 18, "2021-02-24"),
-    (89, 6, 18, "2021-02-24");
+    (89, 6, 18, "2021-02-24"),
+    (90, 2, 13, "2021-02-24");
 
 INSERT INTO "Commit" (ID, commitHash, "message")
 VALUES
@@ -400,7 +401,9 @@ VALUES
     (86, "590bc5f97d21cbde421a177c8b74fd2d5154eb56", "a relevant commit indeed"),
     (87, "2d564f5f8a2132bc520b7ea592da219fa4e5f918", "a relevant commit indeed"),
     (88, "79bad431a0cbce2d4a526f44b98210bd989b8872", "a relevant commit indeed"),
-    (89, "37f055a5434cdda3f18793218ca66b28e6555f52", "a relevant commit indeed");
+    (89, "37f055a5434cdda3f18793218ca66b28e6555f52", "a relevant commit indeed"),
+    (90, "37f055a5434cddaxf18793218ca66b28e6555f52", "a relevant commit indeed");
+
 
 INSERT INTO Tag (ID, "name", "commit")
 VALUES
@@ -443,7 +446,9 @@ VALUES
     (79, "main", 18, "feature-recursive_mode", 18),
     (81, "main", 18, "testing-signal_handling", 18),
     (86, "main", 18, "testing-recursive_mode", 18),
-    (89, "main", 18, "testing-change_permissions", 18);
+    (89, "main", 18, "testing-change_permissions", 18),
+    (90, "main", 13, "development", 13);
+
 
 INSERT INTO ProgrammingLanguage ("name")
 VALUES
