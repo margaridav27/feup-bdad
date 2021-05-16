@@ -4,13 +4,13 @@ SELECT Tag.ID AS tagID,
        repository AS tagRepository
 FROM Tag JOIN Contribution ON Tag."commit" = Contribution.ID;
 
--- não é suposto funcionar
+-- does not work
 INSERT INTO Tag (ID, "name", "commit") VALUES (10, "tp3", 18); 
 INSERT INTO Tag (ID, "name", "commit") VALUES (11, "tp5", 22);
 INSERT INTO Tag (ID, "name", "commit") VALUES (12, "tp6", 32);
 INSERT INTO Tag (ID, "name", "commit") VALUES (13, "tp7", 64);
 
--- é suposto funcionar
+-- works
 INSERT INTO Tag (ID, "name", "commit") VALUES (14, "nijobs-2", 27); 
 INSERT INTO Tag (ID, "name", "commit") VALUES (15, "game-v1", 49);
 INSERT INTO Tag (ID, "name", "commit") VALUES (16, "hotfix-game-v1.1", 51);
