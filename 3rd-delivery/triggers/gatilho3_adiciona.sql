@@ -6,8 +6,8 @@ WHEN
     AND
 
     (SELECT repository
-    FROM Contribution
-    WHERE NEW."commit" = Contribution.ID)
+     FROM Contribution
+     WHERE NEW."commit" = Contribution.ID)
     IN
     (SELECT repository
      FROM Tag JOIN Contribution ON Tag."commit" = Contribution.ID) 
