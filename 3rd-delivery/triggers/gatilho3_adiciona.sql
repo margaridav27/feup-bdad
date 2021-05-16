@@ -14,5 +14,5 @@ WHEN
      FROM Tag JOIN Contribution ON Tag."commit" = Contribution.ID) 
 
 BEGIN
-    SELECT RAISE(IGNORE);
+    SELECT RAISE(FAIL, 'A Tag name must be unique within a repository.');
 END;
