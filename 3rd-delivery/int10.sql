@@ -16,10 +16,10 @@ CREATE View UsersRepository AS
     EXCEPT
 
     SELECT Repository.ID, Repository.name
-    FROM Repository, "Group", OwnerRepository
-    WHERE OwnerRepository.entity = "Group".ID and Repository.ID = OwnerRepository.repository;
+    FROM Repository, "Group"
+    WHERE Repository."owner" = "Group".ID;
 
-SELECT UsersRepository.name, count(Issue.ID)
+SELECT UsersRepository.name, count(Issue.ID) as openIssues
 FROM UsersRepository, Issue, Contribution
 WHERE UsersRepository.ID = Contribution.repository and Contribution.ID = Issue.ID 
 GROUP BY UsersRepository.ID;

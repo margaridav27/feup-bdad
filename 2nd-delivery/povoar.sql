@@ -144,26 +144,26 @@ VALUES
     (101, "website-NIAEFEUP"),
     (102, "NI");
 
-INSERT INTO Repository (ID, "name", rootDirectory, isVisible)
+INSERT INTO Repository (ID, "name", "owner", rootDirectory, isVisible)
 VALUES
-    (1, "feup-lpoo", 1, 0),
-    (2, "feup-sope", 2, 0),
-    (3, "feup-bdad", 3, 0),
-    (4, "feup-cgra", 4, 0),
-    (5, "feup-lcom", 5, 0),
-    (6, "feup-mnum", 6, 1),
-    (7, "projectSchrodinger", 56, 1),
-    (8, "CV_WEBSITE", 63, 1),
-    (9, "NativeBase", 65, 1),
-    (10, "Space-Wars", 66, 1),    
-    (11, "Advent_of_code_2019", 67, 1),
-    (12, "website-NIAEFEUP", 101, 1),
-    (13, "nijobs-nbe", 77, 1),
-    (14, "nijobs-fe", 78, 1),
-    (15, "NI", 102, 1),
-    (16, "LeetCode", 82, 0),
-    (17, "feup-sope", 94, 1),
-    (18, "feup-sope-xmod", 95, 1);
+    (1, "feup-lpoo", 1, 1, 0),
+    (2, "feup-sope", 1, 2, 0),
+    (3, "feup-bdad", 1, 3, 0),
+    (4, "feup-cgra", 1, 4, 0),
+    (5, "feup-lcom", 1, 5, 0),
+    (6, "feup-mnum", 1, 6, 1),
+    (7, "projectSchrodinger", 2, 56, 1),
+    (8, "CV_WEBSITE", 2, 63, 1),
+    (9, "NativeBase", 2, 65, 1),
+    (10, "Space-Wars", 2, 66, 1),    
+    (11, "Advent_of_code_2019", 2, 67, 1),
+    (12, "website-NIAEFEUP", 12, 101, 1),
+    (13, "nijobs-nbe", 13, 77, 1),
+    (14, "nijobs-fe", 13, 78, 1),
+    (15, "NI", 10, 102, 1),
+    (16, "LeetCode", 3, 82, 0),
+    (17, "feup-sope", 4, 94, 1),
+    (18, "feup-sope-xmod", 4, 95, 1);
 
 INSERT INTO Branch ("name", repository, isDefault)
 VALUES
@@ -926,26 +926,6 @@ VALUES
     ("script.sh", 77, "some content", "Shell"),
     ("script.sh", 78, "some content", "Shell");
 
-INSERT INTO OwnerRepository (entity,repository)
-VALUES
-    (1, 1),
-    (1, 2),
-    (1, 3),
-    (1, 4),
-    (1, 5),
-    (1, 6),
-    (2, 7),
-    (2, 8),
-    (2, 9),
-    (2, 10),
-    (2, 11),
-    (3, 16),
-    (4, 17),
-    (4, 18),
-    (13, 13),
-    (13, 14),
-    (12, 12),
-    (10, 15);
 
 INSERT INTO ContributorRepository (user,repository)
 VALUES

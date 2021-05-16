@@ -50,9 +50,12 @@ DROP TABLE IF EXISTS Repository;
 CREATE TABLE Repository (
     ID INTEGER CONSTRAINT RepositoryIdValid CHECK (ID >= 1),
     "name" TEXT CONSTRAINT RepositoryNameNN NOT NULL,
+    "owner" INTEGER,
     rootDirectory INTEGER CONSTRAINT rootDirectoryValid CHECK(rootDirectory >= 1),
     isVisible INTEGER CONSTRAINT RepositoryisVisibleValid CHECK (isVisible >= 0 AND isVisible <= 1),
-
+    CONSTRAINT RepositoryOwnerFK FOREIGN KEY ("owner") REFERENCES Entity(ID)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
     CONSTRAINT RepositoryPK PRIMARY KEY (ID),
     CONSTRAINT RepositoryRootFK FOREIGN KEY (rootDirectory) REFERENCES Directory(ID)
         ON UPDATE CASCADE
@@ -192,18 +195,6 @@ CREATE TABLE "File" (
         ON DELETE RESTRICT
 );
 
-DROP TABLE IF EXISTS OwnerRepository;
-CREATE TABLE OwnerRepository (
-    entity INTEGER,
-    repository INTEGER CONSTRAINT repositoryValid CHECK(repository >= 1),
-    CONSTRAINT OwnerRepositoryPK PRIMARY KEY (entity, repository),
-    CONSTRAINT OwnerRepositoryUserFK FOREIGN KEY (entity) REFERENCES Entity(ID)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
-    CONSTRAINT OwnerRepositoryRepositoryFK FOREIGN KEY (repository) REFERENCES Repository(ID)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
-);
 
 DROP TABLE IF EXISTS ContributorRepository;
 CREATE TABLE ContributorRepository (

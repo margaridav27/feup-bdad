@@ -1,10 +1,10 @@
 DROP View if exists TeamRepo;
 CREATE View TeamRepo AS
     SELECT Repository.ID as RepositoryID, Repository.name as RepositoryName,  Teams.ID as EntityID, Teams.name as EntityName 
-    FROM OwnerRepository JOIN
+    FROM Repository JOIN
         (SELECT Entity.name, Entity.ID 
         FROM (Entity NATURAL JOIN Team)) AS Teams 
-    ON OwnerRepository.entity = Teams.ID JOIN Repository ON OwnerRepository.repository = Repository.ID;
+    ON Repository."owner" = Teams.ID;
 
 DROP View if exists TeamMembers;
 CREATE View TeamMembers AS
