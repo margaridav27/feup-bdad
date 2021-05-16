@@ -3,3 +3,4 @@ FROM Repository, Entity, (SELECT Contribution.user, Contribution.repository, MAX
                           FROM Contribution
                           GROUP BY Contribution.user) AS mostRecentContribution
 WHERE repository.ID = mostRecentContribution.repository AND Entity.ID = mostRecentContribution.user;
+ -- isto deixaria de existir [ler query 1]
