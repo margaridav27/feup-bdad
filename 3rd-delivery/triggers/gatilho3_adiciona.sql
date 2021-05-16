@@ -1,4 +1,3 @@
-DROP TRIGGER IF EXISTS CheckUniqueTagNameWithinRepository;
 CREATE TRIGGER CheckUniqueTagNameWithinRepository
 BEFORE INSERT ON Tag
 WHEN 
