@@ -1,3 +1,7 @@
+.mode       columns
+.headers    on
+.nullvalue  NULL
+
 SELECT ID AS contributionID,
        user AS contributor,
        repository AS repositoryID,
