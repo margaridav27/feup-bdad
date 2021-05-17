@@ -147,7 +147,7 @@ VALUES
     (100, "exercicios_TPs"),
     (101, "website-NIAEFEUP"),
     (102, "NI");
-
+    
 INSERT INTO Repository (ID, "name", "owner", rootDirectory, isVisible)
 VALUES
     (1, "feup-lpoo", 1, 1, 0),

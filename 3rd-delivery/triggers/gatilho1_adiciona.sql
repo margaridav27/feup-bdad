@@ -1,11 +1,9 @@
-/* Aquando da criação de um repositório, criar o respetivo root directory*/
-DROP TRIGGER IF EXISTS CreateRootDirectoryForRepository;
-CREATE TRIGGER CreateRootDirectoryForRepository
-BEFORE INSERT ON Repository
-BEGIN
-    SELECT MAX(Directory.ID) FROM Directory AS lastDirectoryID;
-    INSERT INTO Directory (ID, "name") VALUES (lastDirectoryID + 1, New."name");
+/* Aquando da criação de um repositório, criar o respetivo rootDirectory */
 
-    SELECT MAX(Directory.ID) FROM Directory AS lastDirectoryID;
-    UPDATE Repository SET rootDirectory = lastDirectoryID;
+CREATE TRIGGER CreateRootDirectoryForRepository
+AFTER INSERT ON Repository
+WHEN NEW.rootDirectory IS NULL
+BEGIN
+    INSERT INTO Directory (ID, "name") VALUES ((SELECT MAX(ID) FROM Directory) + 1, NEW."name");
+    UPDATE Repository SET rootDirectory = (SELECT MAX(ID) FROM Directory) WHERE ID = NEW.ID;
 END;
