@@ -1,6 +1,6 @@
-.headers on
-.mode table
-.nullvalue NULL
+.mode	columns
+.headers	ON
+.nullvalue	NULL
 
 PRAGMA foreign_keys = ON;
 BEGIN TRANSACTION;
@@ -38,7 +38,7 @@ CREATE TABLE Organization (
 
 DROP TABLE IF EXISTS Directory;
 CREATE TABLE Directory (
-    /* Limit the number of chars for a directory imposed in UNIX */
+    -- Limit the number of chars for a directory imposed in UNIX
     ID INTEGER CONSTRAINT DirectoryIdValid CHECK (ID >= 1),
     "name" TEXT CONSTRAINT DirectoryNameNN NOT NULL 
                 CONSTRAINT DirectoryNameMaxLen CHECK (LENGTH("name") <= 255),
@@ -83,7 +83,7 @@ CREATE TABLE Contribution (
     repository INTEGER CONSTRAINT repositoryValid CHECK (repository >= 1),
     "date" DATE CONSTRAINT dateNN NOT NULL,
     CONSTRAINT ContributionPK PRIMARY KEY (ID),
-    /* Contribution should remain even if User is deleted */
+    -- Contribution should remain even if User is deleted
     CONSTRAINT ContributionUserFK FOREIGN KEY (user) REFERENCES User(ID)
         ON UPDATE CASCADE
         ON DELETE SET NULL,
@@ -121,7 +121,6 @@ CREATE TABLE Tag (
 DROP TABLE IF EXISTS PullRequest;
 CREATE TABLE PullRequest (
     ID INTEGER          CONSTRAINT idValid CHECK(ID >= 1),
-    /* How to calculate this number based on the Date from Contribution? */
     pullRequestNumber INTEGER   CONSTRAINT PullRequestNumberValid CHECK (pullRequestNumber >= 1),
     "status" INTEGER            CONSTRAINT PullRequestStatusValid CHECK ("status" >= 0 AND "status" <= 1),
     "message" TEXT              CONSTRAINT defaultMessage DEFAULT "No pull request message provided",
@@ -136,7 +135,6 @@ CREATE TABLE PullRequest (
 DROP TABLE IF EXISTS Issue;
 CREATE TABLE Issue (
     ID INTEGER          CONSTRAINT idValid CHECK(ID >= 1),
-    /* How to calculate this number based on the Date from Contribution? */
     issueNumber INTEGER     CONSTRAINT IssueNumberValid CHECK (issueNumber >= 1),
     "message" TEXT          CONSTRAINT defaultMessage DEFAULT "No issue message provided"
                             CONSTRAINT messageNN NOT NULL,
@@ -178,7 +176,7 @@ CREATE TABLE ProgrammingLanguage (
 
 DROP TABLE IF EXISTS "File";
 CREATE TABLE "File" (
-    /* Limit the number of chars for a file imposed in UNIX */
+    -- Limit the number of chars for a file imposed in UNIX
     "name" TEXT         CONSTRAINT FileNameNN NOT NULL 
                         CONSTRAINT FileNameMaxLen CHECK(LENGTH("name") <= 255),
     directory INTEGER   CONSTRAINT DirectoryValid CHECK(directory >= 1),
@@ -189,7 +187,7 @@ CREATE TABLE "File" (
     CONSTRAINT FileDirectoryFK FOREIGN KEY (directory) REFERENCES Directory(ID)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
-    /* Once a programming language is instatiated and associated with a file it can't be removed anymore */
+    -- Once a programming language is instatiated and associated with a file it can't be removed anymore
     CONSTRAINT FileProgrammingLanguageFK FOREIGN KEY (programmingLanguage) REFERENCES ProgrammingLanguage("name")
         ON UPDATE RESTRICT
         ON DELETE RESTRICT

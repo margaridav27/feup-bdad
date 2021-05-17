@@ -1,3 +1,7 @@
+.mode	columns
+.headers	ON
+.nullvalue	NULL
+
 PRAGMA foreign_keys = ON;
 BEGIN TRANSACTION;
 
@@ -266,12 +270,12 @@ VALUES
     (28, 2, 11, "2018-11-06"),
     (29, 2, 9, "2018-11-19"),
     (30, 2, 9, "2018-12-25"),
-    (31, 2, 10,"2019-01-10"),
-    (32, 2, 10,"2019-01-15"),
-    (33, 2, 11,"2019-01-22"),
-    (34, 2, 11,"2019-01-28"),
-    (35, 2, 9,"2019-04-22"),
-    (36, 2, 9,"2019-04-26"),
+    (31, 2, 10, "2019-01-10"),
+    (32, 2, 10, "2019-01-15"),
+    (33, 2, 11, "2019-01-22"),
+    (34, 2, 11, "2019-01-28"),
+    (35, 2, 9, "2019-04-22"),
+    (36, 2, 9, "2019-04-26"),
     (37, 3, 16, "2020-02-19"),
     (38, 3, 16, "2020-02-27"),
     (39, 3, 16, "2020-03-05"),
@@ -312,8 +316,8 @@ VALUES
     (74, 5, 18, "2021-02-21"),
     (75, 5, 18, "2021-02-21"),
     (76, 5, 18, "2021-02-21"),
-    (77, 5, 18,"2021-02-21"),
-    (78, 5, 18,"2021-02-21"), 
+    (77, 5, 18, "2021-02-21"),
+    (78, 5, 18, "2021-02-21"), 
     (79, 4, 18, "2021-02-23"),
     (80, 4, 18, "2021-02-23"), 
     (81, 4, 18, "2021-02-23"),
@@ -610,8 +614,8 @@ VALUES
     ("file3.txt", 100, "some content", NULL),
     ("file4.txt", 100, "some content", NULL),
     ("file5.txt", 100, "some content", NULL),
-    ("code1.c", 23, "some content","C"),
-    ("code2.c", 23, "some content" ,"C"),
+    ("code1.c", 23, "some content", "C"),
+    ("code2.c", 23, "some content", "C"),
     ("code3.c", 23, "some content", "C"),
     ("code4.c", 23, "some content", "C"),
     ("code5.c", 23, "some content", "C"),
@@ -963,13 +967,13 @@ VALUES
     (5, 13, 0);
 
 
-
 INSERT INTO Submodule (source,destination)
 VALUES
     (13, 14),
     (11, 9),
     (11, 10),
     (18, 17);
+
 
 INSERT INTO FolderRelationship (child, parent)
 VALUES
@@ -1050,10 +1054,12 @@ VALUES
     (98, 96),
     (99, 96);
 
+
 INSERT INTO OrganizationUserOwner (user, organization)
 VALUES
     (2, 10),
     (8, 11);
+
 
 INSERT INTO OrganizationUserMember (user, organization, isPrivate)
 VALUES

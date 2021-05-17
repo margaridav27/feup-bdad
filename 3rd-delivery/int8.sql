@@ -1,3 +1,7 @@
+.mode	columns
+.headers	ON
+.nullvalue	NULL
+
 DROP View if exists TeamRepo;
 CREATE View TeamRepo AS
     SELECT Repository.ID as RepositoryID, Repository.name as RepositoryName,  Teams.ID as EntityID, Teams.name as EntityName 

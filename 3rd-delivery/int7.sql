@@ -1,3 +1,7 @@
+.mode	columns
+.headers	ON
+.nullvalue	NULL
+
 DROP VIEW IF EXISTS PopularRepos;
 CREATE VIEW PopularRepos AS
     SELECT Repository.ID, Count(Contribution.id) as nrContributions

@@ -1,3 +1,7 @@
+.mode	columns
+.headers	ON
+.nullvalue	NULL
+
 -- SELECT Entity.name AS EntityName, Repository.name AS RepositoryName 
 -- FROM Entity  JOIN Repository ON Entity.ID = Repository."owner"
 -- ORDER BY Entity.name ASC;

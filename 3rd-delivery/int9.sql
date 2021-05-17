@@ -1,3 +1,7 @@
+.mode	columns
+.headers	ON
+.nullvalue	NULL
+
 -- número de contribuições do tipo merge que foram feitas por cada utilizador no ambito de cada uma das suas equipas
 
 DROP View if exists MergeContributions;
