@@ -3,6 +3,12 @@
 CREATE TRIGGER CheckContributionAvailabilityForOrgRepo
 BEFORE INSERT ON Contribution
 WHEN 
+    -- is an organization's repository
+    (SELECT "owner" 
+    FROM Repository
+    WHERE ID = NEW.repository) IN (SELECT ID
+                                   FROM Organization)
+    AND
     -- is not the repository's owner
     NEW.user NOT IN (SELECT user
                      FROM OrganizationUserOwner

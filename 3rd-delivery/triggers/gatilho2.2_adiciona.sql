@@ -3,6 +3,12 @@
 CREATE TRIGGER CheckContributionAvailabilityForTeamRepo
 BEFORE INSERT ON Contribution
 WHEN 
+    -- is a team's repository
+    (SELECT "owner" 
+    FROM Repository
+    WHERE ID = NEW.repository) IN (SELECT ID
+                                   FROM Team)
+    AND
     -- is not a member of the team to which the repository belongs
     NEW.user NOT IN (SELECT user 
                      FROM TeamUserMember 

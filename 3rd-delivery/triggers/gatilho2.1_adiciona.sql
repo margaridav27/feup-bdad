@@ -3,6 +3,12 @@
 CREATE TRIGGER CheckContributionAvailabilityForRegularRepo
 BEFORE INSERT ON Contribution
 WHEN 
+    -- is a regular repository
+    (SELECT "owner" 
+    FROM Repository
+    WHERE ID = NEW.repository) IN (SELECT ID
+                                   FROM User)
+    AND
     -- is not the repository's owner
     NEW.user <> (SELECT "owner" 
                  FROM Repository 
