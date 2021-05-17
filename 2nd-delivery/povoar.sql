@@ -7,19 +7,19 @@ BEGIN TRANSACTION;
 
 INSERT INTO Entity (ID,"name")
 VALUES
-    (1,"beatriz-ag"),
-    (2,"andrefmrocha"),
-    (3,"GambuzX"),
-    (4,"margaridav27"),
-    (5,"AndrePereira2001"),
-    (6,"tmv11"),
-    (7,"francisco-rente"),
-    (8,"pemesteves"),
-    (9,"mikRodrigues"),
-    (10,"NIAEFEUP"),
-    (11,"NECG"),
-    (12,"UniApp"),
-    (13,"NIJobs");
+    (1, "beatriz-ag"),
+    (2, "andrefmrocha"),
+    (3, "GambuzX"),
+    (4, "margaridav27"),
+    (5, "AndrePereira2001"),
+    (6, "tmv11"),
+    (7, "francisco-rente"),
+    (8, "pemesteves"),
+    (9, "mikRodrigues"),
+    (10, "NIAEFEUP"),
+    (11, "NECG"),
+    (12, "UniApp"),
+    (13, "NIJobs");
 
 INSERT INTO User (ID)
 VALUES
@@ -40,8 +40,8 @@ VALUES
 
 INSERT INTO Team (ID, organization, "description")
 VALUES
-    (12,10,"This is a description for UniApp"),
-    (13,10, "This is a description for NIJOBS");
+    (12, 10, "This is a description for UniApp"),
+    (13, 10, "This is a description for NIJOBS");
 
 INSERT INTO Directory (ID, "name")
 VALUES
@@ -486,7 +486,7 @@ VALUES
     ("SQL"),
     ("Shell");
 
-INSERT INTO "File" ("name", directory,content,programmingLanguage)
+INSERT INTO "File" ("name", directory, content, programmingLanguage)
 VALUES
     ("code1.java", 8,"some content", "Java"),
     ("code2.java", 8, "some content", "Java"),

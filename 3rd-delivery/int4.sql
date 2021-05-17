@@ -33,15 +33,16 @@ CREATE VIEW MostUsedProgrammingLanguage AS
                                    HAVING COUNT("File".programmingLanguage));
 
 
--- Now it's time for the recursive query
+-- Now it's time for the recursive query, using a CTE
+    -- This type of queries is only available for SQLite 3.8.3 or newer 
 
 -- In other words we will simply discover which is the folder
 -- in the top hierarchy for that folder
 WITH RECURSIVE DirectoryRootFolder (childFolder, parentFolder, folderPath) AS
 (
-    SELECT DISTINCT FolderRelations.childFolder, 
-                    FolderRelations.parentFolder,
-                    CAST(FolderRelations.childFolder AS TEXT) AS folderPath
+    SELECT FolderRelations.childFolder, 
+           FolderRelations.parentFolder,
+           CAST(FolderRelations.childFolder AS TEXT) AS folderPath
     FROM FolderRelations
     WHERE FolderRelations.parentFolder IS NULL
 
