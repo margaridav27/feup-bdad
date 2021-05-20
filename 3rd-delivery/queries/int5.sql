@@ -2,6 +2,8 @@
 .headers	ON
 .nullvalue	NULL
 
+-- 5.	Listar o nome dos diretorios de repositórios de organizações
+
 -- Retrives all the repositories from Organizations
 DROP VIEW IF EXISTS OrganizationRepositories;
 CREATE VIEW OrganizationRepositories AS

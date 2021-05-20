@@ -2,11 +2,9 @@
 .headers	ON
 .nullvalue	NULL
 
--- SELECT Entity.name AS EntityName, Repository.name AS RepositoryName 
--- FROM Entity  JOIN Repository ON Entity.ID = Repository."owner"
--- ORDER BY Entity.name ASC;
+-- 1. O utilizador que fez uma contribuição mais recentemente
  
-SELECT Repository.name AS RepositoryName, Entity.name AS EntityName, MIN(mostRecentContribution.date) AS ContributionDate 
+SELECT Repository.name AS RepositoryName, Entity.name AS EntityName, MAX(mostRecentContribution.date) AS ContributionDate 
 FROM Repository, Entity, (SELECT Contribution.user, Contribution.repository, MAX(Contribution.date) AS date
                           FROM Contribution
                           GROUP BY Contribution.user) AS mostRecentContribution

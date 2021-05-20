@@ -2,6 +2,8 @@
 .headers	ON
 .nullvalue	NULL
 
+-- 4.	Qual a linguagem de programaçao mais utilizada por repositório 
+
 -- Create the tree where for each folder we have the corresponding parent folder
 -- Just a small change to manipulate more easily each rootDirectory
 DROP VIEW IF EXISTS FolderRelations;
