@@ -66,8 +66,9 @@ WITH RECURSIVE DirectoryRootFolder (childFolder, parentFolder, folderPath) AS
         -- In other words is like calculating the mode of the programming languges used inside each repository
     -- Finally we just need to group everything again and retrieve the first tuple for each repository
     -- that tuple contains the name of the repository and the name of the most used programming language for the corresponding repository
-SELECT RepositoryMostUsedLanguage.repositoryName, RepositoryMostUsedLanguage.programmingLanguage
-FROM   (
+SELECT RepositoryMostUsedLanguage.repositoryName AS repositoryName,
+       RepositoryMostUsedLanguage.programmingLanguage AS programmingLanguage
+FROM (
         SELECT RepositoryFolder.Name AS repositoryName, MostUsedProgrammingLanguage.programmingLanguage
         FROM MostUsedProgrammingLanguage NATURAL JOIN 
         -- The Cast in both subqueries allows the DBMS to join both tables properly - by the directories ID
