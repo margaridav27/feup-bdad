@@ -146,7 +146,11 @@ VALUES
     (99, "src"),
     (100, "exercicios_TPs"),
     (101, "website-NIAEFEUP"),
-    (102, "NI");
+    (102, "NI"),
+    (103, "summer-project-2020"),
+    (104, "FEUP-Mayhem"),
+    (105, "Logic"), 
+    (106, "Assets");
     
 INSERT INTO Repository (ID, "name", "owner", rootDirectory, isVisible)
 VALUES
@@ -167,7 +171,8 @@ VALUES
     (15, "NI", 10, 102, 1),
     (16, "LeetCode", 3, 82, 0),
     (17, "feup-sope", 4, 94, 1),
-    (18, "feup-sope-xmod", 4, 95, 1);
+    (18, "feup-sope-xmod", 4, 95, 1),
+    (19, "summer-project-2020", 11, 103, 1);
 
 INSERT INTO Branch ("name", repository, isDefault)
 VALUES
@@ -189,6 +194,7 @@ VALUES
     ("main", 16, 1),
     ("main", 17, 1),
     ("main", 18, 1),
+    ("main", 19, 1),
     ("development", 1, 0),
     ("development", 2, 0),
     ("development", 3, 0),
@@ -329,7 +335,8 @@ VALUES
     (87, 6, 18, "2021-02-24"),
     (88, 6, 18, "2021-02-24"),
     (89, 6, 18, "2021-02-24"),
-    (90, 2, 13, "2021-02-24");
+    (90, 2, 13, "2021-02-24"),
+    (91, 8, 19, "2021-03-04");
 
 INSERT INTO "Commit" (ID, commitHash, "message")
 VALUES
@@ -406,7 +413,8 @@ VALUES
     (87, "2d564f5f8a2132bc520b7ea592da219fa4e5f918", "a relevant commit indeed"),
     (88, "79bad431a0cbce2d4a526f44b98210bd989b8872", "a relevant commit indeed"),
     (89, "37f055a5434cdda3f18793218ca66b28e6555f52", "a relevant commit indeed"),
-    (90, "37f055a5434cddaxf18793218ca66b28e6555f52", "a relevant commit indeed");
+    (90, "37f055a5434cddaxf18793218ca66b28e6555g52", "a relevant commit indeed"),
+    (91, "37f055a5434cddaxf18793218ca66b28e6345f52", "Initial Commit");
 
 
 INSERT INTO Tag (ID, "name", "commit")
@@ -484,7 +492,8 @@ VALUES
     ("Scala"),
     ("SWIFT"),
     ("SQL"),
-    ("Shell");
+    ("Shell"),
+    (".NET");
 
 INSERT INTO "File" ("name", directory, content, programmingLanguage)
 VALUES
@@ -933,7 +942,9 @@ VALUES
     ("code5.sc", 76, "some content", "Scala"),
     ("code6.sc", 76, "some content", "Scala"),
     ("script.sh", 77, "some content", "Shell"),
-    ("script.sh", 78, "some content", "Shell");
+    ("script.sh", 78, "some content", "Shell"),
+    ("Enemie.dll", 105, "some content", ".NET"),
+    ("Player.dll", 105, "some content", ".NET");
 
 
 INSERT INTO ContributorRepository (user,repository)
@@ -956,7 +967,8 @@ VALUES
     (4, 18),
     (5, 18),
     (6, 18),
-    (7, 18);
+    (7, 18),
+    (8, 19);
 
 
 INSERT INTO TeamUserMember (user, team, isMaintainer)
@@ -1052,7 +1064,10 @@ VALUES
     (96, 95),
     (97, 96),
     (98, 96),
-    (99, 96);
+    (99, 96),
+    (104, 103),
+    (105, 104),
+    (106, 104);
 
 
 INSERT INTO OrganizationUserOwner (user, organization)
