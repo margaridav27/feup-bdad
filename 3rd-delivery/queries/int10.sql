@@ -2,7 +2,8 @@
 .headers	ON
 .nullvalue	NULL
 
--- 10.	Average de issues abertos em repositórios cujo owner é um utilizador (organização e teams não) 
+-- 10.	Average de issues abertos em repositórios cujo owner é um utilizador (organização e teams não)
+
 DROP View IF EXISTS "Group";
 CREATE View "Group" AS 
     SELECT Team.ID 
