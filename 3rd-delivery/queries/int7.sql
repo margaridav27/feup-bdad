@@ -2,7 +2,7 @@
 .headers	ON
 .nullvalue	NULL
 
--- 7.	Qual o utilizador que fez uma contribuição com maior intervalo de dias em todos os repositórios
+-- Obter, para cada repositório, o utilizador que passou mais tempo sem efetuar uma contribuição e mostrar os respetivos nome de utilizador e intervalo de tempo.
 
 DROP VIEW IF EXISTS ContributionsByUser;
 CREATE VIEW ContributionsByUser AS
@@ -26,7 +26,7 @@ FROM
     FROM
         (SELECT C1.name AS userName, C1.repository as repo, C1.date, C2.date, max(julianday(C2.date)-julianday(C1.date)) as TimeDifference, C1."index", C2."index"
         FROM ContributionsByUserIndex AS C1, ContributionsByUserIndex AS C2
-        WHERE C1.name = C2.name AND C1.date < C2.date AND C1.repository = C2.repository AND (C2."index" - C1."index") = 1
+        WHERE C1.name = C2.name AND C1.date < C2.date AND C1.repository = C2.repository AND abs(C2."index" - C1."index") = 1
         GROUP BY C1.repository, userName)
     GROUP BY userName, repo), Repository
 WHERE repo = Repository.ID

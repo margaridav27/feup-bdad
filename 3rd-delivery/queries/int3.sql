@@ -2,7 +2,7 @@
 .headers	ON
 .nullvalue	NULL
 
--- 3.	Contar o nr de commits com palavra “indeed” para todos os utilizadores 
+-- Para cada utilizador, contar o número de commits efetuados, cuja message do mesmo contempla a palavra “indeed”.
 
 SELECT Entity.name , count(*) AS NumberCommits
 FROM (SELECT user, "Commit".message AS message 

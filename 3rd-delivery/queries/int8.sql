@@ -2,7 +2,7 @@
 .headers	ON
 .nullvalue	NULL
 
--- 8. Listar os repositorios de uma equipa para o qual todos os membros contribuíram 
+-- Considerando os repositórios pertencentes a equipas, listar aqueles para os quais todos os membros já contribuíram eventualmente.
 
 DROP View if exists TeamRepo;
 CREATE View TeamRepo AS

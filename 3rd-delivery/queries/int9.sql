@@ -2,7 +2,7 @@
 .headers	ON
 .nullvalue	NULL
 
--- 9.	O número de contribuições do tipo merge que foram feitas por cada utilizador no âmbito de cada uma das suas equipas.
+-- Obter o número de contribuições do tipo Merge que foram feitas por cada utilizador, no âmbito de cada uma das equipas às quais pertença.
 
 DROP View if exists MergeContributions;
 CREATE View MergeContributions AS
