@@ -1,4 +1,5 @@
-/* Só membros de uma equipa podem fazer uma contribuição para um repositório da mesma. */
+-- Garantir que, no que diz respeito a repositórios pertencentes a organizações, 
+-- apenas membros da respetiva organização podem fazer uma contribuição.
 
 CREATE TRIGGER CheckContributionAvailabilityForOrgRepo
 BEFORE INSERT ON Contribution

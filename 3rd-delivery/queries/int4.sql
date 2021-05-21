@@ -2,7 +2,7 @@
 .headers	ON
 .nullvalue	NULL
 
--- 4.	Qual a linguagem de programaçao mais utilizada por repositório 
+-- Obter, para cada repositório, a linguagem de programaçao mais utilizada.
 
 -- Create the tree where for each folder we have the corresponding parent folder
 -- Just a small change to manipulate more easily each rootDirectory

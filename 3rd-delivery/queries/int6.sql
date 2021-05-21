@@ -2,8 +2,11 @@
 .headers	ON
 .nullvalue	NULL
 
--- 6.	O nr de repositorios/contribuidores que todos os users tem entre si 
+-- Obter, para cada um dos repositórios, o respetivo número de contribuidores que nunca efetuaram uma contribuição. 
 
-SELECT repository.name AS RepositoryName, count(*) AS NumberContributors 
-FROM ContributorRepository JOIN Repository ON ContributorRepository.repository = Repository.id 
-GROUP BY repository;
+SELECT CREPOS.name AS repositoryName, count(DISTINCT CREPOS.user) AS numberOfContributorsThatNeverContributed
+FROM (ContributorRepository JOIN Repository ON ContributorRepository.repository = Repository.ID) AS CREPOS, Contribution 
+WHERE NOT EXISTS(SELECT * 
+                FROM Contribution 
+                WHERE CREPOS.user = Contribution.user AND CREPOS.repository = Contribution.repository) 
+GROUP BY CREPOS.repository;

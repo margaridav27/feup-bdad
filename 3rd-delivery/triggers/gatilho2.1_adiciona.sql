@@ -1,4 +1,5 @@
-/* Só contribuidores de um repositório podem fazer uma contribuição para o mesmo. */
+-- Garantir que, no que diz respeito a repositórios não pertencentes a organizações ou equipas, designados no contexto do trigger como regular repositories, 
+-- apenas contribuidores conseguem fazer uma contribuição.
 
 CREATE TRIGGER CheckContributionAvailabilityForRegularRepo
 BEFORE INSERT ON Contribution

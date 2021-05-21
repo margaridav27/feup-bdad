@@ -1,4 +1,4 @@
-/* Aquando da criação de um repositório, criar o respetivo rootDirectory */
+-- Aquando da inserção de um novo repositório, criar o respetivo root directory.
 
 CREATE TRIGGER CreateRootDirectoryForRepository
 AFTER INSERT ON Repository

@@ -1,3 +1,5 @@
+-- Garantir que o nome de uma tag é único no contexto de um repositório, ou seja, o mesmo repositório não pode ter duas tags com o mesmo nome.
+
 CREATE TRIGGER CheckUniqueTagNameWithinRepository
 BEFORE INSERT ON Tag
 WHEN 
