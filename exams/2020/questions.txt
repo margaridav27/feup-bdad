@@ -1,0 +1,60 @@
+Liste os nomes e preços das pizzas com um preço superior a 20, por ordem decrescente de preço.
+
+Resultado esperado:
+
+name        price     
+----------  ----------
+Firenze     40.0      
+Mediterran  30.0      
+Caprese     25.0      
+Fiorentina  23.0
+
+
+
+
+
+Qual ou quais as pizzas mais caras de cada tipo de massa? Apresente o nome do tipo de massa, o nome da pizza e respetivo preço. 
+
+Considere apenas os preços de tabela de cada pizza, ou seja, sem quaisquer ingredientes extra. Se um tipo de massa não estiver associada a nenhuma pizza, não deverá aparecer no resultado.
+
+O resultado deve ser apresentado por ordem alfabética inversa do nome do tipo de massa, depois por ordem descendente de preço da pizza e finalmente por ordem alfabética do nome da pizza.
+
+Resultado Esperado: 
+
+doughtype               price       pizza     
+----------------------  ----------  ----------
+Traditional thin crust  40.0        Firenze   
+Thick with filling      15.0        Heart Atta
+Pan pizza style         25.0        Caprese   
+New York style          10.0        BIG New Yo
+
+
+
+
+
+Dado que uma pizza vegetariana apenas pode ter ingredientes vegetarianos, apresente o nome e o número de ingredientes das pizzas vegetarianas, por ordem decrescente do número de ingredientes e depois por ordem alfabética do nome da pizza.
+
+Dica: Pizzas sem ingredientes também são vegetarianas.
+
+Resultado Esperado: 
+
+name        n_ingredients
+----------  -------------
+Athenaii    6            
+Veggie Lov  4 
+
+
+
+
+
+O restaurante permite aos seus clientes acrescentar ingredientes extra a uma pizza, por um preço especificado para cada ingrediente. 
+
+Qual o preço final a pagar (por toda a encomenda) se um cliente comprar uma unidade de cada pizza, acrescentando a cada uma dessas pizzas 1 dose de todos os ingredientes alergénicos? 
+
+Deve assumir que cada ingrediente só pode ser incluído uma vez a cada pizza. Se a pizza já incluir um determinado ingrediente na receita base, não é possível acrescentar esse ingrediente como extra.
+
+Resultado Esperado:
+
+total     
+----------
+221.0     
